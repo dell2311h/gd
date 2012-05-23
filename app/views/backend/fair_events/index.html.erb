@@ -1,0 +1,113 @@
+<table width="97%" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+          <td valign="top">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td>
+					<div class="screenTitle">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td><img src="/images/backend/on.gif" width="16" height="16">&nbsp;Fairs Event List <span class="name"></span>Of <span class="name"><%= @fair.name %></span></td>
+							<td>&nbsp;</td>
+						</tr>
+						</table>
+					</div>
+				</td>	  
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			</table>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<div class="listArea">
+				<fieldset>
+					<legend>Fairs events</legend>
+						<table width="100%" border="0" cellspacing="1" cellpadding="1">
+						<tr>
+							<td width="80%" Class="td-listing">
+								<font class="errormsg">
+									<% if !flash[:notice].nil?%>
+									<%=flash[:notice]%>
+									<% end %>
+								</font>
+							</td>
+							<td valign="middle"><div align="right"></div></td>
+							<td width="15%"  class="td-listing">
+								<% form_tag backend_fair_grouping_fair_fair_events_path(@fair_grouping, @fair), :id => 'search_form', :method => :get do %>
+							</td>
+							<td  class="td-listing">
+								<div align="right">
+										<input  name="search" type="Text" size="20" value="<%= params[:search] -%>">
+									<% end %>
+								</div>
+							</td>
+							<td class="td-listing">
+								<div align="right">
+									<%= link_to_function image_tag("/images/backend/search.jpg"), "jQuery('#search_form')[0].submit();" %>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="5">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td width="8%" class="td-listing">
+											<%= link_to image_tag("/images/backend/addnew.jpg"), new_backend_fair_grouping_fair_fair_event_path(@fair_grouping, @fair) %>
+										</td>
+										<!-- <td width="8%" class="td-listing">
+											<%= link_to_function image_tag("/images/backend/delete.jpg"), 'deleteSelected()' -%>
+										</td> -->
+										<td width="8%" class="td-listing">
+											<%= link_to image_tag("/images/backend/showall.jpg"), backend_fair_grouping_fair_fair_events_path(@fair_grouping, @fair, :sort_on => params[:sort_on]) -%>
+										</td>
+										<td width="60%" class="td-new2"><div align="right"><font class="disprecordmsg">
+											<%= page_entries_info @fair_events , :entry_name => @controller.controller_name.capitalize if @fair_events.size > 0 %>
+										</font></div>
+										</td> 
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="5">&nbsp;</td>
+						</tr>
+						</table>
+						<table width="100%" cellspacing="1" cellpadding="0" border="0">
+						<tr>
+							<th width="17%"><div align="left">&nbsp;<%= link_to "Fair name", backend_fair_grouping_fair_fair_events_path(@fair_grouping, @fair, :sort_on => 'name', :search => params[:search], :page => params[:page]) %></div></th>
+							<th width="17%"><div align="left">&nbsp;<%= link_to "City", backend_fair_grouping_fair_fair_events_path(@fair_grouping, @fair, :sort_on => 'city_name', :search => params[:search], :page => params[:page]) %></div></th>
+							<th width="17%"><div align="left">&nbsp;<%= link_to "State", backend_fair_grouping_fair_fair_events_path(@fair_grouping, @fair, :sort_on => 'region_name', :search => params[:search], :page => params[:page]) %></div></th>
+							<th width="17%"><div align="left">&nbsp;<%= link_to "Country", backend_fair_grouping_fair_fair_events_path(@fair_grouping, @fair, :sort_on => 'country_name', :search => params[:search], :page => params[:page]) %></div></th>
+							<th width="25%"><div align="center">&nbsp;Actions&nbsp;</div></th>
+						</tr>	
+						 <% if @fair_events.size > 0 %>
+						 <% @fair_events.each do |fair_event| %>
+						<tr onmouseover="this.style.backgroundColor='#D9D9D9'"  onmouseout="this.style.backgroundColor='<%= cycle('#EFEFEF', '#f8f8f8') %>'" bgcolor="<%= cycle('#EFEFEF', '#f8f8f8') %>">
+							<td class="td-listing">&nbsp;<%= fair_event.name %></td>
+							<td class="td-listing">&nbsp;<%= fair_event.city.name rescue fair_event.fair.city.name %></td>
+							<td class="td-listing">&nbsp;<%= fair_event.city.region.name rescue fair_event.fair.city.region.name %></td>	
+							<td class="td-listing">&nbsp;<%= fair_event.city.region.country.name rescue fair_event.fair.city.region.country.name %></td>	
+							<td class="td-listing" align="center">
+								<%= link_to 'Update', edit_backend_fair_grouping_fair_fair_event_path(@fair_grouping, @fair, fair_event) -%> | 
+								<%= link_to 'Delete', backend_fair_grouping_fair_fair_event_path(@fair_grouping, @fair, fair_event), :method => :delete, :confirm => 'Are you sure?' -%>
+							</td>
+						</tr>
+						<% end %>
+						<% else %>
+						<tr>
+							<td colspan = "5" height="170" align="center"  ><div class="listingmessage">No Records Found</div></td>
+						</tr>	
+						<% end %>
+						</table>
+				</fieldset>
+				</div>
+			</td>
+		</tr>
+		</table>
+			<input  type="hidden" name="no" value="s">
+			<p align="right"><font size="2" FACE="Verdana, Arial, Helvetica, sans-serif" color="black"><%= will_paginate @fair_events,:inner_window =>2, :outer_window => 2 %></font></p>
+	</td>
+</tr>
+</table>

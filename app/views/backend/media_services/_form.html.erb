@@ -1,0 +1,93 @@
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Name&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :name, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Editor&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :editor, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Region&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :region, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Url&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :url, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Edited or Comprehensive&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left">
+		<%= f.radio_button :edited, true, :class =>'input' %> Edited<br/>
+		<%= f.radio_button :edited, false, :class =>'input' %> Comprehensive<br/>
+	</td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Form based or Email based&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left">
+		<%= f.radio_button :form_based, true, :class =>'input', :onclick => 'toggleTypeInput()' %> Form based<br/>
+		<%= f.radio_button :form_based, false, :class =>'input', :onclick => 'toggleTypeInput()' %> Email based<br/>
+	</td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<script>
+	function toggleTypeInput(){
+		if(jQuery('#media_service_form_based_true').attr('checked')){
+			jQuery('#email_block').hide();
+			jQuery('#api_block').show();
+		}else{
+			jQuery('#email_block').show();
+			jQuery('#api_block').hide();
+		}
+	}
+	
+	jQuery(document).ready(function() { toggleTypeInput(); });
+	
+</script>
+<tr id="email_block">
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Email&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :email, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr id="api_block">
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">API Url&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :api_url, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Media type&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :media_type, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left" valign="top">Description&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%" valign="top"> : </td>
+	<td width="40%" align="left"><%= f.text_area :description, :class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<script>
+	$.{}
+</script>

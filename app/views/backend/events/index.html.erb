@@ -1,0 +1,116 @@
+<table width="97%" border="0" align="center" cellpadding="2" cellspacing="2">
+	<tr>
+		<td valign="top">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td>
+						<div class="screenTitle">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td><img src="/images/backend/on.gif" width="16" height="16">&nbsp;Events <span class="name"></span>Of <span class="name"><%= @venue.name %></span></td>
+									<td>&nbsp;<%= link_to 'Back to Venue', edit_backend_venue_path(@venue) -%></td>
+								</tr>
+							</table>
+						</div>
+					</td>	  
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<div class="listArea">
+							<fieldset>
+								<legend>Events</legend>
+								<table width="100%" border="0" cellspacing="1" cellpadding="1">
+									<!-- <tr>
+										<td width="80%" Class="td-listing">
+											<font class="errormsg">
+												<% if !flash[:notice].nil?%>
+												<%=flash[:notice]%>
+												<% end %>
+											</font>
+										</td>
+										<td valign="middle"><div align="right"></div></td>
+										<td width="15%"  class="td-listing">
+											<% form_tag backend_venues_path, :id => 'search_form', :method => :get do %>
+											<%= select_tag :option, options_for_select([['Name','name'],['E-mail','email'],['IP','ipaddress']], :selected => params[:option]), :style => "height:20px; width:150px;" %>
+										</td>
+										<td  class="td-listing">
+											<div align="right">
+													<input  name="search" type="Text" size="20" value="<%= params[:search] -%>">
+												<% end %>
+											</div>
+										</td>
+										<td class="td-listing">
+											<div align="right">
+												<%= link_to_function image_tag("/images/backend/search.jpg"), "jQuery('#search_form')[0].submit();" %>
+											</div>
+										</td>
+									</tr>-->
+									<tr>
+										<td colspan="5">
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td width="8%" class="td-listing">
+														<%= link_to image_tag("/images/backend/addnew.jpg"), new_backend_venue_event_path(@venue) %>
+													</td>
+													<!-- <td width="8%" class="td-listing">
+														<%= link_to_function image_tag("/images/backend/delete.jpg"), 'deleteSelected()' -%>
+													</td>
+													<td width="8%" class="td-listing">
+														<%= link_to image_tag("/images/backend/active.jpg"), backend_venues_path(:sort_on => params[:sort_on], :state => 1) -%>
+													</td>
+													<td width="8%" class="td-listing">
+														<%= link_to image_tag("/images/backend/inactive.jpg"), backend_venues_path(:sort_on => params[:sort_on], :state => 0) -%>
+													</td>
+													<td width="8%" class="td-listing">
+														<%= link_to image_tag("/images/backend/showall.jpg"), backend_venues_path(:sort_on => params[:sort_on]) -%>
+													</td>-->
+													<td width="60%" class="td-new2"><div align="right"><font class="disprecordmsg">
+														<%= page_entries_info @events , :entry_name => @controller.controller_name.capitalize if @events.size > 0 %>
+													</font></div>
+													</td> 
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="5">&nbsp;</td>
+									</tr>
+								</table>
+								<table width="100%" cellspacing="0" cellpadding="0" border="0">
+									<tr>
+										<th width="80%"><div align="left">&nbsp;<%= link_to "Name", backend_venue_events_path(@venue, :sort_on => 'name', :page => params[:page]) %></div></th>
+										<th width="10%"><div align="left">&nbsp;Enabled?</div></th>
+										<th width="10%"><div align="left">&nbsp;Actions</div></th>
+									</tr>	
+									<% if @events.size > 0 %>
+									<% @events.each do |event| %>
+									<tr onmouseover="this.style.backgroundColor='#D9D9D9'"  onmouseout="this.style.backgroundColor='<%= cycle('#EFEFEF', '#f8f8f8') %>'" bgcolor="<%= cycle('#EFEFEF', '#f8f8f8') %>">
+										<td class="td-listing">&nbsp;<%=link_to event.normalized_title, edit_backend_venue_event_path(@venue, event) -%></td>
+										<td class="td-listing">&nbsp;<%= (event.enabled) ? 'Y' : 'N' -%></td>
+										<td class="td-listing">&nbsp; <%=link_to 'Edit', edit_backend_venue_event_path(@venue, event) -%>
+																		|
+																	  <%=link_to 'Delete', backend_venue_event_path(@venue, event), :method => :delete -%>
+										</td>
+									</tr>
+									<% end %>
+									<% else %>
+									<tr>
+										<td colspan = "7" height="170" align="center"  ><div class="listingmessage">No Records Found</div></td>
+									</tr>	
+									<% end %>
+								</table>
+							</fieldset>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<input  type="hidden" name="no" value="s">
+			<p align="right"><font size="2" FACE="Verdana, Arial, Helvetica, sans-serif" color="black"><%= will_paginate @events, :inner_window =>2, :outer_window => 2 -%></font></p>
+		</td>
+	</tr>
+</table>

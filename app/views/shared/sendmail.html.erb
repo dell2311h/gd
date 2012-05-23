@@ -1,0 +1,36 @@
+<%= form_for @mail, :url => url_for(:controller => self.controller_name, :action => :sendmail), :html => { :class => 'popup', :method => :put } do |f|%>
+  <%= link_to_function '', 'parent.$.fn.colorbox.close()', :class => 'close-btn' %>
+  <header>
+      <hgroup class="left">
+          <h1>psst, pass it on...</h1>
+      </hgroup>
+  </header>
+  <div class="recipient">
+      <h2>Share <em>Eva Zeisel at 105: Important Works of 20th Century Design with:</em></h2>
+      <fieldset>
+          <div><%= f.email_field :to, :placeholder => 'recipient email' %></div>
+          <div>
+              <%= f.text_field :sender_name, :placeholder => 'your name', :class => 'half' %>
+              <%= f.email_field :from, :placeholder => 'your email', :class => 'half' %>
+          </div>
+          <div>
+              <%= f.text_area :mail, :size => '30x5', :onkeyup => "updateTFCount(this, 250)", :placeholder => 'optional message (250 characters maximum)', :class => 'description' %>
+              <div class="annotation">characters remaining: <span style="display: inline;" id="email_mail_count">250</div>
+          </div>
+      </fieldset>
+  </div>
+  <footer>
+      <fieldset class="capcha left">
+          <%= show_simple_captcha(:label => '(enter text from image above)') -%>
+      </fieldset>
+      <div>
+          <button class="save">save</button>
+          <button class="cancel" onclick="parent.$.fn.colorbox.close();return false;">cancel</button>
+      </div>
+  </footer>
+<% end %>
+<script>
+  $(document).ready(function(){
+    resizePopupToContents();
+  });
+</script>

@@ -1,0 +1,190 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<TITLE>GalleryDog</TITLE>
+		<%=stylesheet_link_tag "backend/general","backend/custom","backend/layout",'jquery.autocomplete.css', 'timepicker', 'datePicker' %>
+		<%=javascript_include_tag "jquery-1.6.min.js" %>
+		<%= javascript_include_tag 'jquery.autocomplete.js' %>
+		<%=javascript_include_tag "jquery.timepicker.js" %>
+	    <%=javascript_include_tag "jquery.datePicker.js" %>
+		<%=javascript_include_tag "date.js" %>
+		<script type="text/javascript" src="/wymeditor/jquery.wymeditor.min.js"></script>
+		<style>
+		a.dp-choose-date {
+			float: left;
+			width: 16px;
+			height: 16px;
+			padding: 0;
+			margin: 0;
+			display: block;
+			text-indent: -2000px;
+			overflow: hidden;
+			background: url('/images/calendar.png') no-repeat; 
+		}
+		a.dp-choose-date.dp-disabled {
+			background-position: 0 -20px;
+			cursor: default;
+		}
+		/* makes the input field shorter once the date picker code
+		 * has run (to allow space for the calendar icon
+		 */
+		input.dp-applied {
+			width: 140px;
+			float: left;
+		}
+		</style>
+	</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" border="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="90" valign="top" class="top-bg">
+						<table width="100%" border="0" align="right" cellpadding="0" cellspacing="0" >
+							<tr>
+								<td height=50 colspan="2" align="right">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td height="75" align="left" valign="middle"><img src="/images/backend/logo.gif" hspace="45"></td>
+											<td>
+												<div align="right">
+													<font class="datedisp">
+														<b>You are logged in as :</b>&nbsp;
+														<font class="yellowmatter"><b><%= current_user.firstname %>, <%= current_user.lastname %></b>&nbsp;<br>
+														<strong>[<%= current_user.type %>]</strong>&nbsp;</font></font>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<table width="100%" border="0" cellspacing="1" cellpadding="1" align="center">
+										<tr>
+											<td width="85%" style="padding-left:40px;"  align="left">
+												<table cellSpacing=0 cellPadding=0 border="0" >
+													<tr vAlign="left">
+														<td  valign="top" align="center">
+															<table height=55 cellSpacing=0 cellPadding=0 border=0  align="center">
+																<tr vAlign="center" align="middle" align="center">
+																	
+    <%
+          menu_items = if current_user.type == 'Admin'
+            [
+              { :label => 'Quick View', :url => backend_path },
+              { :label => 'Administrator', :url => backend_administrators_path },
+              { :label => 'Venues', :url => backend_venues_path },
+              { :label => 'Users', :url => backend_users_path },
+              { :label => 'Cities', :url => backend_cities_path },
+              { :label => 'Regional Groupings', :url => backend_region_groupings_path },
+              { :label => 'Neighborhoods', :url => backend_neighborhoods_path },
+              { :label => 'Fairs', :url => backend_fair_groupings_path },
+              { :label => 'Pages', :url => backend_pages_path },
+              { :label => 'Media Services', :url => backend_media_services_path },
+              { :label => 'Agents', :url => backend_listing_agents_path },
+              { :label => 'Agent Tasks', :url => backend_agent_tasks_path }
+              # { :label => 'Login History', :url => backend_stat_path },
+              #{ :label => 'Artists', :url => backend_users_path },
+              #{ :label => 'Exhibitions', :url => backend_users_path },
+              #{ :label => 'General Settings', :url => backend_users_path }
+            ]
+          elsif current_user.type == 'Agent'
+            [
+              { :label => 'My Tasks', :url => dashboard_backend_agent_tasks_path },
+              { :label => 'Get Tasks', :url => get_new_backend_agent_tasks_path }
+            ]
+          else
+            []
+          end
+    %>
+                                                                                                                                  <% menu_items.each_with_index do |item, index| %>
+                                                                                                                                  <td vAlign="center" noWrap>
+                                                                                                                                          &nbsp;&nbsp;
+                                                                                                                                          <%= link_to item[:label], item[:url], :class => 'toplink'%>
+                                                                                                                                          &nbsp;&nbsp;
+                                                                                                                                          <% if index < menu_items.size-1 %>
+                                                                                                                                                  <font class="wmatter" color="#ffffff">|</font>
+                                                                                                                                          <% end %>
+                                                                                                                                  </td>
+                                                                                                                                  <% end %>
+
+                                                                                                                          </td>
+                                                                                                                  </tr>
+                                                                                                          </table>
+                                                                                                  </td>
+                                                                                          </tr>
+                                                                                  </table>
+                                                                          </td>
+                                                                  </tr>
+                                                          </table>
+							</td>
+							<td width="15%" align="right" valign="top">
+								<table>
+									<tr>
+										<td><div align="center"><img src="/images/backend/home.gif" ></div></td>
+										<td>
+											<div align="center">
+												<%= link_to 'Home', backend_path, :class => 'hometoplink' -%>
+											</div>
+										</td>
+										<td>&nbsp;&nbsp;<img src="/images/backend/logout.gif" width="14" height="14"></td>
+										<td>
+											<%= link_to 'Logout', logout_path, :class => 'hometoplink' -%>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="7">
+											<table width="100%" cellpadding="0" border="0" cellspacing="0" background="/images/backend/top-bg.gif" style="background-repeat:no-repeat;">
+												<tr>
+													<td width="100%" align="right">
+														<div align="right">
+															<font class="datedisp"><%=Time.now.strftime("%m/%d/%Y   %I:%M %p") %></font>
+														</div>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="525">
+			<tr>
+				<td valign="top" colspan="2">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td><%= yield %></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="80%" height="18">
+					<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="basecolor1">
+						<tr align="center">
+							<td class="bott-bg"  height="76">GalleryDog @ 2009 All Rights Reserved.</TD>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	jQuery.noConflict();
+	jQuery(document).ready(function($){
+		Date.format = 'mmmm dd, yyyy';
+		$('.date-pick').datePicker().trigger('change');
+	});   
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<li id="curator_<%= curator_list_item.id -%>">
+    <span class="filename"><%= curator_list_item.first_name %> <%= curator_list_item.last_name %></span>
+	<%= link_to_function '', "$('#curator_#{curator_list_item.id}').remove()", :class => 'delete' %>
+	<%= hidden_field_tag 'curator_ids[]', curator_list_item.id %>
+</li>

@@ -1,0 +1,110 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>For Immediate Release</td>
+  </tr>
+  <tr>
+    <td><%= Date.today.strftime('%A, %B %-1d ') %></td>
+  </tr>
+  <tr>
+    <td><%= event.venue.city.name %>, <%= event.venue.city.region.name %></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <td>Event title: <%= event.normalized_title %></td>
+  </tr>
+  <tr>
+    <td>Type: <%= event.event_type_name %></td>
+  </tr>
+  <tr>
+    <td>Venue: <%= link_to event.venue.name, venue_url(event.venue), :target => '_blank' %></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <td>Opens: <%= event.start_date.strftime('%A, %B %-1d') %> (<%= event.single_day ? 'one-day' : 'multi-day' %>)</td>
+  </tr>
+  <% unless event.single_day %>
+  <tr>
+    <td>Closes: <%= event.end_date.strftime('%A, %B %-1d') %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td>Hours: <%= event.formatted_event_time %></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <td>Reception: <%= event.formatted_reception_date(true) %></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <td valign="top">
+      <table width="100%" border="0" cellspacing="2" cellpadding="2">
+        <tr>
+          <td width="30%" valign="top" rowspan="2">
+            <%= event_image(event, :large) %>
+          </td>
+          <td valign="top" align="left" height="150">
+            <% unless event.image.nil? %>
+            <div class="image-title">
+              <%#= image_captions_for(event) -%>
+            </div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Description:
+      <p><%=sanitize(event.description, :tags => %w(b i u p br strong em))%></p>
+    </td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <% unless @event.exhibition.nil? %>
+  <tr>
+    <td height="30" valign="middle">
+      Related Exhibition: <%= link_to event.exhibition.title, venue_exhibition_path(event.venue_id, event.exhibition_id), :class => "bluelink-bold" -%>
+    </td>
+  </tr>
+  <% end %>
+  <tr>
+    <td height="30" valign="middle">
+      Cost of Admission: <%= event.free ? 'FREE' : number_to_currency(event.cost)   %>
+    </td>
+  </tr>
+  <%# if event.publication_pdf? %>
+  <tr>
+    <td><%#= link_to 'Download Press Release', "http://#{SITE_URL}#{event.publication_pdf.url}" %></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <%# end %>
+  <tr>
+    <td>
+      <table cellspacing="5">
+        <tr>
+          <td width="150" align="center" rowspan="2" valign="top">
+            <%= venue_logo(event.venue, :small) %>
+            <br/><br/>
+            <%= venue_image(event.venue, :small) %>
+          </td>
+          <td colspan="2"><b><%= event.venue.name %></b></td>
+        </tr>
+        <tr>
+          <td valign="top" width="300">
+            <%= format_address(event.venue) %><br/>
+            Email: <%= mail_to event.venue.email %><br/>
+            <br/>
+            Media contact:<br/>
+            <%= mail_to event.venue.media_contact_email, event.venue.media_contact %> (<%= event.venue.media_contact_title %>)<br/>
+          </td>
+          <td valign="top">
+            Hours:<br/>
+            <%= venue_schedule_list(event.venue) %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+</table>

@@ -1,0 +1,10 @@
+Contact form was submitted from <%= @message.page.name -%> page:
+
+Subject:
+<%= @message.subject -%>
+
+From:
+<%= @message.sender_name -%> (<%= @message.sender_email %>)
+
+Message:
+<%= @message.message %>

@@ -1,0 +1,17 @@
+<ul id="artist_<%= artists_index_list_item.id -%>">
+    <li class="artistsControlsCol">
+      view | <%= link_to 'edit', edit_venue_manager_artist_path(artists_index_list_item), :class => 'popup' -%>      
+    </li>
+    <li class="artistsNameCol">
+        <%= artists_index_list_item.full_name_last_first -%>
+    </li>
+    <li class="artistsDateCol">
+        <%= artists_index_list_item.birthyear -%>
+    </li>
+    <li class="artistsLocCol">
+        <%= artists_index_list_item.full_born -%>
+    </li>
+    <li class="artistsLoc2Col">
+        <%= artists_index_list_item.full_lives -%>
+    </li>
+</ul>

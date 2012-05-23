@@ -1,0 +1,65 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :listing_agent} do %>
+<div>
+    <%= render :partial => 'venue_manager/shared/listing_agent_menu' %>
+    <section class="selected-tegs">
+        <div class="tags">
+            <ul>
+                <li><%= params[:region] %></li>
+            </ul>
+            <span>select media outlets to which you wish to provide listing information</span>
+        </div>
+        <div class="search-box">
+            <%= form_for :search, :url => venue_manager_listing_agent_path(:region => params[:region], :filter => params[:filter]), :html => { :method => :get } do %>
+            <%= hidden_field_tag 'region', params[:region] %>
+            <%= text_field_tag 'filter', params[:filter] %>
+            <button class="search orange"></button>
+            <% end %>
+            <span><%= @media_service_setups.size %> of <%= @media_services.size %> selected</span>
+        </div>
+    </section>
+    <section class="manager-content-table">
+        <%= form_for :venue, :url => venue_manager_listing_agent_path(:region => params[:region], :filter => params[:filter]) do %>
+        <section class="cont listing">
+            <% @media_services.each do |m_service| %>
+            <% setup = @media_service_setups.select {|s| s.media_service_id == m_service.id }.first %>
+            <ul>
+                <li class="firstCol">
+                  <%= check_box_tag "venue[media_service_setups][media_service_id][]", m_service.id, !setup.nil? %>
+                  <%= hidden_field_tag "venue[media_service_setups][available_media_service_id][]", m_service.id %>
+                </li>
+                <li class="secondCol">
+                    <%= m_service.name %>
+                </li>
+                <li class="thirdCol">
+                  <% if m_service.form_based? %>
+                  <fieldset>
+                    <% if !setup.nil? && setup.errors[:media_site_login].any? %>
+                      <span class="field_with_errors" style="display: inline;" title="<%= setup.errors[:media_site_login] -%>">
+                    <% end %>
+                      <%= text_field_tag "venue[media_service_setups][media_site_login][#{m_service.id}]", (setup.media_site_login rescue ''), :placeholder => 'login' %>
+                    <% if !setup.nil? &&setup.errors[:media_site_login].any? %>
+                      </span>
+                    <% end%>
+                    <% if !setup.nil? && setup.errors[:media_site_password].any? %>
+                      <span class="field_with_errors" style="display: inline;" title="<%= setup.errors[:media_site_password] -%>">
+                    <% end %>
+                      <%= text_field_tag "venue[media_service_setups][media_site_password][#{m_service.id}]", (setup.media_site_password rescue ''), :placeholder => 'password' %>
+                    <% if !setup.nil? && setup.errors[:media_site_password].any? %>
+                      </span>
+                    <% end%>
+                      <!-- <input type="button" value="ok"> -->
+                  </fieldset>
+                  <% end %>
+                </li>
+            </ul>
+            <% end %>
+        </section>
+        <footer>
+            <div class="footer-notice">Is your favorite listing site missing? <a href="">Let us know so we can add it</a></div>
+            <button>update selections</button>
+        </footer>
+        <% end %>
+    </section>
+    <div class="decoration"></div>
+</div>
+<% end %>

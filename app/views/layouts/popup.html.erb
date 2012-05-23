@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<%= stylesheet_link_tag 'fonts', 'popup', 'colorbox', 'datepicker','jquery.autocomplete.css', 'jquery.qtip.css', 'chosen', 'cloudzoom' -%>
+	<%= javascript_include_tag 'jquery-1.6.min.js' %>
+	<%= javascript_include_tag 'jquery.template.min.js' %>
+	<%= javascript_include_tag 'jquery.autocomplete.js' %>
+	<%= javascript_include_tag 'jquery.colorbox-min.js' %>
+	<%= javascript_include_tag 'datepicker.js' %>
+	<%= javascript_include_tag 'chosen.jquery.js' %>
+	<%= javascript_include_tag 'jquery.qtip.js' %>
+	<%= javascript_include_tag 'cloud-zoom.1.0.2.min.js' %>
+	<%= javascript_include_tag 'application' %>
+	<%= javascript_include_tag 'jquery_ujs' %>
+    <!--[if IE]>
+		<%= javascript_include_tag 'html5.js' %>
+		<%= stylesheet_link_tag "ie" -%>
+    <![endif]-->
+	<script type="text/javascript">
+        $(document).ready(function(){
+			    $(".image-upload-popup").colorbox({scroll: false, iframe:true, overlayClose:false});
+			    $(".autosizing-popup").colorbox({width:"50", scroll: false, height:"50", iframe:true, overlayClose:false});
+			    
+			    $("form:first").submit(function(){ $('#cover').show(); });
+			    $(window).scroll(function(){ $('#cover').css('top', $(window).scrollTop()); })
+			    
+			    $("form input[type=text]").keypress(function(e){ return (window.event)? (window.event.keyCode != 13) : (e.which != 13) }); // prevent popups to appear on enter press
+	//		parent.$.fn.colorbox.resize({innerWidth: $(document).width(), innerHeight: $(document).height()});
+			
+			    $('.date').each(function(idx,el){
+				    var curr = (($(el).val() == '') ? (new Date()).getFullYear()+'-'+((new Date()).getMonth()+1)+'-'+(new Date()).getDate() : $(el).val())
+				    $(el).DatePicker({
+					    format: 'Y-m-d',
+					    starts: 1,
+					    position: 'r',
+					    date: curr,
+					    current: curr,
+					    onChange: function(formated, dates){
+						    $(el).val(formated);
+						    $(el).DatePickerHide();
+						    $(el).change();
+					    }
+				    });
+			    });
+        });
+		<%= yield :head_js  -%>
+    </script>
+</head>
+<body>
+  <div id="cover" class="popup-spinner-cover" style="display: none;">
+    <img src="/images/ajax-loader.gif" />
+  </div>
+	<%= yield %>
+</body>
+</html>

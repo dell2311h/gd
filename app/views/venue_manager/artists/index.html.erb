@@ -1,0 +1,37 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :artists} do %>
+<div>
+    <%= render :partial => 'venue_manager/shared/artists_curators_menu' %>
+    <section class="selected-tegs">
+        <div class="tags">
+            <ul>
+                <li>artists</li>
+            </ul>
+			      <%= link_to 'new artist', new_venue_manager_artist_path, :class => 'popup' -%>
+        </div>
+        <div class="search-box">
+			<%= form_for :artists_filter, :url => venue_manager_artists_path, :html => { :method => :get } do |f| %>
+				<%= text_field_tag :filter, params[:filter] %>
+	            <button class="search orange"></button>
+			<% end %>
+        </div>
+    </section>
+    <section class="manager-content-table">
+        <header>
+            <ul>
+                <li class="artistsControlsCol">&nbsp;</li>
+                <li class="artistsNameCol">Name</li>
+				        <li class="artistsDateCol">Birth</li>
+				        <li class="artistsLocCol">Born</li>
+				        <li class="artistsLoc2Col">Lives+works</li>
+            </ul>
+        </header>
+        <section class="cont">
+			    <%= render :partial => 'artists_index_list_item', :collection => @artists %>
+        </section>
+    </section>
+    <div class="decoration"></div>
+</div>
+<script>
+  function notifyArtistAdded(obj){ location.reload(); }
+</script>
+<% end %>

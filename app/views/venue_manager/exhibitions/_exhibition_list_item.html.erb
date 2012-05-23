@@ -1,0 +1,32 @@
+<ul>
+    <li class="exhibitionsFirstCol">
+		<%= link_to '', venue_exhibition_path(exhibition_list_item.venue_id,exhibition_list_item), :class => 'big-popup icon showIcon' %>
+		<%= link_to '', edit_venue_manager_exhibition_path(exhibition_list_item), :class => 'popup icon editIcon' %>
+
+	</li>
+    <li class="exhibitionsTACol">
+        <%= exhibition_list_item.title %>
+    </li>
+    <li class="exhibitionsTACol">
+        <%= exhibition_list_item.artists.map(&:full_name).join(', ') %>
+    </li>
+	<li class="exhibitionsDatesCol">
+        O: <%= exhibition_list_item.start.strftime('%m/%d/%y') -%><br />
+		C: <%= exhibition_list_item.end.strftime('%m/%d/%y') -%>
+    </li>
+	<li class="exhibitionsLAgentCol">
+		<% if exhibition_list_item.listing_agent_enabled %>
+			<% if exhibition_list_item.listing_agent_completed %>
+				completed at <%= exhibition_list_item.listing_agent_completed_at.strftime('%m/%d/%y') %>
+			<% else %>
+				in progress
+			<% end %>
+		<% else %>
+			Enable listing agent
+		<% end %>
+    </li>
+	<li class="exhibitionsModifiedCol">
+        <%= exhibition_list_item.updated_at.strftime('%m/%d/%y') -%><br/>
+		<%= exhibition_list_item.updated_at.strftime('%-I:%M %p') -%>
+    </li>
+</ul>

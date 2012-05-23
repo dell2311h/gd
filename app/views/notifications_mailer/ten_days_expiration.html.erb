@@ -1,0 +1,38 @@
+<%= @venue.name -%>'s current exhibition<%= "s" if @venue.exhibitions.expiring_in_ten_days.length > 1 -%>, <%= @venue.exhibitions.expiring_in_ten_days.map(&:title).join(', ') -%> is set to close on <%= 10.days.from_now.strftime('%A, %B %-1d') -%>.<br />
+This exhibition<%= "s" if @venue.exhibitions.expiring_in_ten_days.length > 1 -%> will no longer be posted after the closing date.<br />
+<br />
+<% unless @venue.exhibitions.current_and_upcoming.length == @venue.exhibitions.expiring_in_ten_days.length %>
+	The following current and/or upcoming exhibitions are posted on Gallery*dog:
+	<table>
+		<% @venue.exhibitions.current_and_upcoming.sort {|a,b| a.end <=> b.end }.each do |exhibition| %>
+		<tr>
+			<td>
+				<%= exhibition.title %>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			<td>
+				<%= exhibition.duration -%>
+				<%= if exhibition.days_left-1 <= 10
+						'<font color="red"><b>(CLOSING SOON)</b></font>'
+ 					elsif exhibition.start <= Date.today && exhibition.days_left-1 > 10 # exhibition.days_left-1 < 20
+						'<b>(CURRENT EXHIBITION)</b>'
+					elsif exhibition.start > Date.today && exhibition.days_left-1 >= 20
+						'<font color="gray"><b>(UPCOMING EXHIBITION)</b></font>'
+					end -%>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+<% end %>
+<br />
+<% if @venue.exhibitions.current_and_upcoming.length == @venue.exhibitions.expiring_in_ten_days.length %>
+<%= @venue.name.upcase -%> HAS NO UPCOMING EXHIBITIONS POSTED AND WILL NO LONGER APPEAR IN A GALLERY*DOG SEARCH ONCE CURRENT EXHIBITIONS CLOSE!<br/>
+PLEASE VISIT YOUR ACCOUNT MANAGER TO POST UPCOMING EXHIBITIONS:&nbsp;&nbsp;&nbsp;http://gallerydog.info/venues/<%= @venue.id -%>/manage
+<% else %>
+<br />
+Click here to manage your posted and draft exhibitions or venue profile: http://gallerydog.info/venues/<%= @venue.id -%>/manage
+<% end %><br /><br /><br />
+Have a happy day!<br />
+Gallery*dog

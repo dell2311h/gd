@@ -1,0 +1,13 @@
+<li id="image_<%= image_list_item.id -%>">
+	<% unless image_list_item.kind == Image::KINDS[:publication_pdf] %>
+		<%= link_to image_tag(image_list_item.file.url(:micro)),
+		    image_list_item.file.url(:large),
+		    :class => 'popup_img'
+		%>
+	<% else %>
+		<%= image_tag(image_list_item.image_url_for(:micro)) %>
+	<% end %>
+	<span class="filename"><%= image_list_item.file_file_name %></span>
+	<%= link_to_function '', "$('#image_#{image_list_item.id}').remove()", :class => 'delete' %>
+	<%= hidden_field_tag 'image_ids[]', image_list_item.id %>
+</li>

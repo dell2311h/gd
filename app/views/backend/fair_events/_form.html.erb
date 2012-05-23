@@ -1,0 +1,144 @@
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Name&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :name %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+</tr>
+	<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Event date&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :event_date, :class => 'date-pick', :value => (@fair_event.event_date.blank? ? '' : @fair_event.event_date.strftime('%B %d, %Y')) %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Start time&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :start_time, :class => 'time-pick', :style => "width:65px;" -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">End time&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :end_time, :class => 'time-pick', :style => "width:65px;" -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<script>
+	jQuery('.time-pick').timePicker();
+</script>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">On site&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.check_box :on_site, :onchange => "toggleAddressInput()" %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+
+<style>
+ .address_details { display : none; }
+</style>
+
+<script>
+	function toggleAddressInput(){
+		if(jQuery('#fair_event_on_site').attr('checked')){
+			jQuery('.address_details').each(function(i){jQuery(this).hide();});
+		}else{
+			jQuery('.address_details').each(function(i){jQuery(this).show();});
+		}
+	}
+	<% unless @fair_event.on_site? %>
+		jQuery(document).ready(function() { toggleAddressInput(); });
+	<% end %>
+</script>
+<tr class='address_details'>
+	<td>&nbsp;</td>
+	<td  align="left">Address&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :address %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr class='address_details'>
+	<td>&nbsp;</td>
+	<td  align="left">Zip code&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :zip %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr class='address_details'>
+	<td>&nbsp;</td>
+	<td  align="left">Country&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :country_id, [['Select country', nil]].concat(@countries.collect {|p| [ p.name, p.id ] }), {}, { :style => "width:150px",
+			:onchange => remote_function(:update => 'fair_event_region_id', :url => get_states_users_path, :with => "'country_id='+value" ) } -%>
+	</td>
+	<td>&nbsp;</td>
+	
+</tr>
+<tr class='address_details'>
+	<td>&nbsp;</td>
+	<td  align="left">State&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :region_id, [['Select state', nil]].concat(@regions.collect {|p| [ p.name, p.id ] }), { :style => "width:175px" } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr class='address_details'>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">City&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left">
+		<%= f.text_field :city_name -%>
+		<script>
+			jQuery(document).ready(function() {
+		    	jQuery("input#fair_event_city_name").autocomplete("<%= get_cities_users_path -%>", { max: 20, extraParams: { region_id:function(){ return jQuery("select#fair_event_region_id").val(); }}});
+		  	});
+		</script>
+	</td>
+	<td width="14%">&nbsp;</td>
+</tr>
+
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Room&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :room %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Fee&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :fee %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Fee&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_area :description %>
+	</td>
+	<td>&nbsp;</td>
+</tr>

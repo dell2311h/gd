@@ -1,0 +1,69 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :images} do %>
+<section class="content">
+	<h4>images+press releases</h4>
+	<nav>
+		<ul>
+			<li class="middle"><a href="#">exhibitions</a></li>
+			<li class="middle"><a href="#" class="currentx">events</a></li>
+			<li class="middle"><a href="#">fairs</a></li>
+			<li class="middle"><a href="#">exhibitions</a></li>
+			<li class="middle"><a href="#" class="currentx">events</a></li>
+			<li class="middle"><a class="lastcell" href="#">fairs</a></li>
+		</ul>
+	</nav>
+	
+	<div class="content_article">
+		<div class="section-name">
+			<p>art</p>
+			<p><a href="#">add</a></p>
+		</div>
+		<div class="filter">
+			<form method="post" action="#" class="filter_search">
+				<input type="text" name="f" placeholder="filter for image">
+			</form>			
+		</div>
+	</div>
+	
+	<form method="post" action="#">
+		<table >
+		  <tr>
+			<th></th>
+			<th>Title</th>
+			<th>Artist(s)</th>
+			<th>Dates</th>
+			<th>Listing Agent</th>
+			<th>Modified</th>
+		  </tr>
+		</table>
+		
+		<div class="table_data">
+		<table>				
+		  <tr>
+			<td><a href="#">view</a> | <a href="#">edit</a></td>
+			<td>
+				
+			</td>
+			<td>
+				
+			</td>
+			<td>
+				
+			</td>
+			<td>
+				
+			</td>
+			<td>
+				
+			</td>
+		  </tr>
+		  
+		</table>
+		</div>
+		
+		<div class="save_section">
+			<input type="submit" value="save album as...">
+		</div>
+	</form>
+	
+</section>
+<% end %>

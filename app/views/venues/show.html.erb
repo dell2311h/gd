@@ -1,0 +1,101 @@
+<section class="content venue">
+    <section class="left">
+        <header>
+            <div class="right">
+                <a href="">back</a>
+                <ul class="social-links">
+                    <li><a href=""><img src="/images/cal-icon.png"></a></li>
+                    <li>
+                        <%= link_to image_tag('print_small.png', :title => 'Print'),print_venue_path %>
+                      </li>
+                      <li>
+                        <%= link_to image_tag('email.png', :title => 'Send email'), mail_venue_path, :class => 'popup' %>
+                      </li>
+                    <li><a href=""><img src="/images/like_small.png"></a></li>
+                    <li><a href=""><img src="/images/twitter_small.png"></a></li>
+                </ul>
+            </div>
+            <div>
+              <a href="" class="logo" title="company"><%= image_tag @venue.images.logo.file.url(:small) if @venue.images.logo %></a>
+              <h1><%= @venue.name %></h1>
+              <address>
+                  <span><a href=""><%= @venue.city_name %></a></span>
+                  <span><a href=""><%= @venue.region_name %></a>, <%= @venue.region_code %></span>
+              </address>
+            </div>
+        </header>
+        <article class="main-content">
+            <%= image_tag @venue.images.image.file.url(:large), :class => 'left' if @venue.images.image %>
+            <%= @venue.description.html_safe if @venue.description %>
+        </article>
+        <br style="clear:both;height:0;font:1px;overflow:hidden;" />
+        <% if @venue.artists %>
+            <section class="artist-info">
+                <ul>
+                    <li class="wide">
+                      <header>artists represented</header>
+                      <ul class="art-name">
+                          <% @venue.artists.map do |artist| %>
+                            <li><%= link_to artist.full_name.html_safe %><%= ", b. #{artist.birthdate.year}" if artist.birthdate %></li>
+                          <% end %>
+                      </ul>
+                    </li>
+                    <li class="column third">
+                        <%= render :partial => 'get_there', :locals => {:venue => @venue} %>
+                    </li>
+                    <% unless @venue.transit.blank?  %>
+                        <li class="column third">
+                            <header>public transportation</header>
+                            <p><%= @venue.transit %></p>
+                        </li>
+                    <% end %>
+                    <% if @venue.timetable? %>
+                        <li class="column half">
+                            <header>hours</header>
+                            <%= venue_schedule_list_ul(@venue) %>
+                        </li>
+                    <% end %>
+                </ul>
+            </section>
+        <% end %>
+        <% if @venue_events_exhibitions.any? %>
+            <section class="exhibitions-events">
+                <header>exhibitions events</header>
+                <% @venue_events_exhibitions.map do |e| %>
+                    <%= render :partial => e.class.to_s.downcase, :locals => {:item => e} %>
+                <% end %>
+            </section>
+        <% end %>
+    </section>
+    <div class="right">
+        <div class="map">
+          <%= image_tag @venue.gmap_staticmap_url({:nearby => true}) %>                
+        </div>
+        <div class="direction">
+          <%= link_to 'get directions', @venue.get_googlemap_url, :target => :new %>
+        </div>
+        <% if @venue.get_nearby_venues.any? %>
+            <dl class="links">
+                <dt>nearby venues</dt>
+                <dd>
+                    <ol>
+                        <% @venue.get_nearby_venues.map do |e| %>
+                            <li><%= link_to h(e.name), venue_path(e.id) %> </li>
+                        <% end %>
+                    </ol>
+                </dd>
+            </dl>
+        <% end %>
+        <% if @past_venues %>
+            <section class="past-exhibitions">
+                <header>past exhibitions + events</header>
+                <ul>
+                    <% @past_venues.map do |e| %>
+                        <%= render :partial => "#{e.class.to_s.downcase}_past", :locals => {:item => e} %>
+                    <% end %>
+                </ul>
+                <div class="decoration"></div>
+            </section>
+        <% end %>
+    </div>
+</section>

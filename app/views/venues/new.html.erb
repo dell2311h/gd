@@ -1,0 +1,21 @@
+<%= form_for @venue, :html => { :class => 'popup venueAccaunt' } do |f| %>
+	<%= link_to_function '', 'parent.$.fn.colorbox.close()', :class => 'close-btn' %>
+	<header>
+		<hgroup class="left">
+			<h1>Get your free Gallery*dog Venue Account</h1>
+			<h2>(required fields in orange)</h2>
+		</hgroup>
+	</header>
+  <%= render :partial => 'form', :object => f %>
+	<footer>
+		<div>
+			<button class="save">save</button>
+			<button class="cancel" onclick='parent.$.fn.colorbox.close()'>cancel</button>
+		</div>
+	</footer>
+<% end %>
+<script>
+	$(document).ready(function(){
+    	resizePopupToContents();
+  	});
+</script>

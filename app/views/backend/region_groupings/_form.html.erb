@@ -1,0 +1,45 @@
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Name&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :name, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Keywords&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_area :keywords, :class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Cities&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<div id='cities_block' style='display:block;'>
+			<%= render :partial => 'city_item', :collection => @region_grouping.cities %>
+		</div>
+		<br/>
+		<%= text_field_tag :city_name, '', :onkeypress => "return submitenter(this,event)" %>
+        <script>
+			jQuery(document).ready(function() {
+				jQuery("input#city_name").autocomplete("<%= get_cities_backend_region_groupings_path -%>", { max: 20 });
+			});
+			function submitenter(f,e) {
+				var keycode;
+				if (window.event) keycode = window.event.keyCode;
+				else if (e) keycode = e.which;
+				else return true;
+				if (keycode == 13){
+			   		<%= remote_function( :url => get_city_backend_region_groupings_path(), :with => "'name=' + jQuery('input#city_name').val()" ) -%>;
+			   		return false;
+			   	} else
+			   	return true;
+			}
+			
+			function resetCityInput(){ jQuery('input#city_name').val(''); }
+		</script>
+	</td>
+	<td>&nbsp;</td>
+</tr>

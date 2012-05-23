@@ -1,0 +1,201 @@
+<% if !@custom_search %>
+	<% @container_class = 'thumbnail-view' %>
+	
+	<% content_for :head_js do %>
+		<script type="text/javascript">
+	        jQuery(document).ready(function() {
+	        	jQuery('.jcarousel').jcarousel();
+	        });
+	    </script>
+	<% end %>
+
+	<% @results.each_with_index do |result, index| %>
+        <h2>
+			<% if params[:region].blank? %>
+				<% if result.first.venue.city.region_grouping.nil? %>
+					<%= link_to 'ELSEWHERE (USA)', root_path(:region => -1) %>
+				<% else %>
+					<%= link_to result.first.venue.city.region_grouping.name.upcase, root_path(:region => result.first.venue.city.region_grouping.id) %>
+				<% end %>
+			<% else %>
+				<% hood, hood_id = (result.first.venue.neighbourhood.name.upcase rescue ''), (result.first.venue.neighbourhood_id rescue nil) %>
+				<% hood = (result.last.venue.neighbourhood.name.upcase rescue 'Somewhere') if hood.blank? %>
+				<% hood_id = (result.last.venue.neighbourhood_id rescue 1) if hood_id.nil? %>
+				<%= link_to hood, root_path(:neighbourhood => hood_id) %>
+			<% end %>
+			 <span><%= pluralize(@result_counts[index], 'result') %></span>
+		</h2>
+			
+        <ul class="jcarousel">
+			<% result.each do |item|%>
+		        <li>
+					<% cache("home_#{item.class.to_s.downcase}_#{item.id}_cache") do %>
+						<%= render :partial => item.class.to_s.downcase, :locals => { :item => item }, :inline => true %>
+					<% end %>
+		        </li>
+		    <%end%>
+		
+            <% if @result_counts[index] > 20 %>
+				<li>
+					<p class="more">
+					<% if params[:region].blank? %>
+						<%= link_to "MORE IN<br/>#{result.first.venue.city.region_grouping.name.upcase rescue 'ELSEWHERE (USA)'}", root_path(:region => ((result.first.venue.city.region_grouping.nil?) ? -1 : result.first.venue.city.region_grouping.id)) -%>
+					<% else %>
+						<%= link_to "MORE IN<br/>#{result.first.venue.neighbourhood.name.upcase rescue 'OTHER'}", root_path(:neighbourhood => ((result.first.venue.neighbourhood.nil?) ? -1 : result.first.venue.neighbourhood_id)) -%>
+					<% end %>
+					</p>
+				</li>
+			<% end %>
+        </ul>
+	<% end %>
+
+<% else %>
+
+	<% @container_class = 'search-view' %>
+				
+        <header id="header-content" class="search-view">
+            <h2>37 results in 'los angeles' open now <a href="#">Show <strong>all</strong> results in 'los angeles'</a></h2>
+            <p class="page-nav"><span>&lt;&lt;</span> <span>&lt;</span> <span>1</span> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&gt;</a> <a href="#">&gt;&gt;</a></p>
+        </header>
+
+        <article class="event">
+            <p class="image"><a href="exhibition.html"><img src="i/darksidemoon.jpg"></a></p>
+            <p><em>Tour</em></p>
+            <h3><a href="#">MAK Center Architecture Tou&hellip;</a></h3>
+            <p><strong>October 10, 2010</strong></p>
+            <p class="venue"><a class="fav" href="venue.html">Pepin Moore</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/CIMG3865.jpg"></a></p>
+            <p>Emilie Halpern</p>
+            <h3><a href="#">Eclipse</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">MAK Center for Art and Architecture L.A.</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/Discenza_Transported_view3.jpg"></a></p>
+            <p>Lisa Adams, Oksana Badrak, Grand Ole Bestiary&hellip;</p>
+            <h3><a href="#">UNLEASH THE BEAST</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Santa Monica Art Studios</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/Discenza_Transported_view3.jpg"></a></p>
+            <p>Lisa Adams, Oksana Badrak, Grand Ole Bestiary&hellip;</p>
+            <h3><a href="#">UNLEASH THE BEAST</a></h3>
+            <p><strong class="ending">7 days left</strong></p>
+            <p class="venue"><a href="venue.html">Santa Monica Art Studios</a></p>
+        </article>
+
+        <div class="clearer"></div>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/darksidemoon.jpg"></a></p>
+            <p>Tour</p>
+            <h3><a href="#">MAK Center Architecture Tou&hellip;</a></h3>
+            <p><strong>October 10, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Pepin Moore</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/CIMG3865.jpg"></a></p>
+            <p>Emilie Halpern</p>
+            <h3><a href="#">Eclipse</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">MAK Center for Art and Architecture L.A.</a></p>
+        </article class="exhibition">
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/Discenza_Transported_view3.jpg"></a></p>
+            <p>Lisa Adams, Oksana Badrak, Grand Ole Bestiary&hellip;</p>
+            <h3><a href="#">UNLEASH THE BEAST</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Santa Monica Art Studios</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/Discenza_Transported_view3.jpg"></a></p>
+            <p>Lisa Adams, Oksana Badrak, Grand Ole Bestiary&hellip;</p>
+            <h3><a href="#">UNLEASH THE BEAST</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Santa Monica Art Studios</a></p>
+        </article>
+
+        <div class="clearer"></div>
+
+        <article class="event">
+            <p class="image"><a href="exhibition.html"><img src="i/darksidemoon.jpg"></a></p>
+            <p><em>Tour</em></p>
+            <h3><a href="#">MAK Center Architecture Tou&hellip;</a></h3>
+            <p><strong>October 10, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Pepin Moore</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/CIMG3865.jpg"></a></p>
+            <p>Emilie Halpern</p>
+            <h3><a href="#">Eclipse</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">MAK Center for Art and Architecture L.A.</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/Discenza_Transported_view3.jpg"></a></p>
+            <p>Lisa Adams, Oksana Badrak, Grand Ole Bestiary&hellip;</p>
+            <h3><a href="#">UNLEASH THE BEAST</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Santa Monica Art Studios</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/Discenza_Transported_view3.jpg"></a></p>
+            <p>Lisa Adams, Oksana Badrak, Grand Ole Bestiary&hellip;</p>
+            <h3><a href="#">UNLEASH THE BEAST</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Santa Monica Art Studios</a></p>
+        </article>
+
+        <div class="clearer"></div>
+
+        <article class="event">
+            <p class="image"><a href="exhibition.html"><img src="i/darksidemoon.jpg"></a></p>
+            <p><em>Tour</em></p>
+            <h3><a href="#">MAK Center Architecture Tou&hellip;</a></h3>
+            <p><strong>October 10, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Pepin Moore</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/CIMG3865.jpg"></a></p>
+            <p>Emilie Halpern</p>
+            <h3><a href="#">Eclipse</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">MAK Center for Art and Architecture L.A.</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/Discenza_Transported_view3.jpg"></a></p>
+            <p>Lisa Adams, Oksana Badrak, Grand Ole Bestiary&hellip;</p>
+            <h3><a href="#">UNLEASH THE BEAST</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Santa Monica Art Studios</a></p>
+        </article>
+
+        <article class="exhibition">
+            <p class="image"><a href="exhibition.html"><img src="i/Discenza_Transported_view3.jpg"></a></p>
+            <p>Lisa Adams, Oksana Badrak, Grand Ole Bestiary&hellip;</p>
+            <h3><a href="#">UNLEASH THE BEAST</a></h3>
+            <p><strong>thru October 23, 2010</strong></p>
+            <p class="venue"><a href="venue.html">Santa Monica Art Studios</a></p>
+        </article>
+
+        <div class="clearer"></div>
+
+        <footer id="footer-content" class="thumbnail-view">
+            <p class="page-nav"><span>&lt;&lt;</span> <span>&lt;</span> <span>1</span> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&gt;</a> <a href="#">&gt;&gt;</a></p>
+        </footer>
+
+<% end %>

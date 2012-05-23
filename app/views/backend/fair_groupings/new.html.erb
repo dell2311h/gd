@@ -1,0 +1,63 @@
+<% form_for :fair_grouping, @fair_grouping, :url => backend_fair_groupings_path, :html=>{ :id=>'add_form', :multipart => true } do |f| %>
+<table width="97%" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+	<td valign="top">
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<div class="screenTitle">
+					<table width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td>
+							<img src="/images/backend/on.gif" width="16" height="16">&nbsp;
+							Create Fair Grouping Of <span class="name">Gallerydog</span>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</td>	  
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		</table>
+
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<div class="listArea">
+				<fieldset><legend>Fair Grouping</legend>
+					<table width="100%" border="0" cellspacing="2" cellpadding="2">
+					<tr>
+						<td Class="td-listing" colspan="5">
+							<%=error_messages_for(:fair_grouping)%>
+						</td>
+					</tr>
+					<tr>
+						<td  align="left" Class="td-listing" colspan="3" valign="middle"></td>
+						<td  align="right" Class="td-listing" colspan="3" valign="middle">
+							<font class="errormsg">
+								<%= link_to image_tag('/images/backend/cancel.gif') + ' Return To Fair Grouping Listing', backend_fair_groupings_path -%>
+							</font>
+							</td>
+					</tr>
+					
+					<%= render :partial => 'form', :locals => { :f => f } %>
+
+					<tr>
+						<td align="center" colspan="5"><div align="left"><font class="errormsg">*</font>&nbsp;Required Fields</div>
+							<%= link_to_function image_tag('/images/backend/btn-ok.gif'), "jQuery('#add_form')[0].submit()"%>
+							<%= link_to_function image_tag('/images/backend/btn-reset.gif'), "jQuery('#add_form')[0].reset()"%>
+							<%= link_to image_tag('/images/backend/btn-cancle.gif'), backend_fair_groupings_path %>
+						</td>
+					</tr>
+					</table>
+				</fieldset>
+				</div>
+			</td>	
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<% end %>

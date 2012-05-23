@@ -1,0 +1,11 @@
+<header>
+    <h2>artists + curators</h2>
+</header>
+<ul class="tags">
+  <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::ArtistsController' -%>>
+  	    <%= link_to "artists", venue_manager_artists_path %>
+  </li>
+  <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::CuratorsController' -%>>
+  	<%= link_to "curators", venue_manager_curators_path %>
+  </li>
+</ul>

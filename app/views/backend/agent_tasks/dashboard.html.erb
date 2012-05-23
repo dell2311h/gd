@@ -1,0 +1,57 @@
+<div class="listArea">
+  <fieldset>
+    <legend>My Tasks</legend>
+
+    <center><font class="errormsg">
+            <% if !flash[:notice].nil?%>
+              <%=flash[:notice]%>
+            <% end %>
+            <% if !flash[:alert].nil?%>
+              <%=flash[:alert]%>
+            <% end %>
+    </font></center>
+
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th width="10%"><div align="left">&nbsp;Exhibition / Event</div></th>
+        <th width="10%"><div align="left">&nbsp;Media service</div></th>
+        <th width="10%"><div align="left">&nbsp;Status</div></th>
+        <th width="10%"><div align="left">&nbsp;Actions</div></th>
+      </tr>
+      <% if @agent_tasks.size > 0 %>
+        <% @agent_tasks.each do |task| %>
+          <tr onmouseover="this.style.backgroundColor='#D9D9D9'"  onmouseout="this.style.backgroundColor='<%= cycle('#EFEFEF', '#f8f8f8') %>'" bgcolor="<%= cycle('#EFEFEF', '#f8f8f8') %>">
+            <td class="td-listing">&nbsp;
+              <%=link_to task.target.title, task_target_path(task.target), :target => '_blank' -%>
+            </td>
+            <td class="td-listing">&nbsp;
+              <%= link_to task.media_service.name, task.media_service.api_url, :target => '_blank' -%><br/>
+              <% if setup = task.media_service_setup %>
+                Login: <%= setup.media_site_login %><br/>
+                Password: <%= setup.media_site_password %>
+              <% end %>
+            </td>
+            <td class="td-listing">&nbsp;
+              <%= task.status.humanize -%>
+            </td>
+            <td class="td-listing">&nbsp;
+              <% if task.status == 'new' %>
+               <%=link_to 'Done', set_status_backend_agent_task_path(task, :status => 'done') -%> | <%=link_to 'Fail', set_status_backend_agent_task_path(task, :status => 'failed')%> |
+			  <% elsif task.status == 'failed' %>
+				<%=link_to 'Resolve', set_status_backend_agent_task_path(task, :status => 'done') -%>
+              <% end %>
+               <%=link_to 'Notes', backend_agent_task_notes_path(task) %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan = "7" height="170" align="center"  ><div class="listingmessage">No Records Found</div></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <p align="right"><font size="2" FACE="Verdana, Arial, Helvetica, sans-serif" color="black"><%= will_paginate @agent_tasks, :inner_window =>2, :outer_window => 2 -%></font></p>
+
+  </fieldset>
+</div>

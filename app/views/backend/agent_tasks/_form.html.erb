@@ -1,0 +1,32 @@
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Agent&nbsp;</td>
+	<td width="1%"> : </td>
+        <td width="40%" align="left"><%= f.select :agent_id, options_for_select(Agent.all.map{|a| [a.full_name, a.id]}, f.object.agent_id), :class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<!--
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Exhibition or event&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%#= f.select :exhibition_id, options_for_select(Exhibition.all.map{|a| ["#{a.title} @ #{a.venue.name}", a.id]}, f.object.exhibition_id), :class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+-->
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Media service&nbsp;</td>
+	<td> : </td>
+	<td  align="left"><%= f.select :media_service_id, options_for_select(MediaService.all.map{|a| [a.name, a.id]}, f.object.media_service_id), :class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Status&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+          <%= f.select :media_service_id, options_for_select(AgentTask::STATUSES, f.object.status), :class =>'input' %>
+	</td>
+	<td>&nbsp;</td>
+</tr>

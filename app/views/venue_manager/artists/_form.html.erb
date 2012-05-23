@@ -1,0 +1,50 @@
+</header>
+<section class="popup-form">
+	<section class="popup-form-parts">
+	    <fieldset class="displayInline marg">
+	        <label>first name</label>
+			<%= f.text_field :firstname %>
+	    </fieldset>
+	    <fieldset class="displayInline">
+	        <label class="orange">last name</label>
+	        <%= f.text_field :lastname %>
+	    </fieldset>
+	</section>
+	<section class="popup-form-parts">
+	    <fieldset class="displayInline marg fixed">
+	        <label>birth year</label>
+			<%= f.text_field :birth_year, :class => 'short'  %>
+	    </fieldset>
+	    <fieldset class="displayInline fixed">
+	        <label>death year</label>
+	        <%= f.text_field :death_year, :class => 'short' %>
+	    </fieldset>
+	</section>
+	<section class="popup-form-parts">
+	    <fieldset class="displayInline">
+	        <label>born in</label>
+			    <%= f.text_field :born_in, :class => 'short' %>
+			    <%= f.select :born_in_country, @countries.collect {|c| [c.name, c.name]}, { :prompt => 'country' }, { :class => 'time' } %>
+	    </fieldset>
+	    <fieldset class="displayInline">
+	        <label>lives+works in</label>
+			    <%= f.text_field :live_in, :class => 'short' %>
+			    <%= f.select :live_in_country, @countries.collect {|c| [c.name, c.name]}, { :prompt => 'country' }, { :class => 'time' } %>
+	    </fieldset>
+	</section>
+	<section class="popup-form-parts">
+	    <fieldset class="displayInline">
+	        <label>biography <span>250 characters max</span></label>
+		    <%= f.text_area :biography, :class => 'description small', :onkeyup => "updateTFCount(this, 250)" %>
+		    <span id="artist_biography_count" class="count right marg-right">250</span>
+		    <br/>
+		    <% unless current_venue.gallery_type_museum? %>
+		    	<%= f.check_box :represented_by_venue %>
+	       	<%= current_venue.name %> is official representation
+	      <% end %>
+	    </fieldset>
+	</section>
+</section>
+<script>
+	$(document).ready(function(){ resizePopupToContents(); });
+</script>

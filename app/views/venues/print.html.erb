@@ -1,0 +1,49 @@
+<section class="content venue">
+    <section class="left">
+        <header>
+            <div>
+              <a href="" class="logo" title="company"><%= image_tag @venue.images.logo.file.url(:small) if @venue.images.logo %></a>
+              <h1><%= @venue.name %></h1>
+              <address>
+                  <span><a href=""><%= @venue.city_name %></a></span>
+                  <span><a href=""><%= @venue.region_name %></a>, <%= @venue.region_code %></span>
+              </address>
+            </div>
+        </header>
+        <article class="main-content">
+            <%= image_tag @venue.images.image.file.url(:large), :class => 'left' if @venue.images.image %>
+            <%= @venue.description.html_safe if @venue.description %>
+        </article>
+        <br style="clear:both;height:0;font:1px;overflow:hidden;" />
+        <% if @venue.artists %>
+            <section class="artist-info">
+                <ul>
+                    <li class="wide">
+                      <header>artists represented</header>
+                      <ul class="art-name">
+                          <% @venue.artists.map do |artist| %>
+                            <li><%= link_to artist.full_name.html_safe %><%= ", b. #{artist.birthdate.year}" if artist.birthdate %></li>
+                          <% end %>
+                      </ul>
+                    </li>
+                    <li class="column third">
+                        <%= render :partial => 'get_there', :locals => {:venue => @venue} %>
+                    </li>
+                    <% unless @venue.transit.blank?  %>
+                        <li class="column third">
+                            <header>public transportation</header>
+                            <p><%= @venue.transit %></p>
+                        </li>
+                    <% end %>
+                    <% if @venue.timetable? %>
+                        <li class="column half">
+                            <header>hours</header>
+                            <%= venue_schedule_list_ul(@venue) %>
+                        </li>
+                    <% end %>
+                </ul>
+            </section>
+        <% end %>
+
+    </section>
+</section>

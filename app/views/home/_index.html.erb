@@ -1,0 +1,129 @@
+<script type="text/javascript">
+   function changeOrder(){
+      document.getElementById("sort_order").value = document.getElementById("orderby").value;
+      var theForm = document.forms["frmsearch"];
+      checkForm(theForm);
+      theForm.submit();
+   }
+  </script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+  <td>
+	<% unless @custom_search %>
+	<% @results.each_with_index do |result, index|%>
+	<h3 style='padding-left: 40px;'>
+		<% if params[:region].blank? %>
+			<% if result.first.venue.city.region_grouping.nil? %>
+				<%= link_to 'ELSEWHERE (USA)', root_path(:region => -1) %>
+			<% else %>
+				<%= link_to result.first.venue.city.region_grouping.name.upcase, root_path(:region => result.first.venue.city.region_grouping.id) %>
+			<% end %>
+		<% else %>
+			<% hood, hood_id = (result.first.venue.neighbourhood.name.upcase rescue ''), (result.first.venue.neighbourhood_id rescue nil) %>
+			<% hood = (result.last.venue.neighbourhood.name.upcase rescue 'Somewhere') if hood.blank? %>
+			<% hood_id = (result.last.venue.neighbourhood_id rescue 1) if hood_id.nil? %>
+			<%= link_to hood, root_path(:neighbourhood => hood_id) %>
+		<% end %>
+		<span style='font-size: 12px; padding-left: 10px;'><%= pluralize(@result_counts[index], 'result') %></span>
+	</h3>
+	<ul id="mycarousel_<%=result.id%>" class="jcarousel-skin-bigger">
+      <% result.each do |item|%>
+        <li>
+          	<table>
+				<tr>
+					<!-- <%= "home_#{item.class.to_s.downcase}_#{item.id}_cache" -%> -->
+					<% cache("home_#{item.class.to_s.downcase}_#{item.id}_cache") do %>
+					<%= render :partial => item.class.to_s.downcase, :locals => { :item => item }, :inline => true %>
+					<% end %>
+				</tr>
+			</table>
+        </li>
+      <%end%>
+	  <% if @result_counts[index] > 20 %>
+		<li style="height: 230px; padding-right: 1px;">
+			<table height="100%">
+				<tr>
+					<td width="125" valign="top" align='center' style="padding-top: 40px;">
+						<% if params[:region].blank? %>
+							<%= link_to "MORE IN<br/>#{result.first.venue.city.region_grouping.name.upcase rescue 'ELSEWHERE (USA)'}", root_path(:region => ((result.first.venue.city.region_grouping.nil?) ? -1 : result.first.venue.city.region_grouping.id)), :style => "color:#99cc00; font-weight: bold; font-size: 14px;" -%>
+						<% else %>
+							<%= link_to "MORE IN<br/>#{result.first.venue.neighbourhood.name.upcase rescue 'OTHER'}", root_path(:neighbourhood => ((result.first.venue.neighbourhood.nil?) ? -1 : result.first.venue.neighbourhood_id)), :style => "color:#99cc00; font-weight: bold; font-size: 14px;" -%>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+		</li>
+	  <% end %>
+    </ul>
+	<script>
+	jQuery('#mycarousel_<%=result.id%>').jcarousel({
+        visible: 4,
+		size: <%= result.length + ((@result_counts[index] > 20) ? 1 : 0) -%>
+      });
+    </script>
+	<%end%>
+	<% else %>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td height="25" class="paging-border-bottom">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="50%" height="25"><strong>
+			<%= "<span style='padding-right: 20px;font-size: 20px; font-weight: bold;'>#{(@results.first.venue.neighbourhood.name.upcase rescue 'OTHER')}</span>" unless params[:neighbourhood].nil? -%>
+            <%= short_page_entries_info(@results, :entry_name => 'result') %> <%= @page_details.join(' ') %>
+			 <%= link_to("<br/><br/>show <b style='color:red;'>ALL</b> results #{@search_description_for_all_link.join(' ')}", root_path(@all_link_params), :class => "bluelink-bold-small") if @show_all_link %>
+            </strong></td>
+            <td width="50%" align="right" class="paging-link">
+              <%= will_paginate @results, :inner_window => 2, :outer_window => 2 %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="top">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="top">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign="top">&nbsp;</td>
+            <% @results.each_with_index do |result, index|%>
+             <% if index % 4  == 0%><tr><% end %>
+			  <% cache("home_#{result.class.to_s.downcase}_#{result.id}_cache") do %>
+              	<%= render :partial => result.class.to_s.downcase, :locals => { :item => result }, :inline => true %>
+			  <% end %>
+          	  <td width="13">&nbsp;</td>
+             <% if index % 4  == 3%>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+             <%end%>
+        <%end%>
+      </table>
+    </td>
+    </tr>
+    <tr>
+      <td height="25" >
+        <% if @results.total_pages > 1 %>
+        <div style="position:relative">
+          <div style="position:absolute; bottom:-20px; right:-85px;"><img src="images/bottom-arrow.gif" alt="" border="0" /></div>
+        </div>
+        <% end %>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="50%" height="25">&nbsp;</td>
+            <td width="50%" align="right" class="paging-link"><%= will_paginate @results, :inner_window =>2, :outer_window => 2 %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+</td>
+</tr>
+</table>

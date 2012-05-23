@@ -1,0 +1,102 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :info} do %>
+
+<div class="form">
+    <%= render :partial => 'venue_manager/shared/info_menu' %>
+    <section class="selected-tegs">
+        <div class="tags">
+            <ul>
+                <li>days+hours</li>
+            </ul>
+        </div>
+        <div class="location">
+           
+        </div>
+    </section>
+    <section class="manager-content-table">
+        <%= form_for :venue_timetable, @venue_timetable, :url => schedule_venue_manager_info_path do |f| %>
+        <fieldset class="venue-image addMargin">
+            <div class="column">
+                <ul>
+                    <% Date::ABBR_DAYNAMES.each_index do |i| %>
+                    <li>
+                      <label>
+                        <%= f.check_box "#{Date::ABBR_DAYNAMES[i].downcase}_is_open", :onchange => "toggleDay('#{Date::ABBR_DAYNAMES[i].downcase}');"  %>
+                        <span><%= Date::DAYNAMES[i] %></span>
+                      </label>
+                    </li>
+                    <% end %>
+                    <li>
+                      <label>
+                        <%= f.check_box :by_appointment %>
+                        <span>by appointment</span>
+                      </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="column">
+                <div id="open_title" class="title">open</div>
+                <ul>
+                  
+                    <% Date::ABBR_DAYNAMES.map(&:downcase).each do |day| %>
+                    <li>
+                      <% if f.object && f.object.errors["#{day}_open"].any? %>
+                        <span class="field_with_errors" title="<%= f.object.errors["#{day}_close"] -%>">
+                      <% end %>
+                          <%= f.time_select :"#{day}_open", { :simple_time_select => true, :minute_interval => 10, :time_separator => "", :default => Time.now.change(:hour => 9, :minute => 0) } %>
+                      <% if f.object && f.object.errors["#{day}_close"].any? %>
+                        </span>
+                      <% end %>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+            <div class="column addMargin">
+                <div id="close_title" class="title">close</div>
+                <ul>
+                    <% Date::ABBR_DAYNAMES.map(&:downcase).each do |day| %>
+                    <li>
+                      <% if f.object && f.object.errors["#{day}_close"].any? %>
+                        <span class="field_with_errors" title="<%= f.object.errors["#{day}_close"] -%>">
+                      <% end %>
+                        <%= f.time_select :"#{day}_close", { :simple_time_select => true, :minute_interval => 10, :time_separator => "", :default => Time.now.change(:hour => 18, :minute => 0) } %>
+                      <% if f.object && f.object.errors["#{day}_close"].any? %>
+                        </span>
+                      <% end %>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+        </fieldset>
+        
+        <div class="buttons">
+            <button class="orange"><%= t(:button_save_changes) %></button>
+            <button class="gray">cancel</button>
+        </div>
+        <% end %>
+    </section>
+    <div class="decoration"></div>
+</div>
+<% end %>
+<script>
+ function toggleDay(day){
+   if($('#venue_timetable_'+day+'_is_open').attr('checked') != undefined){
+     $('#venue_timetable_'+day+'_open_5i, #venue_timetable_'+day+'_close_5i').show(300);
+     // $('#venue_timetable_by_appointment').removeAttr('checked');
+   }else{
+     $('#venue_timetable_'+day+'_open_5i, #venue_timetable_'+day+'_close_5i').hide(100);
+   }
+   var checked = false;
+   $.each(['<%= Date::ABBR_DAYNAMES.map(&:downcase).join("','") -%>'], function(idx,el){
+      if($('#venue_timetable_'+el+'_is_open').attr('checked') != undefined) checked = true;
+   });
+   if(!checked){
+      $('#venue_timetable_by_appointment').attr('checked', 'checked');
+      $('#open_title, #close_title').hide(100);
+   }else{
+      $('#open_title, #close_title').show(300);
+   }
+ }
+ $(document).ready(function(){
+   $.each(['<%= Date::ABBR_DAYNAMES.map(&:downcase).join("','") -%>'], function(idx,el){ toggleDay(el); })
+ });
+</script>

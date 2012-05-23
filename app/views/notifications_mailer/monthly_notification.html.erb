@@ -1,0 +1,120 @@
+<% ActionController::Base.asset_host = 'http://'+SITE_URL %>
+<style type="text/css">
+	table.orange-bold {
+		border: #ff6600;
+		border-width: 4 4 4 4;
+		border-style: solid;
+		border-collapse: collapse;
+	}
+
+	td.orange-bold  {
+		padding:8px 10px 10px 10px;
+		border: #ff6600;
+		border-width: 0 0 4 0;
+		border-style: solid;
+	}
+
+	a {
+		text-decoration: none;
+		font-weight: bold;
+	}
+	
+	.big-title {
+		font-size: 14pt;
+		font-weight: bold;
+	}
+	
+	.med-title {
+		font-size: 11pt;
+		font-weight: bold;
+	}
+	
+	p.medium-bold {
+		font-size: 11pt;
+		font-weight: bold;
+	}
+	p.big-plain {
+		font-size: 14pt;
+	}
+</style>
+
+<%= link_to image_tag('logo-beta.gif'), root_url(:host => SITE_URL) -%><br/>
+<%= (@user.type == 'User') ? @user.firstname : @user.name -%>,<br/>
+<%= @page.content + '<br/>' unless @page.nil? %>
+<br/>
+<% if @venues.nil? || @venues.empty? %>
+	Whoops! You have no favorite venues saved or your favorite venues have no current or upcoming exhibitions. Click here to visit Gallery*dog and select favorites: <%= link_to 'www.gallerydog.info', 'http://www.gallerydog.info' -%>
+<% else %>
+	<table class='orange-bold'>
+		<tr>
+			<td class="orange-bold">
+			<% last_neighbourhood,neighbourhood_changed = nil,false %>
+			<% @venues.each_with_index do |venue, index| %>
+				<% if last_neighbourhood != venue.neighbourhood_id %>
+					<% last_neighbourhood = venue.neighbourhood_id %>
+					<% unless index == 0%>
+						</td>
+					</tr>
+					<tr>
+						<td class="orange-bold">
+					<% end %>
+					<span class="big-title"><%= venue.neighbourhood_name.upcase -%></span><br/>
+					<span class="med-title"><%= venue.city_name -%>, <%= venue.region.code -%></span><br/><br/>
+				<% end %>
+				<%= link_to venue.name, venue_url(venue, :host => SITE_URL ), :class => 'big-title' -%><br/><br/>
+				<% venue.exhibitions.current.each do |c_ex| %>
+					<table width='450'>
+						<tr>
+							<td width='130'><%= link_to exhibition_image(c_ex,:small), venue_exhibition_url(venue, c_ex, :host => SITE_URL) %></td>
+							<td>
+								<%= link_to c_ex.title, venue_exhibition_url(venue, c_ex, :host => SITE_URL) %><br/><br/>
+								<%= c_ex.artist_names.join(', ') -%><br/>
+								thru <%= c_ex.end.strftime("%B %-1d, %Y") -%>
+								<% if c_ex.end < Date.parse(10.days.from_now.strftime('%Y/%m/%d')) %><br/><font color='red'><b>**CLOSING SOON**</b></font><% end %>
+							</td>
+						</tr>
+					</table><br/>
+				<% end %>
+				<% unless venue.exhibitions.upcoming.empty? %>
+					<b>Upcoming:</b></br>
+					<br />
+				<% end %>
+				<% venue.exhibitions.upcoming.each do |u_ex| %>
+					<% unless u_ex.start > Date.new(45.days.from_now.to_i) %>
+					<table width='450'>
+						<tr>
+							<td width='130'><%= link_to exhibition_image(u_ex,:small), venue_exhibition_url(venue, u_ex, :host => SITE_URL) %></td>
+							<td>
+								<%= link_to u_ex.title, venue_exhibition_url(venue, u_ex, :host => SITE_URL) %><br/><br/>
+								<%= u_ex.artist_names.join(', ') -%><br/>
+								<%= u_ex.duration -%>
+								<% if u_ex.end < Date.parse(10.days.from_now.strftime('%Y/%m/%d')) %><br/><font color='red'><b>**CLOSING SOON**</b></font><% end %>
+								<%= '<br/>Reception:&nbsp;&nbsp;' + u_ex.formatted_public_reception_date(true) unless u_ex.formatted_public_reception_date.blank? -%>
+							</td>
+						</tr>
+					</table><br/>
+					<% end %>
+				<% end %>
+				<% if last_neighbourhood == venue.neighbourhood_id && ( (@venues.size - 1) > index && @venues[index+1].neighbourhood_id == last_neighbourhood) %>
+				<p style="border-bottom: 1px dotted #000000; width: 100%;"> </p>
+				<% end %>
+			<% end %>
+			<br/>
+		</td>
+	</tr>
+</table>
+<% end %>
+<br />
+<br/>
+<!-- Click here to view and edit all your favorite venues:  <%= link_to( user_favorites_url(:host => SITE_URL,:user_id => @user.id), user_favorites_url(:host => SITE_URL,:user_id => @user.id) ) %><br/> -->
+<p class='medium-bold'>That's it!<br/>
+If you want to view or edit your favorite venues at any time, just click here: <% if @user.type == 'User' %>
+<%= link_to( edit_user_url(:host => SITE_URL,:id => @user.id), edit_user_url(:host => SITE_URL,:id => @user.id) ) %>
+<% else %>
+<%= link_to( venue_manage_url(:host => SITE_URL,:venue_id => @user.id), venue_manage_url(:host => SITE_URL,:venue_id => @user.id) ) %>
+<% end %></p>
+<br/>
+<p class='big-plain'>Have a happy day!<br/>
+Gallery*dog</p>
+<br/>
+<b>Gallery*dog |</b> <%= link_to('contact', page_url(:host => SITE_URL,:caption => 'contact') ) -%> | <%= link_to('about us', page_url(:host => SITE_URL,:caption => 'about') ) -%> | <%= link_to('privacy policy', page_url(:host => SITE_URL,:caption => 'privacy') ) -%><br/>

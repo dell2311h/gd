@@ -1,0 +1,21 @@
+<%= form_for @artist, :url => venue_manager_artist_path(@aritst), :html => { :class => 'popup popup-small', :method => :put } do |f|%>
+	<%= link_to_function '', 'parent.$.fn.colorbox.close()', :class => 'close-btn' %>
+    <header>
+	    <hgroup class="left">
+	        <h1>Edit artist</h1>
+	        <h2>(required fields in orange)</h2>
+	    </hgroup>
+		<%= render :partial => 'form', :locals => { :f => f } %>
+	</section>
+	<footer>
+	    <button class="save">save</button>
+		<%= link_to 'delete', venue_manager_artist_path(@artist), :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this artist?"%>	  
+	    <button class="cancel" onclick="parent.$.fn.colorbox.close();return false;">cancel</button>
+	</footer>
+<% end %>
+<script>
+	$('#delete').click(function(){
+		// parent.$.fn.colorbox.close();
+		$('input[name$="_method"]').val('delete');
+	})	
+</script

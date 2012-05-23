@@ -1,0 +1,24 @@
+
+html, body,  table {
+	line-height:1.3em;
+	position:relative;
+	margin:0;
+	padding:0;
+	FONT-SIZE: 12px; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
+}
+
+.errorExplanation { width: 500px; border:2px solid #FF0000; border-bottom: 2px solid #FF0000; background: #F0F0F0; margin-bottom: 10px;}
+.mainheading {margin:0; padding:0; background: #CC0000; font-size: 13px; font-family: tahoma, Arial, Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; padding-left: 10px; }
+.middcontent { padding: 5px; }
+ul.list { margin: 0; padding:0; margin-top: 7px; margin-bottom: 7px; margin-left: 30px; }
+ul.list li { list-style-type: square; font-size: 13px; font-family: tahoma, Arial, Helvetica, sans-serif; }
+
+.flashmessage {margin:0; padding:0; background: #CC0000; font-size: 13px; font-family: tahoma, Arial, Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; padding-left: 10px; }
+	
+	.listingmessage 
+{
+	width: 300px;	
+	margin:0; padding:0;
+	background: #CC0000; font-size: 13px; 
+	font-family: tahoma, Arial, Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; text-align:center;
+}

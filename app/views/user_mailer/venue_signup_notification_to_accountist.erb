@@ -1,0 +1,13 @@
+New Venue account created for:
+
+<%= @user.name %>
+<%= Venue::VENUE_TYPES.invert[@user.gallery_type] %>
+<%= @user.neighbourhood_name %>
+<%= @user.city_name %>
+<%= @user.region.name %>
+
+Admin Email: <%= @user.email %>
+
+Venue Detail Page: <%= "http://#{SITE_URL}/venues/#{@user.id}" %>
+
+Activate Account: <%= "http://#{SITE_URL}/activate/#{@user.activation_code}" %>

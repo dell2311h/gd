@@ -1,0 +1,14 @@
+<html><head></head><body>
+<% if @exhibition_or_event.kind_of?(Exhibition) %>
+  <%= render :partial => 'exhibition_publication', :locals => {:exhibition => @exhibition_or_event} %>
+<% else %>
+  <%= render :partial => 'event_publication', :locals => {:event => @exhibition_or_event} %>
+<% end %>
+<br/>
+<%= @exhibition_or_event.class.name %> was sent to following media services for publishing:<br>
+<ul>
+<% @media_services.each do |s| %>
+	<li><%= link_to s.name, s.url %></li>
+<% end %>
+</ul>
+</body></html>

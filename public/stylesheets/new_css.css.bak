@@ -1,0 +1,1044 @@
+section.manager div.manager-content > div > header > div.combobox{
+    width:185px;
+    height:20px;
+    line-height:19px;
+    background: #FCFCFC url(/images/icons.png) no-repeat right -78px;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px;
+    float:right;
+    padding:0px 10px;
+    margin-top:15px;
+}
+section.manager div.manager-content > div > header > h2 + span {
+    display:block;
+    margin-top:-5px;
+    padding-bottom:10px;
+}
+section.manager-content-table footer .footer-notice a,
+section.manager div.manager-content > div > header > h2 + span a{
+    color:#009fe1;
+}
+
+section.manager div.manager-content > div section.selected-tegs div.tags ul + span{
+    margin-top:10px;
+    display:block;
+    color:#9a9a9a;
+}
+section.manager div.manager-content > div section.selected-tegs div.search-box span{
+    display:block;
+    margin-top:7px;
+    color:#9a9a9a;
+    text-align:right;
+}
+
+section.manager-content-table section.cont.listing ul:nth-child(even) {
+    background-color: #fff;
+}
+section.manager-content-table section.cont.listing ul:nth-child(odd) {
+    background-color: #F3FBFB;
+}
+section.manager-content-table section.cont.listing ul li.secondCol{
+    width:245px;
+    padding:10px;
+    text-align:left;
+}
+section.manager-content-table section.cont.listing ul li.thirdCol{
+    text-align:center;
+}
+section.manager-content-table section.cont.listing fieldset{
+    border:0;
+    display:inline-block;
+}
+section.manager-content-table section.cont.listing fieldset input{
+    text-align:center;
+    vertical-align:middle;
+    margin-right:5px;
+    height:20px;
+    line-height:20px;
+    border-radius:3px;
+    border: 1px solid #DFDFDF;
+    color:#DFDFDF;
+}
+section.manager-content-table section.cont.listing fieldset input[type="text"],
+section.manager-content-table section.cont.listing fieldset input[type="password"]{
+    width:105px;
+}
+section.manager-content-table section.cont.listing fieldset input[type="button"]{
+    color:#828382;
+    background-image:-moz-linear-gradient(center top, #fff, #ebebe9);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ebebe9));
+    width:35px;
+    font-size:11px;
+    line-height:10px;
+}
+section.manager-content-table footer .footer-notice{
+    height: 25px;
+    line-height:25px;
+    display:inline-block;
+    text-align:center;
+    width:515px;
+}
+section.manager-content-table footer .footer-notice + button{
+    display:inline-block;
+}
+
+
+/*main page*/
+section.content.gallery{
+    padding: 22px 57px;
+}
+section.manager.mainpage > hgroup{
+    margin-bottom:20px;
+    line-height:40px;
+}
+section.manager.mainpage > hgroup h1, section.manager.mainpage > hgroup h1 *{
+    display:inline-block;
+    color:#009fe1;
+    margin:0px;
+    vertical-align:bottom;
+    text-decoration: none;
+}
+section.manager.mainpage > hgroup h3{
+    display:inline-block;
+    color:#5d5d5d;
+    font-size:13px;
+    line-height: 33px;
+    font-weight:normal;
+    vertical-align:bottom;
+    margin-left:10px;
+}
+section.manager.mainpage nav.subMenu{
+    border:none;
+}
+
+section.manager.mainpage .gallery{
+    /*overflow:hidden;*/
+    position:relative;
+    padding:10px 0 20px;
+    margin-bottom:20px;
+}
+section.manager.mainpage .gallery.separator{
+    border-bottom:1px solid #e0e0e0;
+}
+section.manager.mainpage .gallery figure{
+    display:inline-block;
+    /*float:left;*/
+     position:relative;
+    width:150px;
+    margin-right:17px;
+    cursor:pointer;
+    vertical-align:top;
+}
+
+section.manager.mainpage .gallery figure.last{
+    margin-right:10px;
+}
+
+section.manager.mainpage .gallery figure>div.thumbnail {
+    border:1px solid #e0e0e0;
+    width:149px;
+    height:149px;
+    overflow:hidden;
+}
+section.manager.mainpage .gallery figure figcaption{
+    margin-top:10px;
+}
+section.manager.mainpage .gallery figure figcaption span.time,
+section.manager.mainpage .gallery figure figcaption h5{
+    display:block;
+    color:#5d5d5d;
+    font-size:11px;
+    font-weight:normal;
+    line-height:15px;
+}
+section.manager.mainpage .gallery figure figcaption span.comment,
+section.manager.mainpage .gallery figure figcaption mark{
+    display:block;
+    background:none;
+    font-size:13px;
+    color:#009fe1;
+    line-height:15px;
+}
+section.manager.mainpage .gallery .nav-buttons{
+    display:inline-block;
+    width:25px;
+    height:150px;
+    background:#fff url("/images/nav_buttons.png") no-repeat;
+}
+section.manager.mainpage .gallery .nav-buttons.right{
+    /*float:right;*/
+    background-position:right top;
+}
+
+section.manager.mainpage .gallery .nav-buttons.left{
+    /*float:left;*/
+    background-position:left top;
+}
+
+/*forms*/
+section.manager div.manager-content > div.form ul.tags li a{
+    text-align:center;
+}
+section.manager div.manager-content > div.form section.manager-content-table{
+    min-height:350px;
+}
+section.manager div.manager-content > div.form .selected-tegs{
+    padding-bottom:0;
+}
+section.manager div.manager-content > div.form .selected-tegs .location{
+    width:185px;
+    float:right;
+    text-align:right;
+}
+section.manager div.manager-content > div.form .selected-tegs .location select{
+    width:185px;
+    color:#5D5D5D;
+    height: 21px;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #FCFCFC;
+}
+section.manager div.manager-content > div.form .selected-tegs .location a{
+    color:#009fe1;
+    margin-right:10px;
+    line-height:30px;
+}
+
+
+.manager-content-table fieldset{
+    border:0;
+    padding:20px;
+}
+.manager-content-table fieldset label{
+    display:block;
+    margin-bottom:15px;
+}
+.manager-content-table fieldset>span,
+.manager-content-table fieldset label span{
+    display:block;
+    font-size:12px;
+    line-height:20px;
+}
+.manager-content-table fieldset>span,
+.manager-content-table fieldset label.strict span{
+    color:#ff8400;
+    font-weight:bold;
+}
+.manager-content-table fieldset input{
+    background-color: #FCFCFC;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px 3px 3px 3px;
+    color: #5D5D5D;
+    font-size: 12px;
+    height: 19px;
+    line-height: 19px;
+    padding: 0 10px;
+    width:215px
+}
+.manager-content-table fieldset select,
+.manager-content-table fieldset label select{
+    color:#5D5D5D;
+    height: 21px !important;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #FCFCFC;
+}
+.manager-content-table fieldset label select.long{
+    width:235px;
+}
+.manager-content-table fieldset .column{
+    float:left;
+    width:auto;
+    margin-right:25px;
+}
+.manager-content-table fieldset em{
+    font-style:normal;
+    margin:0 10px;
+}
+
+.manager-content-table fieldset dl{overflow:hidden; margin-bottom:10px;}
+.manager-content-table fieldset dl dt{float:left; width:auto; overflow:hidden; margin-right:20px;}
+.manager-content-table fieldset dl dd{
+    margin-top:40px;
+    float:left;
+}
+button.form-btn{
+    background-image:-moz-linear-gradient(center top, #ffffff, #f7f7f7);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f7f7f7));
+    border: 1px solid #DFDFDF;
+    border-radius: 3px;
+    color:#5d5d5d;
+    display:inline-block;
+    white-space:nowrap;
+    height:21px;
+    font-size:12px;
+    line-height:12px;
+    padding:0 10px;
+}
+.manager-content-table fieldset input.search {
+    width:115px;
+    padding-right:20px;
+    background-image:url("/images/searchicon.png");
+    background-repeat:no-repeat;
+    background-position:right center;
+}
+.manager-content-table fieldset span mark{
+    background:none;
+    color:#5d5d5d;
+}
+.manager-content-table fieldset dl dt img{
+    display:block;
+}
+.manager-content-table fieldset dl dt a{
+    display:block;
+    float:right;
+    color:#009fe1;
+}
+.manager-content-table .addMargin{
+    margin-left:30px;
+}
+
+.manager-content-table fieldset ul li{
+    list-style:none;
+    margin-bottom:15px;
+    height:21px;
+}
+.manager-content-table fieldset ul li label{
+    display:block;
+    line-height:21px;
+}
+.manager-content-table fieldset ul li label input{
+    width:auto;
+    vertical-align:middle;
+}
+.manager-content-table fieldset ul li label span{
+    display:inline;
+    padding-left:10px;
+    vertical-align:middle;
+}
+.manager-content-table fieldset ul li select{
+    vertical-align:middle;
+    width:95px;
+}
+.manager-content-table fieldset .column .title{
+    margin-top:-20px;
+    line-height:20px;
+}
+.manager-content-table .buttons{
+    text-align:center;
+    padding-bottom:20px;
+}
+.manager-content-table .buttons button{
+    margin:0 18px;
+}
+.manager-content-table button.orange{
+    display:inline-block;
+    border-radius: 3px;
+    padding:8px 20px;
+    font-size:13px;
+    display:inline-block;
+    color:#fff;
+    background-image:-moz-linear-gradient(center top, #f7c465, #f3ad42);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#f7c465), to(#f3ad42));
+    border: 1px solid #f4b146;
+}
+
+.manager-content-table button.gray{
+    display:inline-block;
+    border-radius: 3px;
+    padding:8px 20px;
+    font-size:13px;
+    display:inline-block;
+    color:#5d5d5d;
+    background-image:-moz-linear-gradient(center top, #ffffff, #f7f7f7);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f7f7f7));
+    border: 1px solid #DFDFDF;
+}
+
+div.annotation{
+    text-align:right;
+    line-height:30px;
+}
+textarea.transportation,
+textarea.description{
+    display:block;
+    width:565px;
+    height:260px;
+    background-color: #FCFCFC;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px 3px 3px 3px;
+    color: #5D5D5D;
+    font-size: 12px;
+    line-height: 19px;
+    padding: 0 10px;
+}
+textarea.transportation{
+    width:290px;
+    height:120px;
+}
+.manager-content-table fieldset label span + mark{
+    display:block;
+    width:100%;
+    height:20px;
+    line-height:20px;
+    margin-top:-20px;
+    text-align:right;
+    background:none;
+    color:#999999;
+    font-size:11px;
+}
+textarea.transportation + div.annotation{
+    width:290px;
+    color:#999999;
+}
+textarea.description + div.annotation{
+     width:585px;
+}
+
+/* NOTIFICATION */
+.notification {
+    position:fixed;
+    top:32px;
+    right:32px;
+    width:256px;
+    z-index:105;
+    text-align:left;
+    font-weight:normal;
+    font-size:100%;
+    color:white;
+    background-color: #250517;
+    padding:24px;
+}
+.notification span.dismiss {
+    border:2px solid #FFF;
+    padding:0 5px;
+    cursor:pointer;
+    float:right;
+    margin-right:10px;
+}
+.notification a {
+    color:white;
+    text-decoration:none;
+    font-weight:bold
+}
+/* NOTIFICATION */
+
+/*hover*/
+section.manager.mainpage .gallery figure div.hover{
+    display:none;
+    position:absolute;
+    top:0px;
+    left:-10px;
+    border:1px solid #d1d1d1;
+    width:315px;
+    height:295px;
+    padding:8px;
+    background-color:#fff;
+    border-radius:3px;
+    box-shadow:0px 0px 8px rgba(0,0,0,.3);
+    z-index: 1000;
+    cursor: default;
+}
+
+section.manager.mainpage .gallery figure.last-visible div.hover {
+    left:-180px;
+}
+
+section.manager.mainpage .gallery figure:hover div.hover{
+    display:block;
+}
+section.manager.mainpage .gallery figure div.hover div.box{
+    float:left;
+    padding:8px;
+    width:151px;
+}
+section.manager.mainpage .gallery figure div.hover div.box.two{
+    width:120px;
+    padding-left:12px;
+}
+section.manager.mainpage .gallery figure div.hover div.box .thumbnail{
+    width:149px;
+}
+section.manager.mainpage .gallery figure div.hover div.box h6,
+section.manager.mainpage .gallery figure div.hover div.box time{
+    font-size:10px;
+    color:#5d5d5d;
+}
+section.manager.mainpage .gallery figure div.hover div.box h6{
+    text-transform:uppercase;
+    font-weight:normal;
+    margin-top:14px;
+}
+section.manager.mainpage .gallery figure div.hover div.box time+h4{
+    margin-top:14px;
+}
+section.manager.mainpage .gallery figure div.hover div.box h4{
+    font-size: 12px;
+    color: #009FE1;
+    line-height: 15px;
+    font-weight:normal;
+}
+section.manager.mainpage .gallery figure div.hover div.box address{
+    font-size:10px;
+    line-height:15px;
+    font-style:normal;
+}
+section.manager.mainpage .gallery figure div.hover div.box address span{
+    display:block;
+}
+
+section.manager.mainpage .gallery figure div.hover div.box a{
+    color: #009fe1;
+    font-size:10px;
+}
+
+section.manager.mainpage .gallery figure div.hover div.box p.big{
+    font-size:12px;
+    margin:14px 0;
+}
+section.manager.mainpage .gallery figure div.hover div.box article{
+    font-size:10px;
+    line-height:15px;
+}
+/*hover*/
+
+
+
+
+/*venue, exhibition*/
+address{
+    font-style:normal;
+}
+a{
+    color:#00B4FF;
+}
+.left{float:left;}
+.right{float:right;}
+.clear{clear:both;}
+section.venue{
+    position:relative;
+    overflow:hidden;
+    padding: 0px;
+}
+section.venue section.left{width:600px;}
+
+section.venue>section.left>header{
+    position:relative;
+    overflow:hidden;
+    padding:0px 5px 5px 0;
+    border-bottom:1px solid #e7e7e7;
+    margin-bottom:20px;
+}
+section.venue>section.left>header.search{
+    margin-bottom: 0;
+}
+
+section.venue>section.left>header div a.logo{
+    float:left;
+    display:block;
+    margin-right:30px;
+}
+
+section.venue>section.left>header div h1{
+    font-weight:200;
+    font-size:22px;
+    line-height:25px;
+}
+
+section.venue>section.left>header>h1{
+    font-size:22px;
+    font-weight:200;
+    line-height:28px;
+    color:#5d5d5d;
+    letter-spacing:2px;
+}
+section.venue>section.left>header>h1 span{
+    font-size:14px;
+}
+section.venue>section.left>header>ul.filter{
+    margin-top:20px;
+    padding:5px;
+}
+section.venue>section.left>header>ul.filter li{
+    list-style:none;
+    display:inline-block;
+    margin-right:3px;
+}
+section.venue>section.left>header>ul.filter li a{
+    font-size:13px;
+    font-weight:lighter;
+    text-decoration:none;
+    display:inline-block;
+}
+section.venue>section.left>header>ul.filter li a:hover,
+section.venue>section.left>header>ul.filter li a.active{
+    color:#5D5D5D;
+}
+section.venue>section.left>header>ul.filter li a img{
+    float:left;
+    margin-right:5px;
+    margin-top:-4px;
+}
+
+section.venue>section.left>header div span{
+    display:block;
+    line-height:14px;
+}
+
+section.venue>section.left>header div.right{
+    text-align:right;
+}
+
+section.venue>section.left>header div.right ul{
+    margin-top:15px;
+}
+
+section.venue>section.left>header div.right ul li{
+    display:inline-block;
+    margin-left:5px;
+}
+
+article.main-content{
+    margin-bottom:30px;
+    font-size:12px;
+    line-height:16px;
+    padding:5px;
+}
+
+article.main-content img.left{
+    display:block;
+    margin:0 20px 20px 0;
+}
+article.main-content figure.left{
+    padding:0 10px 20px 0;
+}
+article.main-content figure.left figcaption{
+    font-size:9px;
+}
+
+section.artist-info{
+    margin-bottom:30px;
+}
+section.artist-info>ul{
+    position:relative;
+    overflow:hidden;
+}
+section.artist-info>ul>li{
+    list-style:none;
+    padding:5px;
+    font-size:12px;
+    line-height:15px;
+}
+section.artist-info>ul>li p{
+    line-height:15px;
+}
+section.artist-info>ul>li.wide{
+    width:100%;
+    margin-bottom:30px;
+}
+
+section.artist-info>ul>li header{
+    font-size:14px;
+    line-height:20px;
+    font-weight:200;
+    border-bottom:1px solid #e7e7e7;
+    padding:0 5px 5px;
+    margin-bottom:10px;
+}
+section.artist-info>ul>li ul{
+    position:relative;
+    overflow:hidden;
+}
+
+section.artist-info>ul>li ul.art-name li{
+    list-style:none;
+    width:50%;
+    float:left;
+}
+section.artist-info>ul>li.column{
+    float:left;
+    margin-right:10px;
+}
+section.artist-info>ul>li.column.third{
+    width:170px;
+}
+section.artist-info>ul>li.column.half{width:210px; margin:0;}
+section.artist-info>ul>li div.get-there{}
+section.artist-info>ul>li div.get-there h4{
+    font-size:13px;
+    margin-bottom:10px;
+    color:#00B4FF;
+    font-weight:normal;
+}
+section.artist-info>ul>li div.get-there address{
+    margin-bottom:10px;
+}
+section.artist-info>ul>li div.get-there address span{
+    display:block;
+}
+section.artist-info>ul>li div.get-there .tel{
+    display:block;
+    margin-top:10px;
+}
+section.artist-info>ul>li ul.hours{}
+section.artist-info>ul>li ul.hours li{
+    line-height:20px;
+}
+section.artist-info>ul>li ul.hours li span{
+    display:inline-block;
+    width:100px;
+}
+.exhibitions-events header{
+    font-size:14px;
+    line-height:20px;
+    font-weight:200;
+    border-bottom:1px solid #e7e7e7;
+    padding:0 5px 5px;
+    margin-bottom:15px;
+}
+.exhibitions-events dl{
+    position:relative;
+    overflow:hidden;
+    padding:5px 5px 20px 5px;
+    border-bottom:1px solid #e7e7e7;
+    margin-bottom:15px;
+}
+.exhibitions-events dl dd,
+.exhibitions-events dl dt{
+    float:left;
+}
+.exhibitions-events dl dt{
+    width:125px;
+    margin-right:20px;
+}
+.exhibitions-events dl dd{
+    width:440px;
+}
+.exhibitions-events dl dd.clear{
+    width:auto;
+    padding-right:20px;
+    margin-top:5px;
+}
+.exhibitions-events dl dd .upcoming,
+.days-left{
+    float:right;
+}
+.days-left{
+    width:32px;
+    height:44px;
+    color:#fff;
+    padding:5px;
+    background:transparent url('/images/days-left.png') no-repeat;
+}
+.exhibitions-events dl dd .upcoming{
+    color:#ff9009;
+}
+.exhibitions-events dl dd h2{
+    font-size:18px;
+    font-weight:200;
+    line-height:21px;
+    color:#00B4FF;
+}
+.exhibitions-events dl dd h3{
+    font-size:14px;
+    font-weight:200;
+    line-height:21px;
+    color:#00B4FF;
+}
+
+.exhibitions-events dl dd ul.artist-list li{
+    line-height:19px;
+    list-style:none;
+    font-weight:200;
+}
+
+.exhibitions-events dl dd h5{
+    font-size:12px;
+    font-weight:normal;
+    line-height:15px;
+}
+.exhibitions-events dl dd h5 span{display:block;}
+.exhibitions-events dl dd>span.cal{
+    padding-top:10px;
+    display:block;
+    margin-bottom:10px;
+    background:transparent url('/images/cal-icon.png') no-repeat bottom right;
+    width:200px;
+}
+
+.exhibitions-events dl dd>a{
+    display:block;
+    float:right;
+}
+section.venue>div.right{
+    width:245px;
+}
+section.venue>div.right.venue{
+    padding-top:33px;
+}
+section.venue>div.right.title{
+    padding-top:10px;
+}
+section.venue>div.right div.map+div.direction{
+    text-align:right;
+}
+section.venue>div.right dl{}
+section.venue>div.right dl dt{
+    margin-top: 10px;
+}
+
+section.venue>div.right dl dd ol li{
+    list-style-position:inside;
+    line-height:18px;
+}
+section.venue>div.right section.past-exhibitions header{
+    margin-top:25px;
+    min-height: 26px;
+    border: 1px solid #FFB03A;
+    border-radius: 5px 5px 0 0;
+    background-image: -moz-linear-gradient(center top, #FFB951, #FFBB4A);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFB951), to(#FFBB4A));
+    padding: 0 15px;
+    color:#fff;
+    line-height:26px;
+}
+section.venue>div.right section.past-exhibitions ul{
+    border-left:1px solid #eeeae4;
+    border-right:1px solid #eeeae4;
+    padding-bottom:8px;
+    max-height:500px;
+    overflow:auto;
+}
+section.venue>div.right section.past-exhibitions ul li{
+    list-style:none;
+    padding:8px 8px 0 8px;
+    position:relative;
+    overflow:hidden;
+}
+section.venue>div.right section.past-exhibitions ul li span{display:block;}
+section.venue>div.right section.past-exhibitions ul li span.img{
+     float:left; margin-right:8px;
+}
+
+.some-info h5,
+article.main-content h4,
+section.gallery header h4{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 200;
+}
+
+article.main-content h4{
+    margin-bottom:20px;
+    padding:0;
+}
+.some-info{
+    float:left;
+}
+.some-info h5{
+    width:160px;
+    text-transform:uppercase;
+    background: transparent url('/images/cal-icon.png') no-repeat right bottom;
+}
+.some-info + p{
+    float:left;
+    width:265px;
+}
+.some-info h5+time+time,
+.some-info h5+time{
+    display:block;
+}
+.some-info h5+time+time{
+    margin-bottom:20px;
+}
+article.main-content p.clear{
+    font-size:14px;
+}
+article.main-content p.clear .more{
+    float:right;
+    font-size:12px;
+}
+.littleMarginBottom{
+    margin-bottom:10px !important;
+}
+section.gallery{
+    padding:0 5px;
+    margin-bottom:20px;
+}
+section.gallery header h4+ul,
+section.gallery header h4+ul li,
+section.gallery header h4{display:inline-block;}
+section.gallery header h4+ul li{
+    list-style:none;
+    font-size:14px;
+}
+section.gallery header{
+    margin-bottom:10px;
+}
+section.gallery div.images-gallery{height:84px}
+section.gallery div.images-gallery ul{display:inline-block;}
+section.gallery div.images-gallery ul li{
+    display:inline-block;
+    list-style:none;
+    margin:0 12px;
+}
+
+section.gallery div.images-gallery a.nav-buttons{
+    display: inline-block;
+    width: 20px;
+    height: 84px;
+    background: white url("/images/nav_buttons.png") no-repeat;
+}
+section.gallery div.images-gallery a.nav-buttons.left{float:none; background-position:left center}
+section.gallery div.images-gallery a.nav-buttons.right{float:none; background-position:right center}
+
+/*isbaysoft*/
+section.gallery div.images-gallery {
+    position:relative;
+    padding:10px 0 20px;
+    margin-bottom:20px;
+}
+
+section.gallery div.images-gallery figure {
+    display:inline-block;
+    position:relative;
+    width:125px;
+    margin-right:7px;
+    cursor:pointer;
+    vertical-align:top;
+}
+
+section.gallery div.images-gallery figure.last{margin-right:10px;}
+/*end isbaysoft*/
+
+.logo-info{
+    margin-bottom:20px;
+}
+.logo-info>*>span,
+.logo-info>*{
+    display:block;
+}
+.logo-info a.logo{
+    margin-bottom:10px;
+}
+
+ul.paging{
+    text-align:right;
+    margin:5px 0 20px;
+}
+ul.paging li{
+    list-style:none;
+    display:inline-block;
+    font-size:15px;
+    margin:0 3px;
+}
+ul.paging li a{}
+ul.paging li a.active,
+ul.paging li a:hover{
+    color:#5d5d5d;
+    text-decoration:none;
+}
+
+ul.paging li a{
+    display:inline-block;
+}
+ul.paging li.arrow a{
+    background: transparent url('/images/arrows.png') no-repeat;
+    height:12px;
+}
+ul.paging li.arrow a.back-to-start{
+    width:12px;
+    background-position:left bottom
+}
+ul.paging li.arrow a.back.disable,
+ul.paging li.arrow a.back-to-start.disable{
+    background-position:left top
+}
+ul.paging li.arrow a.back{
+    width:6px;
+    background-position:left bottom;
+    margin-right:10px;
+}
+
+ul.paging li.arrow a.forward-to-end{
+    width:12px;
+    background-position:right bottom
+}
+
+ul.paging li.arrow a.forward{
+    width:6px;
+    background-position:right bottom;
+    margin-left:10px;
+}
+ul.paging li.arrow a.forward,
+ul.paging li.arrow a.forward-to-end{
+    background-position:right -13px;
+}
+
+div.view-selector{
+    height:31px;
+    width:220px;
+    border-radius: 5px;
+    /*border:1px solid #eea230;*/
+    background-image: -moz-linear-gradient(center top, #eea230, #ffd073);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#eea230), to(#ffd073));
+    box-shadow:inset 0px 0px 20px #f46d00;
+    margin:55px 0 20px;
+}
+div.view-selector a{
+    display:inline-block;
+    width:107px;
+    text-align:center;
+    color:#fff;
+    line-height:31px;
+    height:31px;
+    font-size:13px;
+    font-weight:bolder;
+    text-decoration:none;
+}
+div.view-selector a.active{
+    width:108px;
+    height:29px;
+    line-height:29px;
+    color:#7c7c7c;
+    border-radius: 5px;
+    border:1px solid #dfdfdf;
+    background-image: -moz-linear-gradient(center top, #ffffff, #f7f7f7);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f7f7f7));
+}
+div.filters{
+    width:220px;
+    border:1px solid #eeeae4;
+    border-radius: 5px;
+}
+section.filters header{
+    width:192px;
+    margin-left:-1px;
+    margin-top:-1px;
+    min-height: 38px;
+    border-radius: 5px 5px 0 0;
+    background-image: -moz-linear-gradient(center top, #FFB951, #FFBB4A);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFB951), to(#FFBB4A));
+    padding: 0 15px;
+    color:#fff;
+    font-size:16px;
+    line-height:38px;
+}
+section.filters>ul{
+    padding:10px;
+    padding-bottom:20px;
+}
+section.filters>ul li{
+    list-style:none;
+    line-height:20px;
+}
+section.filters>ul li *{
+    vertical-align:middle;
+}
+section.filters>ul li label span{
+    margin-left:5px;
+}
+section.filters>ul>li>ul{
+    padding:0 0 0 15px;
+}
+/*venue*/

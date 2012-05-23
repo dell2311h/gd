@@ -1,0 +1,35 @@
+<section class="manager">
+			<hgroup>
+			    <h1>VENUE ACCOUNT MANAGER</h1>
+			</hgroup>
+			<div class="manager-content">
+			    <nav>
+			        <ul>
+			            <li class="<%= (selected == :exhibitions) ? 'active' : '' -%>">
+							<%= link_to 'exhibitions + events', venue_manager_exhibitions_path %><!--+fairs-->
+						</li>
+			            <li class="<%= (selected == :artists) ? 'active' : '' -%>">
+							<%= link_to 'artists + curators', venue_manager_artists_path %>
+						</li>
+						<li class="<%= (selected == :images) ? 'active' : '' -%>">
+							<%= link_to 'images + press releases', venue_manager_images_path %>
+						</li>
+						<li class="<%= (selected == :info) ? 'active' : '' -%>">
+							<%= link_to 'venue information', venue_manager_info_path %>
+						</li>
+						<li class="<%= (selected == :listing_agent) ? 'active' : '' -%>">
+							<%= link_to 'listing agent settings', venue_manager_listing_agent_path %>
+						</li>
+						<!--
+							<li><a href="">announsments</a></li>
+			                <li><a href="">messeges | support</a></li>
+			                <li><a href="">payments</a></li>
+			                <li><a href="">g*</a></li>
+			                <li><a href="">black:book</a></li>
+			                <li><a href="">analytics</a></li>
+						-->
+			        </ul>
+			    </nav>
+				<%= yield %>
+			</div>
+</section>

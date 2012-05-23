@@ -1,0 +1,31 @@
+<header>
+    <h2>exhibitions + events<!--+fairs-->
+    <div class="search-box" style="float:right;">
+			<%= form_for :exhibition_filter, :url => venue_manager_exhibitions_path, :html => { :method => :get } do |f| %>
+				<%= text_field_tag :filter, params[:filter] %>
+	            <button class="search orange"></button>
+			<% end %>
+        </div>
+    </h2>
+</header>
+<ul class="tags">
+    <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::ExhibitionsController' && !params[:archive] -%>>
+	<%= link_to "exhibitions (#{@exhibitions_count})", venue_manager_exhibitions_path, :class => 'double-word-spacing' %>
+</li>
+<li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::EventsController' && !params[:archive] -%>>
+	<%= link_to "events  (#{@events_count})", venue_manager_events_path, :class => 'double-word-spacing' %>
+</li>
+<!-- <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::FairsController' && !params[:archive] -%>>
+	<%= link_to "fairs  (#{@fairs_count})", venue_manager_fairs_path %>
+</li>--> 
+    <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::ExhibitionsController' && params[:archive] -%>>
+	<%= link_to "past exhibitions", venue_manager_exhibitions_path(:archive => true) %>
+</li>
+<li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::EventsController' && params[:archive] -%>>
+	<%= link_to "past events", venue_manager_events_path(:archive => true) %>
+</li>
+<!--<li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::FairsController' && params[:archive] -%>>
+	<%= link_to "past fairs", venue_manager_fairs_path(:archive => true) %>
+</li>-->
+
+</ul>

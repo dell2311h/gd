@@ -1,0 +1,157 @@
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Name&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :name %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+</tr>
+	<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Start date&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :start_date, :class => 'date-pick', :value => (@fair.start_date.blank? ? '' : @fair.start_date.strftime('%B %d, %Y')) %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">End date&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :end_date, :class => 'date-pick', :value => (@fair.end_date.blank? ? '' : @fair.end_date.strftime('%B %d, %Y')) -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Start time&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :start_time, :class => 'time-pick', :style => "width:65px;" -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">End time&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :end_time, :class => 'time-pick', :style => "width:65px;" -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<script>
+	jQuery('.time-pick').timePicker();
+</script>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Location&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_area :location %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Website&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :website %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Transportation&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_area :transportation %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Address&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :address %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Zip code&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.text_field :zip %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Country&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :country_id, [['Select country', nil]].concat(@countries.collect {|p| [ p.name, p.id ] }), {}, { :style => "width:150px",
+			:onchange => remote_function(:update => 'fair_region_id', :url => get_states_users_path, :with => "'country_id='+value" ) } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+	<tr>
+	<td>&nbsp;</td>
+	<td  align="left">State&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :region_id, [['Select state', nil]].concat(@regions.collect {|p| [ p.name, p.id ] }), { :style => "width:175px" } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">City&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left">
+		<%= f.text_field :city_name -%>
+		<script>
+			jQuery(document).ready(function() {
+		    	jQuery("input#fair_city_name").autocomplete("<%= get_cities_users_path -%>", { max: 20, extraParams: { region_id:function(){ return jQuery("select#fair_region_id").val(); }}});
+		  	});
+		</script>
+	</td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Neighbourhood&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left">
+		<%= f.text_field :neighbourhood_name -%>
+		<script>
+			jQuery(document).ready(function() {
+			    jQuery("input#fair_neighbourhood_name").autocomplete("<%= get_neighbourhoods_venues_path -%>", { max: 20, extraParams: { city_name:function(){ return  jQuery("input#fair_city_name").val(); }}});
+			  });
+		</script>
+	</td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Venues&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :venue_ids, @venues.collect {|p| [ p.name, p.id ] }, {}, { :style => "width:80%", :multiple => true } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Venues CSV&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.file_field :venue_csv -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>

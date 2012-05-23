@@ -1,0 +1,48 @@
+<%= form_for @image, :url => venue_manager_images_path, :html => { :method => :post, :class => 'popup popup-medium', :multipart => true } do |f|%>
+	<%= link_to_function '', 'parent.$.fn.colorbox.close()', :class => 'close-btn' %>
+	
+	<span id="form_container" style="display:none;">
+	<header>
+	    <hgroup class="left">
+	        <h1>add <%= @image.kind_name %></h1>
+	        <h2>(required fields in orange)</h2>
+	    </hgroup>
+	</header>
+	
+	<%= render :partial => 'form', :locals => { :f => f } %>
+
+	<footer>
+	    <button class="save">save</button>
+	    <button class="cancel" onclick="parent.$.fn.colorbox.close();return false;">cancel</button>
+	</footer>
+	</span>
+	
+	<% if params[:image].nil? || params[:image][:kind].blank? %>
+  	<section id="kind_selector">
+  		<hgroup>
+  	        <h1>what kind of image is it?</h1>
+  	    </hgroup>
+  		<br />
+  		<%= radio_button_tag 'image_kind_selector', Image::KINDS[:attachment_art], false, :onchange => 'toggleForm()' %> art<br/>
+  		<%= radio_button_tag 'image_kind_selector', Image::KINDS[:attachment_installation], false, :onchange => 'toggleForm()' %> installation view<br/>
+  		<%= radio_button_tag 'image_kind_selector', Image::KINDS[:attachment_reception], false, :onchange => 'toggleForm()' %> reception | event
+  	</section>
+  	<script>
+  	 $(document).ready(function(){ 	
+	  	 $('#form_container').hide(); 
+	  	 // parent.$.fn.colorbox.resize({innerWidth: $(document).width()+10, innerHeight: $(document).height()}); 
+	  });
+  	 function toggleForm(){
+  		$('#image_kind').val($("input:radio[name=image_kind_selector]:checked").val());
+  		$('#kind_selector').hide();
+  		$('#form_container').show();
+  		showControlsForAnImage();
+  	 }
+  	</script>
+	<% else %>
+  <script>
+		$(document).ready(function(){ $('#form_container').show(); resizePopupToContents(); });
+	</script>
+	<% end %>
+	
+<% end %>

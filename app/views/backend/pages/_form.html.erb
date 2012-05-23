@@ -1,0 +1,42 @@
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Name&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :name, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Caption&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :caption, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left" valign="top">Content&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%" valign="top"> : </td>
+	<td width="40%" align="left"><%= f.text_area :content, :class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Visible&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.check_box :visible, :class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Show contact form&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.check_box :show_form, :class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Recipient email:&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :default_recipient, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>

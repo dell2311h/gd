@@ -1,0 +1,178 @@
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Gallery type&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%=f.select :gallery_type, Venue::VENUE_TYPES -%></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Name&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :name, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">E-mail&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :email, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Contact E-mail&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :contact_email, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Gallery URL&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :url, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Country&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :country_id, [['Select country', nil]].concat(@countries.collect {|p| [ p.name, p.id ] }), {}, { :style => "width:100px",
+            :onchange => remote_function(:update => 'venue_region_id', :url => get_states_venues_path, :with => "'country_id='+value" ) } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">State&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :region_id, [['Select state', nil]].concat(@regions.collect {|p| [ p.name, p.id ] }), { :style => "width:100px" } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">City&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :city_name %>
+		<script>
+			jQuery(document).ready(function() {
+			    jQuery("input#venue_city_name").autocomplete("<%= get_cities_venues_path -%>", { max: 20, extraParams: { region_id:function(){ return jQuery("select#venue_region_id").val(); }}});
+			  });
+		</script>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Neighbourhood&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :neighbourhood_name -%>
+		<script>
+			jQuery(document).ready(function() {
+			    jQuery("input#venue_neighbourhood_name").autocomplete("<%= get_neighbourhoods_venues_path -%>", { max: 20, extraParams: { city_name:function(){ return  jQuery("input#venue_city_name").val(); }}});
+			  });
+		</script>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Address&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :address, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Address 2&nbsp;</td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :address2, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Public transit&nbsp;</td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :transit, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Postal Code&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :postalcode, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Phone &nbsp; </td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :phone, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left" verticalAlign='top'>Hours</td>
+	<td> : </td>
+	<td  align="left">
+        <%= render :partial => 'venues/timetable', :locals => { :f => f } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+
+<% if show_password %>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Password&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.password_field :password, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Confirm Password&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.password_field :password_confirmation, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<% end %>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Venue image&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.file_field :image %></td>
+	<td>&nbsp;</td>
+</tr>
+<% if @venue.image? %>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left"></td>
+	<td>  </td>
+	<td  align="left"><%= image_tag(@venue.image.url(:small)) -%></td>
+	<td>&nbsp;</td>
+</tr>
+<% end %>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left" valign="top">Description&nbsp;<font class="errormsg">*</font></td>
+	<td valign="top"> : </td>
+	<td  align="left" ><%= f.text_area :description, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<script>
+	jQuery('#venue_description').wymeditor({containersHtml: '',classesHtml: ''});
+</script>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Status&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :status, [['Inactive',false],['Active',true]] %>
+	</td>
+	<td>&nbsp;</td>
+</tr>

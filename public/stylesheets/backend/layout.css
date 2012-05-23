@@ -1,0 +1,682 @@
+/* input,textarea
+{
+	background-color: #ffffff;
+	border: double #336699 1;
+	border-bottom: double #336699 1;
+} */
+
+textarea1
+{
+	background-color: #ffffff;
+	border: double #336699 1;
+	border-bottom: double #336699 1;
+}
+
+
+legend
+{
+	font-weight: bold;
+	color: #212121;
+	font-family:"Tahoma", Arial, Helvetica, sans-serif;
+	font-size:13px;
+	padding:0 5px 0 5px;
+}
+fieldset
+{
+	border: 1px solid #e4e4e4;
+}
+
+
+
+
+body, form {
+ padding: 0;
+}
+
+body {
+  padding-bottom: 0px;
+}
+
+
+
+
+.td-new {
+  vertical-align: middle;
+  color: #003366;
+  font-weight:bold;
+}
+
+.td-new1 {
+  vertical-align: middle;
+}
+
+.td-new2 {
+  vertical-align: bottom;
+}
+
+.td-new3 {
+  vertical-align: top;
+  color: #003366;
+  font-weight:bold;
+}
+
+.td-listing {
+	vertical-align: middle;
+	font-weight: none;
+	color: #555555;
+	height : 30px;
+}
+
+.td-login {
+  vertical-align: middle;
+  font-weight: BOLD;
+  font-family: "Arial", Tahoma, Verdana, Arial, Helvetica, sans-serif; 
+  font-size: 18px;
+  color: #FFFFFF;
+}
+
+.listlink:link { text-decoration: none; color:#555555; font-family: Tahoma; font-size: 11px; font-weight: bold; }
+.listlink:visited { text-decoration: none; color:#555555; font-family:Tahoma; font-size: 11px; font-weight: bold; }
+.listlink:hover { text-decoration: none; color: #000000; font-family:Tahoma; font-size: 11px; font-weight: bold; text-decoration: none; }
+
+
+
+
+.paginglink:link { text-decoration: none; color: #555555; font-family: vTahoma; font-size: 12px; font-weight: bold; }
+.paginglink:visited { text-decoration: none; color: #555555; font-family:Tahoma; font-size: 12px; font-weight: bold; }
+.paginglink:hover { text-decoration: none; color: #336699; font-family:Tahoma; font-size: 12px; font-weight: bold; text-decoration: none; }
+
+
+
+th {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.pathbar {
+	padding: 10px 10px 0 11px;
+}
+
+.screenBody {
+  margin: 0 10px;
+}
+
+.uplevel {
+  text-align: right;
+}
+
+.screenTitle {
+  margin: 0;
+  vertical-align: middle;
+}
+
+.screenTitle td {
+  padding: 3px 12px 5px 11px;
+  vertical-align: middle;
+}
+
+
+.screenTitle img,
+.screenTitle td,
+.screenTitle input,
+.screenTitle select {
+  vertical-align: middle;
+}
+
+.reportSection {
+  margin: 10px 0;
+}
+
+.reportTools,
+.reportTools img,
+.reportTools input,
+.reportTools select {
+	vertical-align: middle;
+}
+
+.reportIndex {
+  margin: 15px 0;
+}
+
+.reportSection {
+  padding-top: 5px;
+}
+
+p, hr {
+  margin: 5px 0;
+}
+
+.screenButtons {
+  width: 666px; 
+}
+
+.msgWarning {
+  margin: 10px 0;
+}
+
+.msgWarning img {
+  float: left;
+  margin-right: 5px;
+}
+
+hr {
+  clear: both;
+}
+
+/* ---------- list  --------- */
+
+.listArea td input
+{
+  vertical-align: middle;
+  border:1px solid #e4e4e4;
+  FONT-WEIGHT: normal; FONT-SIZE: 15x; COLOR: #000000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  height: 17px; 
+  vertical-align:center;
+
+}
+.listArea td select {
+  vertical-align: middle;
+  border:1px solid #e4e4e4;
+  FONT-WEIGHT: normal; FONT-SIZE: 15x; COLOR: #000000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+
+	vertical-align:center;
+  
+ 
+}
+
+.list td,
+.list th {
+	padding: 3px;
+}
+
+.number {
+  text-align: right;
+}
+.number {
+  text-align: right;
+}
+
+.search input,
+.search .commonButton {
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+.list {
+  border-collapse: collapse;
+}
+
+.buttons {
+  margin: 7px 0;
+}
+
+.buttons div {
+  white-space: nowrap;
+}
+
+.buttons input,
+.buttons .commonButton {
+  vertical-align: middle;
+}
+
+.misc {
+  text-align: right;
+}
+
+.main input {
+	margin-right: 7px;
+}
+.main .commonButton {
+  margin-right: 14px;
+}
+
+.misc input {
+  margin-left: 7px;
+}
+.misc .commonButton {
+  margin-left: 14px;
+}
+
+th a {
+  vertical-align: middle;
+}
+
+th img {
+  vertical-align: middle;
+  padding-left: 3px;
+}
+
+.paging {
+  margin: 7px 0;
+  vertical-align: middle;
+}
+
+.paging input, 
+.paging .commonButton, 
+.paging select {
+  vertical-align: middle;
+  margin-right: 7px;
+}
+
+.paging select {
+  margin-right: 3px;
+}
+
+
+/* ---------- form  --------- */
+
+.formArea {
+/*  width: 695px; */
+}
+
+.formFields {
+ /* border-collapse: collapse; */
+  margin-top: 2px;
+}
+
+.formFields td {
+  padding: 3px;
+  vertical-align: top;
+}
+
+.formFields input,
+.formFields select {
+  vertical-align: middle;
+    border:1px solid #e4e4e4;
+  font:normal 12px Arial, Helvetica, sans-serif; color:#000000; text-decoration:none;
+  height:20px;
+}
+
+.formFields td.name,
+.formFields td.nameError {
+  vertical-align: top;
+  padding-left: 0;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  width: 150px; 
+}
+
+td.unlimited {
+  vertical-align: middle;	
+}
+
+fieldset {
+ margin: 0px 0;
+ padding: 10px;
+}
+
+.screenButtons {
+  padding: 8px 0 0 0;
+}
+
+legend {
+  margin-bottom: 5px;
+  margin-left: -9px;
+  padding-right: 5px;
+  vertical-align: top;
+  padding-bottom: 3px;
+}
+
+option.dummyLine {
+	color: #ffffff;
+}
+
+#searchInput {
+	margin-left: -1px;
+}
+
+fieldset > legend {
+  margin-left: -2px;
+}
+
+legend img {
+  vertical-align: middle;
+}
+
+fieldset p {
+  margin: 5px 0;
+}
+
+.option {
+  margin-bottom: 5px;
+}
+
+.formButtons {
+  text-align: right;
+  margin-top: 5px;
+}
+
+.formButtons input,
+.formButtons button {
+  margin-left: 7px;
+}
+
+.formFields td.limit {
+  padding-right: 25px;
+  white-space: nowrap; 
+  width: 140px;
+}
+
+.formFields td td.limit {
+  padding-left: 0px;
+}
+
+.fieldButtons input,
+.fieldButtons button {
+  margin: 5px 5px 0 0; 
+}
+
+textarea {
+  width: 98%;
+  border:1px solid #e4e4e4;
+  font:normal 12px Arial, Helvetica, sans-serif; color:#6B6B6B; text-decoration:none;
+}
+
+.textarea2 {
+
+  border:1px solid #e4e4e4;
+  font:normal 12px Arial, Helvetica, sans-serif; color:#6B6B6B; text-decoration:none;
+}
+
+.checkbox,
+.radiobox {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin: 0;
+}
+
+#chkProceed {
+	margin-left: 3px;
+}
+
+legend .checkbox,
+legend .checkbox,
+.formFields .checkbox,
+.formFields .radiobox {
+  margin-right: 3px;
+}
+
+.suboption {
+	margin-left: 18px;
+}
+
+/* ---------- misc --------- */
+
+.commonButton {
+  display: inline;
+}
+
+a.mailalias {
+  margin-left: 20px; 
+}
+
+.gaugeArea {
+  margin: 2px 0;
+}
+
+.gaugeLayout td {
+  border: none;
+  padding: 0;
+}
+
+/* ---------- for login --------- */
+
+#login {
+  width: 450px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+#get_password {
+	text-align: left;
+	padding-left: 0;
+}
+
+#get_password a:link, 
+#get_password a:visited {
+	color: #444444;
+}
+
+#loginForm {
+	padding: 10px;
+	border-bottom: 1px solid #D1CBD0;
+	border-left: 1px solid #D1CBD0;
+	border-right: 1px solid #D1CBD0;
+}
+/* ---------- mail name states --------- */
+
+#fldset-mailInfo td,
+#fldset-mailInfo td img,
+#fldset-mailInfo td a  {
+  vertical-align: middle;
+}
+
+#fldset-mailInfo td a:link,
+#fldset-mailInfo td a:visited  {
+  color: #444444;
+}
+
+#fldset-mailInfo td img  {
+  margin-right: 3px;
+}
+
+#fldset-mailInfo td  {
+  width: 25%;
+}
+
+/* ---------- bottom fieldsets for server screen --------- */
+
+#fldset-admin_info {
+	width: 410px;
+	float: left;
+   margin-right: 12px;
+}
+
+#fldset-admin_info .screenButtons {
+	width: 333px;
+}
+
+#fldset-power  .screenButtons {
+	width: 222px;
+}
+
+/* TTS */
+
+#tts_list pre {
+	white-space: normal;
+	margin: 10px 10px 10px 10px;
+}
+
+#tts_list .tts_data {
+	width: 20%;
+	white-space: nowrap;
+	padding-left: 0;
+	padding-right: 20px;
+	font-weight: bold;
+   color: #444444;
+}
+
+.tts_created_by {
+	width: 60%;
+}
+
+.tts_public {
+	width: 20%;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.tts_created_by,
+.tts_created_by img,
+.tts_public,
+.tts_public img {
+	vertical-align: middle;
+}
+
+
+#navArea IMG {
+	DISPLAY: block; MARGIN: 0px
+}
+#navArea {
+	PADDING-BOTTOM: 60px; PADDING-TOP: 12px
+}
+#navArea .node IMG {
+	DISPLAY: inline; MARGIN: 0px; VERTICAL-ALIGN: middle
+}
+#navArea .nodeActive IMG {
+	DISPLAY: inline; MARGIN: 0px; VERTICAL-ALIGN: middle
+}
+.navOpened {
+	BACKGROUND-POSITION: right 50%; BACKGROUND-IMAGE: url(../../images/backend/nav_bg.jpg); MARGIN-BOTTOM: 15px; BACKGROUND-REPEAT: repeat-y
+}
+.navTitle {
+	CURSOR: hand; moz-user-select: none
+}
+.navTitleOver {
+	CURSOR: hand; moz-user-select: none
+}
+.navOpened .navTitle {
+	HEIGHT: 22px
+}
+.navOpened .navTitleOver {
+	HEIGHT: 22px
+}
+.navOpened .navTitle .titleText {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: middle
+}
+.navOpened .navTitleOver .titleText {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: middle
+}
+.navOpened .titleLeft {
+	VERTICAL-ALIGN: top; WIDTH: 14px
+}
+.navOpened .titleRight {
+	VERTICAL-ALIGN: top; WIDTH: 3px
+}
+.navOpened .titleHandle {
+	BACKGROUND-POSITION: left top; BACKGROUND-IMAGE: url(../../images/backend/navopened.gif); BACKGROUND-REPEAT: no-repeat
+}
+.navClosed {
+	BACKGROUND-POSITION: right 50%; BACKGROUND-IMAGE: url(../../images/backend/nav_bg.jpg); MARGIN-BOTTOM: 15px; BACKGROUND-REPEAT: repeat-y
+}
+.navClosed .navTitle {
+	HEIGHT: 22px
+}
+.navClosed .navTitleOver {
+	HEIGHT: 22px
+}
+.navTitle .titleHandle {
+	WIDTH: 20px
+}
+.navTitleOver .titleHandle {
+	WIDTH: 20px
+}
+.navClosed .navTitle .titleText {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: middle
+}
+.navClosed .navTitleOver .titleText {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: middle
+}
+.navClosed .titleLeft {
+	VERTICAL-ALIGN: top; WIDTH: 14px
+}
+.navClosed .titleRight {
+	VERTICAL-ALIGN: top; WIDTH: 3px
+}
+.navClosed .titleHandle {
+	BACKGROUND-POSITION: left top; BACKGROUND-IMAGE: url(../../images/backend/navclosed.gif); BACKGROUND-REPEAT: no-repeat
+}
+DIV.tree {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 10px; MARGIN-LEFT: 1px; MARGIN-RIGHT: 1px; PADDING-TOP: 3px
+}
+.navOpened .tree {
+	DISPLAY: block
+}
+.navClosed .tree {
+	DISPLAY: none
+}
+.node {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 4px; PADDING-LEFT: 0px; PADDING-BOTTOM: 2px; VERTICAL-ALIGN: middle; PADDING-TOP: 2px
+}
+.nodeActive {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 4px; PADDING-LEFT: 0px; PADDING-BOTTOM: 2px; VERTICAL-ALIGN: middle; PADDING-TOP: 2px
+}
+.node .name {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 2px; MARGIN-LEFT: 2px; PADDING-TOP: 2px
+}
+.nodeActive .name {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 2px; MARGIN-LEFT: 2px; PADDING-TOP: 2px
+}
+.nodeImage {
+	BACKGROUND-POSITION: right 50%; PADDING-LEFT: 11px; WIDTH: 27px; BACKGROUND-REPEAT: no-repeat
+}
+#navLayout .nodeActive .name A {
+	TEXT-DECORATION: none
+}
+#navLayout .nodeActive .name A:hover {
+	TEXT-DECORATION: none
+}
+#navLayout .nodeActive .name A:visited {
+	TEXT-DECORATION: none
+}
+#navLayout .nodeActive .name A:active {
+	TEXT-DECORATION: none
+}
+#navLayout .name A {
+	TEXT-DECORATION: underline
+}
+#navLayout .name A:hover {
+	TEXT-DECORATION: underline
+}
+#navLayout .name A:visited {
+	TEXT-DECORATION: underline
+}
+#navLayout .name A:active {
+	TEXT-DECORATION: underline
+}
+
+.input2
+{
+	border : thin dotted Ff6600;
+	background-color : Ff6600;
+}
+
+/* input {
+	color : black;
+	font-size : 12;
+	font-family : Verdana;
+	background-color: #f0f0f0;
+} */
+
+
+ input
+{
+	FONT-SIZE: 12px; 
+	background-color: #ffffff;
+	/*border: double #336699 1;
+	border-bottom: double #336699 1; */
+}
+
+.inputimage
+{
+	background-color: #ffffff;
+	border: double #336699 0;
+	border-bottom: double #336699 0;
+}
+
+.errorExplanation { width: 500px; border:2px solid #FF0000; border-bottom: 2px solid #FF0000; background: #F0F0F0; margin-bottom: 10px;}
+.mainheading {margin:0; padding:0; background: #CC0000; font-size: 13px; font-family: tahoma, Arial, Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; padding-left: 10px; }
+.middcontent { padding: 5px; }
+ul.list { margin: 0; padding:0; margin-top: 7px; margin-bottom: 7px; margin-left: 30px; }
+ul.list li { list-style-type: square; font-size: 13px; font-family: tahoma, Arial, Helvetica, sans-serif; }
+
+.listingmessage 
+{
+	width: 300px;	
+	margin:0; padding:0;
+	background: #CC0000; font-size: 13px; 
+	font-family: tahoma, Arial, Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; text-align:center;
+}
+
+.noinput {margin:0; padding:0; border:none; background:none;}

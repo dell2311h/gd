@@ -1,0 +1,2 @@
+module VenueManagerHelper
+end

@@ -1,0 +1,100 @@
+<table width="97%" border="0" align="center" cellpadding="2" cellspacing="2">
+	<tr>
+		<td valign="top">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td>
+						<div class="screenTitle">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td><img src="/images/backend/on.gif" width="16" height="16"/>&nbsp;Agent Tasks</td>
+									<td>&nbsp;<%#= link_to 'Back to Venue', '#back' %></td>
+								</tr>
+							</table>
+						</div>
+					</td>	  
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td>
+                              <div class="listArea">
+                                <fieldset>
+                                  <legend>Agent Task</legend>
+                                  <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                    <tr>
+                                      <td colspan="5">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="8%" class="td-listing">
+                                            <%= link_to image_tag("/images/backend/addnew.jpg"), new_backend_agent_task_path %>
+                                          </td>
+                                          <td width="60%" class="td-new2">
+                                            <div align="right">
+                                              <% if @agent_tasks.size > 0 %>
+                                              <font class="disprecordmsg">
+                                                <%= page_entries_info(@agent_tasks , :entry_name => @controller.controller_name.humanize) %>
+                                              </font>
+                                              <% end %>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="5">&nbsp;</td>
+                                    </tr>
+                                  </table>
+                                  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    <tr>
+                                      <%#<th width="90%"><div align="left">&nbsp;<%= link_to "Name", backend_agent_tasks_path(@venue, :sort_on => 'name', :page => params[:page]) </div></th>%>
+                                      <th width="20%"><div align="left">&nbsp;Agent</div></th>
+                                      <th width="20%"><div align="left">&nbsp;Exhibition / Event</div></th>
+                                      <th width="20%"><div align="left">&nbsp;Media service</div></th>
+                                      <th width="20%"><div align="left">&nbsp;Status</div></th>
+                                      <th width="20%"><div align="left">&nbsp;Actions</div></th>
+                                    </tr>
+                                    <% if @agent_tasks.size > 0 %>
+                                      <% @agent_tasks.each do |task| %>
+                                        <tr onmouseover="this.style.backgroundColor='#D9D9D9'"  onmouseout="this.style.backgroundColor='<%= cycle('#EFEFEF', '#f8f8f8') %>'" bgcolor="<%= cycle('#EFEFEF', '#f8f8f8') %>">
+                                          <td class="td-listing">&nbsp;
+                                            <% if task.agent_id? %>
+                                              <%= task.agent.email %> <i>(<%= task.agent.full_name -%>)</i>
+                                            <% else %>
+                                              <i>(Unassigned)</i>
+                                            <% end %>
+                                          </td>
+                                          <td class="td-listing">&nbsp;
+                                            <%=link_to task.target.title, task_target_path(task.target), :target => '_blank' -%>
+                                          </td>
+                                          <td class="td-listing">&nbsp;
+                                            <%= task.media_service.name -%>
+                                          </td>
+                                          <td class="td-listing">&nbsp;
+                                            <%= task.status.humanize rescue 'new' -%>
+                                          </td>
+                                          <td class="td-listing">&nbsp;
+                                             <%=link_to 'Notes', backend_agent_task_notes_path(task) -%> | <%=link_to 'Edit', edit_backend_agent_task_path(task) -%> | <%=link_to 'Delete', backend_agent_task_path(task), :method => :delete, :confirm => 'Are you sure?' -%>
+                                          </td>
+                                        </tr>
+                                      <% end %>
+                                    <% else %>
+                                      <tr>
+                                        <td colspan = "7" height="170" align="center"  ><div class="listingmessage">No Records Found</div></td>
+                                      </tr>
+                                    <% end %>
+                                  </table>
+                                </fieldset>
+                              </div>
+                            </td>
+                          </tr>
+			</table>
+			<input  type="hidden" name="no" value="s"/>
+			<p align="right"><font size="2" FACE="Verdana, Arial, Helvetica, sans-serif" color="black"><%= will_paginate @agent_tasks, :inner_window =>2, :outer_window => 2 -%></font></p>
+		</td>
+	</tr>
+</table>

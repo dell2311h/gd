@@ -1,0 +1,105 @@
+<section class="content venue neighbor">
+<section class="left">
+  <header>
+      <div class="ev-calendar right"><a href="">event calendar</a></div>
+      <h1 class="uppercase">Chelsea</h1>
+      <h2>
+          exhibitions open now
+          <a href="">
+              <%=  image_tag 'datepicker_small.png' %>
+              (select date)
+          </a>
+      </h2>
+      <div>
+          <div class="right">
+              <ul class="social-links">
+                  <li><a href=""><%= image_tag 'print_small.png' %></a></li>
+              </ul>
+          </div>
+          <div class="tag left"><%= @city.get_name_with_code %></div>
+      </div>
+  </header>
+  <ul class="paging right">
+    <%= paginate(@cur_page, @per_page, @result.first.third) %>
+  </ul>
+  <% @result.map do |groupitem| %>
+	  <section class="exhibitions-events">
+	    <h3 class="pin-title"><%= groupitem.second.html_safe %></h3>
+	    <% groupitem.first.map do |item| %>
+		    <dl>
+		      <dt>
+		      	<%= exhibition_image(item, :small_149) %>
+		        <span><%= item.images.image.try(:title) %></span>
+		      </dt>
+		      <dd>
+						<% if item.upcomin? %>
+              <div class="upcoming">
+                upcoming
+              </div>
+            <% else %>
+              <div class="days-left">
+                <%= "#{item.days_left} days left" %>
+              </div>
+            <% end %>
+		        <h2><%= item.title %></h2>
+		        <span class="cal">
+		          <span>
+		          	<span><%= item.duration %></span>
+		          </span>
+		        </span>
+		        <div class="artist-list">
+	        		<% item.artist_names.map do |row| %>
+	        			<%= link_to(row,'#').html_safe %>
+	        			<%= ", " unless row.last.to_sym != row.to_sym %>
+	        		<% end if item.class == Exhibition %>
+		        </div>
+		      </dd>
+		      <dd class="clear" style="width:100%;">
+		          <%= item.short_description.html_safe if item.short_description %>
+		          <%= link_to 'more', venue_exhibition_path(item.venue_id,item), :class => 'more' if item.class == Exhibition %>
+              <%= link_to 'more', venue_event_path(item.venue_id,item), :class => 'more' if item.class == Event %>              
+		      </dd>
+		    </dl>
+		   <% end %>
+	  </section>
+	<% end %>	
+  <ul class="paging">
+    <%= paginate(@cur_page, @per_page, @result.first.third) %>
+  </ul>
+ </section>
+  <div class="right">
+      <div class="view-selector">
+          <a class="active first" href="">list</a>
+          <a href="">grid</a>
+          <a class="last" href="">map</a>
+      </div>
+      <div class="map">
+          <img src="images/little-map.jpg">
+          <%= image_tag venues_show_in_gmap(@result.first.first), :alt => nil %>
+      </div>
+      <div class="filters">
+<!--      Not implemented yet     
+          <section class="filters">
+              <header>genre</header>
+              <ul>
+                  <li><label><input type="checkbox"><span>feminist art (23)</span></label></li>
+                  <li><label><input type="checkbox"><span>street art (21)</span></label></li>
+                  <li><label><input type="checkbox"><span>painting (17)</span></label></li>
+                  <li><label><input type="checkbox"><span>feminist art (23)</span></label></li>
+                  <li><label><input type="checkbox"><span>street art (21)</span></label></li>
+                  <li><label><input type="checkbox"><span>painting (17)</span></label></li>
+              </ul>
+          </section> -->
+          <% if @neighbourhoods.any? %>
+            <section class="filters">
+                <header>other <%= @city.try(:name) %> neighborhoods</header>
+                <ul class="links">
+                  <% @neighbourhoods.map do |row| %>
+                    <li><%= link_to row.venue.neighbourhood.name.html_safe, neighbourhood_path(row.venue.neighbourhood_id) %></li>
+                  <% end  %>
+                </ul>
+            </section>
+          <% end %>
+      </div>
+  </div>
+</section>

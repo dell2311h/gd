@@ -1,0 +1,51 @@
+img{
+    border:0;
+}
+abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,eventsource,figure,figcaption,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,video{
+    display:block;
+}
+section.filters header,
+section.venue > div.right section.past-exhibitions header,
+.popup footer button.save,
+section.collendar-content section.events-list > header,
+section.manager div.manager-content > div > header{
+    background:#ffbb4a url("../images/header_bg.png") repeat-x left top;
+}
+section.collendar-content section.events-list footer, div.decoration{
+    background:#f5f2ef url("../images/footer_bg.png") repeat-x left bottom;
+}
+section.manager-content-table section.cont ul li.thirdCol>span.addImages{
+    width:240px;
+}
+section.manager div.manager-content > div ul.tags li{
+    background:url("../images/li_bg.png") no-repeat right bottom;
+}
+section.manager div.manager-content > div ul.tags li.active{
+    background:url("../images/li_bg.png") no-repeat right top;
+}
+section.manager div.manager-content > div ul.tags li:last-child{
+     background:url("../images/li_bg.png") no-repeat left bottom;
+}
+section.manager div.manager-content > div ul.tags li:last-child.active{
+    background:url("../images/li_bg.png") no-repeat left top;
+}
+
+section.login button,
+.popup footer button.save{
+    background:#ffbb4a url("../images/btnBg.png") repeat-x left top;
+}
+
+.view-selector{
+    word-spacing:-0.5em;
+    width:225px !important;
+    border:none !important;
+    box-shadow:none !important;
+    background:transparent url("../images/view-time-bg.png") no-repeat left top;
+}
+.view-selector a{width: 109px !important; vertical-align:top}
+.view-selector a.active{
+    width: 116px !important;
+    height:32px !important;
+    border:none !important;
+    background:transparent url("../images/view-type-selected.png") no-repeat left top;
+}

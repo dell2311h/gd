@@ -1,0 +1,20 @@
+<header>
+    <h2>venue information</h2>
+</header>
+<ul class="tags">
+  <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::InfoController' && controller.action_name == 'details' -%>>
+  	    <%= link_to "venue details", venue_manager_info_path %>
+  </li>
+  <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::InfoController' && controller.action_name == 'images' -%>>
+  	<%= link_to "images", images_venue_manager_info_path %>
+  </li>
+  <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::InfoController' && controller.action_name == 'description' -%>>
+  	<%= link_to "description", description_venue_manager_info_path %>
+  </li>
+  <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::InfoController' && controller.action_name == 'schedule' -%>>
+  	<%= link_to "days+hours", schedule_venue_manager_info_path %>
+  </li>
+  <li <%= 'class=\'active\'' if controller.class.name.to_s == 'VenueManager::InfoController' && controller.action_name == 'credentials' -%>>
+  	<%= link_to "login+password", credentials_venue_manager_info_path %>
+  </li>
+</ul>

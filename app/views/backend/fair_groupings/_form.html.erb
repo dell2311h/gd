@@ -1,0 +1,36 @@
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Name&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left">
+		<%= f.text_field :name, :size => 28, :class =>'input' %>
+	</td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Subdomain&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left">
+		<%= f.text_field :short_name, :size => 28, :class =>'input' %>
+	</td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Start date&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :start_date, :class => 'date-pick', :value => (@fair_grouping.start_date.blank? ? '' : @fair_grouping.start_date.strftime('%B %d, %Y')) -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">End date&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :end_date, :class => 'date-pick', :value => (@fair_grouping.end_date.blank? ? '' : @fair_grouping.end_date.strftime('%B %d, %Y')) -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>

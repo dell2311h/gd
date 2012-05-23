@@ -1,0 +1,116 @@
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">First name&nbsp;<font class="errormsg">*</font></td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :firstname, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Last name&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :lastname, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">E-mail&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :email, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Address&nbsp;</td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :address, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Country&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.select :country_id, [['Select country', nil]].concat(@countries.collect {|p| [ p.name, p.id ] }), {}, { :style => "width:150px",
+		:onchange => remote_function(:update => 'user_region_id', :url => get_states_users_path, :with => "'country_id='+value" ) } -%></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">State&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :region_id, [['Select state', nil]].concat(@regions.collect {|p| [ p.name, p.id ] }), { :style => "width:175px" } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">City&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :city_name -%>
+		<script>
+			jQuery(document).ready(function() {
+			    jQuery("input#user_city_name").autocomplete("<%= get_cities_users_path -%>", { max: 20, extraParams: { region_id:function(){ return jQuery("select#user_region_id").val(); }}});
+			  });
+		</script>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Postal Code&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :postalcode, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Phone &nbsp; </td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :phone, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Birth Date &nbsp; </td>
+	<td> : </td>
+	<td  align="left"><%= f.date_select(:birthdate, :start_year => 100.years.ago.year,:end_year=>Date.today.year, :discard_day => true,:discard_month => true) -%></td>
+	<td>&nbsp;</td>
+</tr>
+<% if show_password %>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Password&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.password_field :password, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Confirm Password&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :password_confirmation, :size => 28,:class =>'input' %></td>
+	<td>&nbsp;</td>
+</tr>
+<% end %>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Gender&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.radio_button :gender , true, :class => 'noclass'%>&nbsp;Male&nbsp;
+			<%= f.radio_button :gender , false, :class => 'noclass'%>&nbsp; Female
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Status&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+			<%= f.select :status, [['Inactive',false],['Active',true]] %>
+	</td>
+	<td>&nbsp;</td>
+</tr>

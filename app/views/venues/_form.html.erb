@@ -1,0 +1,119 @@
+<div>
+    <fieldset>
+        <div class="column left">
+            <label>
+                <span class="strict">
+                    venue name
+                </span>
+                <%= form.text_field :name -%>
+            </label>
+            <label>
+                <span class="strict">
+                    type
+                </span>
+                <%= select_tag :gallery_type, gallery_types_for_select, {:class => 'select'}%>
+            </label>
+            <label>
+                <span>
+                    location name (if more than one)
+                </span>
+                <input type="text" value="add other after creating account">
+            </label>
+            <label>
+                <span class="strict">
+                    address
+                </span>
+                <%= form.text_field :address -%>
+            </label>
+            <label>
+                <span>
+                    suite / floor / etc
+                </span>
+                <%= form.text_field :address2, :placeholder => 'i.e Suite 201, 3rd floor, behind the bookstore' %>
+            </label>
+            <label>
+                <span class="strict">
+                    neighborhood
+                </span>
+                <%= text_field_tag :neighbourhood_name, @venue.neighbourhood.try(:name), :class => 'search', :style => 'width:203px'  %>
+                <%= form.hidden_field :neighbourhood_id, :id => 'neighbourhood_id' %>
+            </label>
+            <label>
+                <span>
+                    public transportation
+                </span>
+                <%= form.text_area :transit, :class => "description light", :onkeyup => "updateTFCount(this, 200)" %>
+                <div class="annotation">characters remaining: <span id="venue_transit_count">200</span></div>
+            </label>
+        </div>
+        <div class="column right">
+            <label>
+                <span class="strict">
+                    venue email
+                </span>
+                <%= form.email_field :contact_email %>
+            </label>
+            <label>
+                <span>
+                    phone
+                </span>
+                <%= form.text_field :phone %>
+            </label>
+            <label>
+                <span>
+                    website
+                </span>
+                <%= form.text_field :url %>
+            </label>
+            <h3>account login info</h3>
+            <label>
+                <span class="strict">
+                    email
+                </span>
+                <%= form.email_field :email %>
+            </label>
+            <label class="left half">
+                <span class="strict">
+                    password
+                </span>
+                <%= form.password_field :password %>
+            </label>
+            <label class="right half">
+                <span class="strict">
+                    confirm password
+                </span>
+                <%= form.password_field :password_confirmation %>
+            </label>
+            <label class="checkbox clear topMarg100">
+                <input type="checkbox">
+                <span>i have read and agree to the <a href="">Terms of Use</a></span>
+            </label>
+            <label class="checkbox">
+                <%= form.check_box :authorized_representative %>
+                <span>I am an authorized representative of the venue</span>
+            </label>
+            <label class="left half topMarg15">
+            	<%= image_tag 'capcha01.png' %>
+            </label>
+            <label class="right half topMarg15">
+                <span class="strict">
+                    enter text from image
+                </span>
+                <input type="text">
+            </label>
+        </div>
+    </fieldset>
+</div>
+<script>
+	$(document).ready(function(){
+    $('#neighbourhood_name').autocomplete({
+	    url: '/venue/info/neighbourhood_autocomplete.json',
+	    minChars: 1,
+	    remoteDataType: 'json',
+	    onItemSelect: function(item) {
+	      $('#neighbourhood_name').value = item.name;
+	      $('#neighbourhood_id').val(item.data.id);
+	    }
+    });
+	});
+</script>

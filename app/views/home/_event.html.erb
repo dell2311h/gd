@@ -1,0 +1,37 @@
+<div class="thumbnail"><%= event_image(item, :small_149) %></div>
+<figcaption>
+  <h5><%= item.title.html_safe %>(<%= item.class.to_s %>)</h5>
+  <span class="comment"><%= truncate(item.description.gsub(/<\/?[^>]*>/, ""), :length => 50).html_safe %></h5></span>
+  <span class="time">
+    <% if item.single_day %>
+      <%= item.start_date.strftime("%B %-d, %Y") %>
+    <% else %>
+      <%= "#{item.start_date.strftime("%B %-d, %Y")} - #{item.end_date.strftime("%B %-d, %Y")}" %>
+    <% end %>
+  </span>
+  <mark>Southern Exposure</mark>
+</figcaption>
+<!--hover box start-->
+<div class="hover">
+    <div class="box">
+        <div class="thumbnail"><%= link_to event_image(item, :small_149), venue_event_path(item.venue_id,item) %></div>
+        <time><%= item.start_date.strftime("%B %-1d") %></time> - <time><%= item.end_date.strftime("%B %-1d") %></time>
+        <h6>OPEN TUESDAYS</h6>
+        <time>10:00am</time> - <time>6:00pm</time>
+        <h4><%= item.title.html_safe %></h4>
+        <address>
+            <span><%= item.venue.city_name %></span>
+            <span><%= "#{item.venue.region_name}, #{item.venue.region_code}" %></span>
+            <span><%= item.venue.country.name %> <%= link_to '(map)', item.venue.get_googlemap_url %></span>
+        </address>
+    </div>
+    <div class="box two">
+        <h4><%= item.title.html_safe %></h4>
+        <article>
+            <%= "#{truncate(item.description.gsub(/<\/?[^>]*>/, ""),  :ommision => "...", :lenght => 30  )}".html_safe %>
+        </article>
+        <%= link_to '(read more)', venue_event_path(item.venue_id,item) %>
+    </div>
+</div>
+
+<!--hover box end-->

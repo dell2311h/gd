@@ -1,0 +1,104 @@
+<style>
+	table.smaller {
+		border: 0px;
+	}
+	
+	table.smaller th {
+		font-size: 11px;
+		border-collapse: collapse;
+		border: 1px solid white;
+	}
+	
+	table.smaller th.orange {
+		background-color: #FCB529;
+		color: #000000;
+	}
+
+	table.smaller td.bordered {
+		border-top: 1px dotted gray;
+		border-left: 1px dotted gray;
+	}
+</style>
+<h3 style='padding-bottom: 6px;'>Calendar of Events | <%= @area.name rescue 'Everywhere' -%>&nbsp;<%= link_to('(go to current week)', events_calendar_path(:area => params[:area]), :class => 'bluelink-normal') unless params[:date].blank? -%></h3>
+<table width='100%'>
+	<tr>
+		<td align='left' style='padding-bottom: 7px;'>
+			<%= link_to '<< previous week', events_calendar_path(:area => params[:area], :date => @prev_week_str), :class=>"bluelink-bold-bigger" %>
+		</td>
+		<td align='right' style='padding-bottom: 7px;'>
+			<%= link_to 'next week >>', events_calendar_path(:area => params[:area], :date => @next_week_str), :class=>"bluelink-bold-bigger" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan='2' style='border: 2px solid #FCB529;'>
+			<table width='100%' cellpadding=2 cellspacing=0 class="smaller" style="border-collapse: collapse">
+				<tr>
+					<th>neighborhood</th>
+					<% (0..6).each do |wday| %>
+					<th width='92' class='orange'><%= Date.commercial(@date.cwyear, @date.cweek, wday+1).strftime('%A<br/>%B %d').gsub(/\s0/, ' ') %></th>
+					<% end %>
+				</tr>
+				<% @neighbourhoods.each do |obj| %>
+				<% hood, wdays = obj[0], obj[1][:wdays] %>
+				<% if obj[1][:count] > 0 %>
+				<tr>
+					<th><%= hood.name %></th>
+					<% (0..6).each do |wday| %>
+					<td class="bordered">
+						<% unless wdays[wday].nil? %>
+						<% wdays[wday].each do |event| %>
+							<%= link_to_function(truncate(event.normalized_title, :length=>30), "jQuery('#event_info_popup_#{event.id}').modal();jQuery('#simplemodal-container').css('border','8px solid #ff982d')", :class => "bluelink-bold-small", :title => event.normalized_title) %><br/><%= render :partial => 'shared/star_icon', :locals => { :venue => event.venue, :big_star => false, :exhibition => event } %> <%= link_to(event.venue.name, venue_path(event.venue), :class=>"bluelink-bold-small") %><br/><br/>
+							<div style="display: none;" id="event_info_popup_<%= event.id -%>">
+								<table>
+									<tr>
+										<td width="175">
+											<!--  style="border: 5px solid #ff982d;" -->
+											<%= event_image(event, :medium) %><br/><br/>
+											<b>
+												<%= (event.single_day) ? event.start_date.strftime("%A<br/>%B %d").upcase : "#{event.start_date.strftime("%B %d").upcase} - #{event.end_date.strftime("%B %d").upcase}" %>
+												<br/>
+												<%= event.start_time.strftime("%I:%M%p").gsub(/^0/,'') %><%= event.end_time.strftime(" - %I:%M%p").gsub(/\s0/,' ') unless event.end_time.nil? %>
+											</b><br/>
+											<!-- <b>(add to calendar)</b><br/> -->
+											<br/>
+											<br/>
+											<b><%= (event.free) ? 'FREE' : "Fee $#{event.cost}" -%></b>
+										</td>
+										<td width='20'></td>
+										<td width="400">
+											<%= link_to "#{(event.event_type.is_custom) ? event.type_description.upcase : event.event_type_name.upcase }<br/> #{event.normalized_title}", ( event.event_type.is_reception ? ( (!event.exhibition.nil?) ? venue_exhibition_path(event.venue, event.exhibition) : venue_event_path(event.venue, event) ) : venue_event_path(event.venue, event) ), :class=>"bluelink-bold", :style => 'font-size: 14pt;' -%><br/><br/>
+											<%= render :partial => 'shared/star_icon', :locals => { :venue => event.venue, :big_star => false, :exhibition => event, :suffix => '_event_popup' } %> <%= link_to(event.venue.name, venue_path(event.venue), :class=>"bluelink-bold", :style => 'font-size: 12pt;') %><br/>
+											<span style='font-size: 10pt;font-weight:bold;'><%= event.venue.neighbourhood.name -%></span><br/>
+											<span style='font-size: 10pt;font-weight:bold;'><%= event.venue.short_location -%></span> <%= link_to '(map)', "http://maps.google.com/?saddr=&daddr=#{URI.escape(event.venue.full_address)}", :target => '_blank', :class => 'bluelink-bold' %><br/>
+											<br/>
+											<%= truncate(event.description.gsub(/<\/?[^>]*>/, "") , :length=>300, :omission => "... #{link_to('(read more)', venue_event_path(event.venue, event), :class=>"bluelink-bold")}") unless event.description.nil? %><br/>
+											<br/>
+											<% unless event.exhibition.nil? %>
+												<b>related exhibition:</b><br/>
+												<%= link_to event.exhibition.title, venue_exhibition_path(event.venue, event.exhibition), :class=>"bluelink-bold" -%>
+											<% end %>
+										</td>
+										<td width="10" style='vertical-align: top;'><a href="#" class='simplemodal-close bluelink-bold'>[X]</a></td>
+									</tr>
+								</table>
+							</div>
+						<% end %>
+						<% end %>
+					</td>
+					<% end %>
+
+				</tr>
+				<% end %>
+				<% end %>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td align='left' style='padding-top: 7px;'>
+			<%= link_to '<< previous week', events_calendar_path(:area => params[:area], :date => @prev_week_str), :class=>"bluelink-bold-bigger" %>
+		</td>
+		<td align='right' style='padding-top: 7px;'>
+			<%= link_to 'next week >>', events_calendar_path(:area => params[:area], :date => @next_week_str), :class=>"bluelink-bold-bigger" %>
+		</td>
+	</tr>
+</table>

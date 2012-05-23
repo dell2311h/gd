@@ -1,0 +1,63 @@
+<h2><%= @page.name %></h2>
+<%= @page.content %>
+<% if @page.show_form %>
+	<% form_for :message, @message, :url => contact_page_path, :method => :post do |f| %>
+		<%= f.hidden_field :page_id -%>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+					<h2>
+		              <table border="0" cellspacing="0" cellpadding="0" width="100%">
+		                  <tr>
+		                      <td>Send message</td>
+		                      <td align="right" class="required-field">required fields in red</td>
+		                  </tr>
+		              </table>
+					</h2>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<table width="100%" border="0" cellpadding="1" cellspacing="5">
+						<tr>
+							<td width="27%" class="required-field">your name<br/>
+		                      <%= f.text_field :sender_name -%>
+		                    </td>
+		                </tr>
+						<tr height="30px" class="required-field">
+							<td>
+		                    	your email<br/>
+		                    	<%= f.text_field :sender_email -%>
+		                    </td>
+						</tr>                        
+						<tr height="30px" class="required-field">
+							<td>
+								subject<br/>
+		                     	<%= f.text_field :subject -%>
+		                    </td>
+		                </tr>
+						<tr height="30px" class="required-field">
+							<td>
+								message<br/>
+		                    	<%= f.text_area :message -%>
+		                    </td>
+		                </tr>
+						<tr height="30px" class="required-field">
+							<td>
+								security key<br/>
+		                    	<%= show_simple_captcha( :object=>'message', :label => '(enter text from image above)' ) -%>
+		                    </td>
+		                </tr>
+		  			</table>
+				</td>
+			</tr>
+		    <tr>
+		      <td>&nbsp;</td>
+		    </tr>
+			<tr>
+				<td><%=image_submit_tag "btn-submit.gif", :class => 'noclass'%></td>
+			</tr>
+		</table>
+	<% end %>
+<% end %>

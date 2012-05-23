@@ -1,0 +1,80 @@
+<article class="event">
+    <p class="image">
+		<%= link_to_function(event_image(item, :small), "jQuery('#event_info_popup_#{item.id}').modal({overlayClose:true})") %>
+	</p>
+    <p>
+		<em>
+			<%= (item.event_type.is_custom) ? item.type_description : item.event_type.name %>
+		</em>
+	</p>
+    <h3>
+		<%= link_to_function(truncate(item.title, :length=>30), "jQuery('#event_info_popup_#{item.id}').modal({overlayClose:true})") %>
+	</h3>
+    <p>
+		<strong>
+			<%= (item.single_day) ? item.start_date.strftime("%B %-d, %Y") : "#{item.start_date.strftime("%B %-d, %Y")} - #{item.end_date.strftime("%B %-d, %Y")}" %>
+		</strong>
+	</p>
+    <p>
+		<%= link_to(item.venue.name, venue_path(item.venue), :class=>"venue") %>
+		<!--<a href="#" class="fav" onclick="jQuery('#popup-fav-1').modal({overlayClose:true}); return false;"><span>Favorite</span></a> -->
+	</p>
+</article>
+
+<div style="display: none;" id="event_info_popup_<%= item.id -%>" class="popup-event">
+    <div class="popup-left">
+        <p><%= event_image(item, :medium) %></p>
+        <p class="popup-date"><%= (item.single_day) ? item.start_date.strftime("%A<br/>%B %d").upcase : "#{item.start_date.strftime("%B %d").upcase} - #{item.end_date.strftime("%B %d").upcase}" %></p>
+        <p class="popup-open"><%= item.start_time.strftime("%I:%M%p") %><%= item.end_time.strftime(" - %I:%M%p") unless item.end_time.nil? %></p>
+    </div>
+    <div class="popup-right">
+        <p class="popup-close"><a class="simplemodal-close" href="#">[x]</a></p>
+        <h3><a href="exhibition.html">New Work</a></h3>
+        <p class="popup-fav-venue"><a href="#" class="fav"><span>Favorite</span></a> <a href="venue.html" class="venue">Pepin Moore</a></p>
+        <p class="popup-location">Pacific Design Center (PDC)<br>West Hollywood, CA <a href="#">(map)</a></p>
+        <h4>Tom Mueske</h4>
+        <p>New Work</p>
+    </div>
+</div>
+
+
+
+
+<!-- 				<div style="display: none;" id="event_info_popup_">
+					<table>
+						<tr>
+							<td width="175">
+	
+								<%= event_image(item, :medium) %><br/><br/>
+								<b>
+									<%= (item.single_day) ? item.start_date.strftime("%A<br/>%B %d").upcase : "#{item.start_date.strftime("%B %d").upcase} - #{item.end_date.strftime("%B %d").upcase}" %>
+									<br/>
+									<%= item.start_time.strftime("%I:%M%p") %><%= item.end_time.strftime(" - %I:%M%p") unless item.end_time.nil? %>
+								</b><br/>
+	
+								<br/>
+								<br/>
+								<b><%= (item.free) ? 'FREE' : "Fee $#{item.cost}" -%></b>
+							</td>
+							<td width='20'></td>
+							<td width="400">
+								<%= link_to "#{(item.event_type.is_custom) ? item.type_description : item.event_type_name }: #{item.title}", venue_event_path(item.venue, item), :class=>"bluelink-bold", :style => 'font-size: 14pt;' -%><br/><br/>
+	<%= link_to(item.venue.name, venue_path(item.venue), :class=>"bluelink-bold", :style => 'font-size: 12pt;') %><br/>
+								<span style='font-size: 10pt;font-weight:bold;'><%= item.venue.neighbourhood.name rescue '' -%></span><br/>
+								<span style='font-size: 10pt;font-weight:bold;'><%= item.venue.short_location rescue '' -%></span> <%= link_to '(map)', "http://maps.google.com/?saddr=&daddr=#{URI.escape(item.venue.full_address)}", :target => '_blank', :class => 'bluelink-bold' %><br/>
+								<br/>
+								<%= truncate(item.description.gsub(/<\/?[^>]*>/, "") , :length=>300, :omission => "... #{link_to('(read more)', venue_event_path(item.venue, item), :class=>"bluelink-bold")}") unless item.description.nil? %><br/>
+								<br/>
+								<% unless item.exhibition.nil? %>
+									<b>related exhibition:</b><br/>
+									<%= link_to item.exhibition.title, venue_exhibition_path(item.venue, item.exhibition), :class=>"bluelink-bold" -%>
+								<% end %>
+							</td>
+							<td width="10" style='vertical-align: top;'><a href="#" class='simplemodal-close bluelink-bold'>[X]</a></td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</table>
+</td> -->

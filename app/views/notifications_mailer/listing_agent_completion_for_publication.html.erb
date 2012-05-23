@@ -1,0 +1,8 @@
+<% fully_completed = @tasks.collect {|t| t[:status] }.uniq.size == 1 %>
+<b><%= @exhibition_or_event.title %></b> was <%= (fully_completed) ? '' : 'partially' %> published to the following media services:<br/>
+<% @tasks.each do |task| %>
+	<%= task[:media_service].name %> <%= task[:status] %><br/>
+<% end %>
+<% unless fully_completed %>
+	You need to correct something to get all of them finished.
+<% end %>

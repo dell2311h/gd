@@ -1,0 +1,116 @@
+<table width="97%" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+	<td>
+		<div class="screenTitle">
+			<table width="98%" cellspacing="0" align="center">
+			<tr>
+				<td><img src="/images/backend//on.gif" width="16" height="16"> Quick Status <span class="bluematter">for GalleryDog</span></td>
+				<td class="uplevel"></td>
+			</tr>
+			</table>
+		</div>
+		<table>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		</table>
+
+		<table width="70%" border="0" cellpadding="0" cellspacing="0" align="Center">
+		<tr>
+			<td>
+				<div class="listArea">
+				<fieldset>
+				<legend>Quick Summary</legend>
+				<table width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td>
+						<table class="list" cellspacing="2" width="100%">
+						<tr>
+							<th width="70%"><div align="left">Resource</div></th>
+							<th width="30%"><div align="right">Used&nbsp;&nbsp;&nbsp;</div></th>
+						</tr>
+						<tr class="oddrowbg">
+							<td class="name">
+								<%= link_to 'Total Administrators', backend_administrators_path %>
+							</td>
+							<td align="right"><font class="errormsg"><%= Admin.count %></font>&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+						<tr class="evenrowbg">
+							<td class="name">
+								<%= link_to 'Total Cities', backend_cities_path %>
+							</td>
+							<td align="right"><font class="errormsg"><%= City.count %></font>&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+						<tr class="oddrowbg">
+							<td class="name">
+								<%= link_to 'Total Users', backend_users_path %>
+							</td>
+							<td align="right"><font class="errormsg"><%= User.find(:all, :conditions => ['type = ?', 'User']).count %></font>&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+						<tr class="evenrowbg">
+							<td class="name">
+								<%= link_to 'Total Artists', '#' %>
+							</td>
+							<td align="right"><font class="errormsg"><%= Artist.count %></font>&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+						<tr class="oddrowbg">
+							<td class="name">
+								<%= link_to 'Total Venues', backend_venues_path %>
+							</td>
+							<td align="right"><font class="errormsg"><%= Venue.count %></font>&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+						<tr class="evenrowbg">
+							<td class="name">
+								<%= link_to 'Total Exhibitions', '#' %>
+							</td>
+							<td align="right"><font class="errormsg"><%= Exhibition.count %></font>&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				</fieldset>
+				</div>
+
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<table width="67%" border="0" cellpadding="0" cellspacing="0" align="Center">
+<tr>
+	<td>
+		<div class="listArea">
+		<fieldset>
+		<legend>Last Login Details</legend>
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<table class="list" cellspacing="0" width="100%">
+				<tr>
+					<th width="70%"><div align="left">Resource</div></th>
+					<th width="30%"><div align="center">Used</div></th>
+				</tr>
+				<tr class="oddrowbg">
+					<td class="name">Last Login Date
+					</td>
+					<td align="center"><font class="errormsg"><%= current_user.last_login.strftime("%B %-1d, %Y %I:%M %p") %></font></td>
+				</tr>
+				<tr class="evenrowbg">
+					<td class="name">From IP
+					</td>
+					<td align="center"><font class="errormsg"><%= current_user.ipaddress %></font></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+		</fieldset>	
+		</div>
+	</td>
+</tr>
+</table>

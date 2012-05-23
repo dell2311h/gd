@@ -1,0 +1,134 @@
+<table width="97%" border="0" align="center" cellpadding="2" cellspacing="2">
+	<tr>
+		<td valign="top">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td>
+						<div class="screenTitle">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td><img src="/images/backend/on.gif" width="16" height="16">&nbsp;Listing agents <span class="name"></span>Of <span class="name">GalleryDog</span></td>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+						</div>
+					</td>	  
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<div class="listArea">
+							<fieldset>
+								<legend>Listing agent</legend>
+								<table width="100%" border="0" cellspacing="1" cellpadding="1">
+									<tr>
+										<td width="80%" Class="td-listing">
+											<font class="errormsg">
+												<% if !flash[:notice].nil?%>
+												<%=flash[:notice]%>
+												<% end %>
+											</font>
+										</td>
+										<td valign="middle"><div align="right"></div></td>
+										<td width="15%"  class="td-listing">
+											Find by email
+										</td>
+										<td  class="td-listing">
+											<div align="right">
+												<% form_tag backend_listing_agents_path, :id => 'search_form', :method => :get do %>
+													<input  name="search" type="Text" size="20" value="<%= params[:search] -%>">
+												<% end %>
+											</div>
+										</td>
+										<td class="td-listing">
+											<div align="right">
+												<%= link_to_function image_tag("/images/backend/search.jpg"), "jQuery('#search_form')[0].submit();" %>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="5">
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td width="8%" class="td-listing">
+														<%= link_to image_tag("/images/backend/addnew.jpg"), new_backend_listing_agent_path %>
+													</td>
+													<td width="8%" class="td-listing">
+														<%= link_to_function image_tag("/images/backend/delete.jpg"), 'deleteSelected()' -%>
+													</td>
+													<td width="8%" class="td-listing">
+														<%= link_to image_tag("/images/backend/active.jpg"), backend_listing_agents_path(:sort_on => params[:sort_on], :state => 1) -%>
+													</td>
+													<td width="8%" class="td-listing">
+														<%= link_to image_tag("/images/backend/inactive.jpg"), backend_listing_agents_path(:sort_on => params[:sort_on], :state => 0) -%>
+													</td>
+													<td width="8%" class="td-listing">
+														<%= link_to image_tag("/images/backend/showall.jpg"), backend_listing_agents_path(:sort_on => params[:sort_on]) -%>
+													</td>
+													<td width="60%" class="td-new2"><div align="right"><font class="disprecordmsg">
+														<%= page_entries_info @listing_agents , :entry_name => @controller.controller_name.humanize.capitalize if @listing_agents.size > 0 %>
+													</font></div>
+													</td> 
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="5">&nbsp;</td>
+									</tr>
+								</table>
+								<table width="100%" cellspacing="0" cellpadding="0" border="0">
+									<tr>
+										<th width="3%"><div align="center"><%=check_box_tag 'checkall','',false ,:onclick=>'checkAll();', :class => 'select_all_checkbox' %></div></th>
+										<th width="25%"><div align="left">&nbsp;<%= link_to "Email/Login", backend_listing_agents_path(:sort_on => 'email', :state => @state, :page => params[:page]) %></div></th>	
+										<th width="21%"><div align="left">&nbsp;<%= link_to "First name", backend_listing_agents_path(:sort_on => 'firstname', :state => @state, :page => params[:page]) %>&nbsp;</div></th>
+										<th width="21%"><div align="left">&nbsp;<%= link_to "Last name", backend_listing_agents_path(:sort_on => 'lastname', :state => @state, :page => params[:page]) %>&nbsp;</div></th>
+										<th width="21%"><div align="left">&nbsp;<%= link_to "Created On", backend_listing_agents_path(:sort_on => 'created_at', :state => @state, :page => params[:page]) %>&nbsp;</div></th>
+										<th width="10%"><div align="center">&nbsp;<%= link_to "Status", backend_listing_agents_path(:sort_on => 'status', :state => @state, :page => params[:page]) %>&nbsp;</div></th></th>
+									</tr>	
+									<% if @listing_agents.size > 0 %>
+									<% @listing_agents.each do |listing_agent| %>
+									<tr onmouseover="this.style.backgroundColor='#D9D9D9'"  onmouseout="this.style.backgroundColor='<%= cycle('#EFEFEF', '#f8f8f8') %>'" bgcolor="<%= cycle('#EFEFEF', '#f8f8f8') %>">
+										<td class="td-listing"><div align="center"><%=check_box_tag 'chk[]', listing_agent.id, false , :class=>'select_checkbox'%></div></td>
+										<td class="td-listing">&nbsp;<%=link_to listing_agent.email , edit_backend_listing_agent_path(listing_agent) -%></td>
+										<td class="td-listing">&nbsp;<%=listing_agent.firstname%></td>
+										<td class="td-listing">&nbsp;<%=listing_agent.lastname%></td>
+										<td class="td-listing">&nbsp;<%=listing_agent.created_at%></td>
+										<td class="td-listing" align="center"><%= listing_agent.status ? 'Active' : 'Inactive' -%></td>
+									</tr>
+									<% end %>
+									<% else %>
+									<tr>
+										<td colspan = "7" height="170" align="center"  ><div class="listingmessage">No Records Found</div></td>
+									</tr>	
+									<% end %>
+								</table>
+							</fieldset>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<input  type="hidden" name="no" value="s">
+			<p align="right"><font size="2" FACE="Verdana, Arial, Helvetica, sans-serif" color="black"><%= will_paginate @listing_agents, :inner_window =>2, :outer_window => 2 -%></font></p>
+		</td>
+	</tr>
+</table>
+<div style='display:none;'>
+	<% form_tag backend_listing_agent_path(1), :method => :delete, :id => 'delete_form' do %>
+		<input type="hidden" id="delete_ids" name="delete_ids[]">
+	<% end %>
+</div>
+<script>
+	function checkAll(){
+		jQuery('.select_checkbox').each(function(i,e){ e.checked = jQuery('.select_all_checkbox')[0].checked; });
+	}
+	
+	function deleteSelected(){
+		jQuery('#delete_ids')[0].value = jQuery('.select_checkbox:checked').map(function() { return this.value; }).get().join(',');
+		jQuery('#delete_form').submit();
+	}
+</script>

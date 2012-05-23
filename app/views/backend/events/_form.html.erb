@@ -1,0 +1,155 @@
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">event or program type&nbsp;</td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.select :event_type_id, EventType.all.collect {|t| [ t.name, t.id ] }, { :style => "width:350px;", :class => 'input' }, :onchange => 'validateType();' -%></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr id='type_description'>
+	<td>&nbsp;</td>
+	<td  align="left">if other, what?&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :type_description, :style => "width:350px;" -%></td>
+	<td>&nbsp;</td>
+</tr>
+	<tr>
+	<td>&nbsp;</td>
+	<td  align="left">duration&nbsp;</td>
+	<td> : </td>
+	<td  align="left"><%= f.radio_button(:single_day, true, :onchange => "validateDuration();") -%> one-day<br/>
+	<%= f.radio_button(:single_day, false, :onchange => "validateDuration();") -%> multi-day</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left"><span id='start_text'>start</span> date&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :start_date, :class => 'date-pick-past', :value => (@event.start_date.blank? ? '' : @event.start_date.strftime('%B %d, %Y')) %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id='end_date'>
+	<td>&nbsp;</td>
+	<td  align="left">end date&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :end_date, :class => 'date-pick-past', :value => (@event.end_date.blank? ? '' : @event.end_date.strftime('%B %d, %Y')) -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">start time&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :start_time, :class => 'time-pick', :style => "width:55px;",  :value => (@event.start_time.blank? ? '' : @event.start_time.strftime("%I:%M %p")) -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">end time (optional)&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :end_time, :class => 'time-pick', :style => "width:55px;", :value => (@event.end_time.blank? ? '' : @event.end_time.strftime("%I:%M %p")) -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">title (optional)&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :title, :style => "width:350px;" -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">related exhibition (optional)&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.select :exhibition_id, @venue.exhibitions.collect {|e| [e.title, e.id] }, { :include_blank => true, :style => "width:350px;" } -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">description (max. 1000 characters) (optional)&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_area :description, :style=>"width:300px;height:200px;" %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">cost of admission&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.radio_button(:free, true, :onchange => "validateCost();") -%> free<br/>
+		<%= f.radio_button(:free, false, :onchange => "validateCost();") -%> fee
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id='cost'>
+	<td>&nbsp;</td>
+	<td  align="left">entry cost&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :cost, :style => "width:150px;" -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<script>
+		jQuery('#event_description').wymeditor({
+			toolsItems: [
+	        {'name': 'Bold', 'title': 'Strong', 'css': 'wym_tools_strong'}, 
+	        {'name': 'Italic', 'title': 'Emphasis', 'css': 'wym_tools_emphasis'},
+	        {'name': 'Paste', 'title': 'Paste_From_Word',
+	            'css': 'wym_tools_paste'},
+	        {'name': 'Undo', 'title': 'Undo', 'css': 'wym_tools_undo'},
+	        {'name': 'Redo', 'title': 'Redo', 'css': 'wym_tools_redo'} ],
+			containersHtml: '',
+			classesHtml: ''
+		});
+		function validateDuration(){
+			if(jQuery('#event_single_day_true').attr('checked')){
+				jQuery('#end_date').hide();
+				jQuery('#start_text').hide();
+			}else{
+				jQuery('#end_date').show();
+				jQuery('#start_text').show();
+			}
+		}
+		function validateType(){
+			if(jQuery("#event_event_type_id :selected").text() == 'Custom' || jQuery("#event_event_type_id :selected").text() == 'Other'){
+				jQuery('#type_description').show();
+			}else{
+				jQuery('#type_description').hide();
+			}
+			if(jQuery("#event_event_type_id :selected").text() == 'Reception'){
+				jQuery('#event_title_label').removeClass('required-field');
+				jQuery('#event_title_label').addClass('optional-field');
+			}else{
+				jQuery('#event_title_label').removeClass('optional-field');
+				jQuery('#event_title_label').addClass('required-field');
+			}
+			
+			jQuery('.time-pick').timePicker();
+		}
+		function validateCost(){
+			if(jQuery('#event_free_true').attr('checked')){
+				jQuery('#cost').hide();
+			}else{
+				jQuery('#cost').show();
+			}
+			jQuery('.time-pick').timePicker();
+		}
+		validateDuration();
+		validateType();
+		validateCost();
+		jQuery('.date-pick-past').datePicker();
+        jQuery('.time-pick').timePicker();
+</script>

@@ -1,0 +1,5 @@
+<div id="artist_<%= artist_item.id -%>">
+  <%= artist_item.full_name -%> &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to_function 'remove', "jQuery('#artist_#{artist_item.id}').remove()", :class => 'bluelink-normal' -%>
+  <input type='hidden' name='exhibition[aritst_ids][]' value='<%= artist_item.id -%>'>
+</div>

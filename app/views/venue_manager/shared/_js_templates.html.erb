@@ -1,0 +1,28 @@
+<script id="artist_template" type="text/x-jquery-tmpl">
+    <li id="artist_${id}">
+	    <span class="filename">${firstname} ${lastname}</span>
+		<a class="delete" href="#" onclick="$('#artist_${id}').remove(); return false;"></a>
+		<input type="hidden" name="artist_ids[]" value="${id}" />
+	</li>
+</script>
+
+<script id="curator_template" type="text/x-jquery-tmpl">
+    <li id="curator_${id}">
+	    <span class="filename">${first_name} ${last_name}</span>
+		<a class="delete" href="#" onclick="$('#curator_${id}').remove(); return false;"></a>
+		<input type="hidden" name="curator_ids[]" value="${id}" />
+	</li>
+</script>
+
+<script id="image_template" type="text/x-jquery-tmpl">
+    <li id="image_${id}">	    
+	    <a href="${image_large_url}" class="popup_img"><img src="${image_url}"></a>
+	    <span class="filename">${file_name}</span>
+		<a class="delete" href="#" onclick="$('#image_${id}').remove(); return false;"></a>
+		<input type="hidden" name="image_ids[]" value="${id}" />
+	</li>
+</script>
+
+<script id="primary_image_template" type="text/x-jquery-tmpl">
+	<a href="${image_large_url}" class="popup_img" id="primary_image_tag"><img src="${image_url}"></a>
+</script>

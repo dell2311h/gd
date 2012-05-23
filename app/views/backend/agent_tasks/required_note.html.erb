@@ -1,0 +1,88 @@
+<%
+  predefined_notes = {
+    'Wrong credentials' => 'Wrong login and password',
+    'Expired subscriptions' => 'Accound is expired, cannot log in',
+    'Service unavailable' => 'Cannot open submission form for the service'
+  }
+%>
+
+
+<% form_tag set_status_backend_agent_task_path(@task), :method => :post, :id => 'add_form' do |f| %>
+  <%= hidden_field_tag :status, @task.status  %>
+  <table width="97%" border="0" align="center" cellpadding="2" cellspacing="2">
+  <tr>
+    <td valign="top">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td>
+          <div class="screenTitle">
+          <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td>
+                <img src="/images/backend/on.gif" width="16" height="16"/>&nbsp;
+                A note is required for <span class="name"><%= @task -%></span> describing the reason it is failed
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <div class="listArea">
+        <fieldset><legend>Note</legend>
+        <table width="100%" border="0" cellspacing="2" cellpadding="2">
+          <tr>
+                  <td Class="td-listing" colspan="5">
+                          <%=error_messages_for(:task)%>
+                  </td>
+          </tr>
+          <tr>
+            <td  align="left" Class="td-listing" colspan="3" valign="middle"></td>
+          </tr>
+
+          <tr>
+            <td width="30%">&nbsp;</td>
+            <td width="15%" align="left">Templates&nbsp;</td>
+            <td width="1%"> : </td>
+            <td width="40%" align="left">
+              <ul>
+                <% predefined_notes.each do |headline, text| %>
+                <li><%= link_to_function headline, "jQuery('#note_text').val('#{text}')" %></li>
+                <% end %>
+              </ul>
+            </td>
+            <td width="14%">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td width="30%">&nbsp;</td>
+            <td width="15%" align="left">Text&nbsp;</td>
+            <td width="1%"> : </td>
+            <td width="40%" align="left"><%= text_area_tag :note_text, '', :rows => 10, :cols => 30, :class =>'input' %></td>
+            <td width="14%">&nbsp;</td>
+          </tr>
+            
+            <tr>
+              <td align="center" colspan="5"><div align="left"><font class="errormsg">*</font>&nbsp;Required Fields</div>
+                <%= link_to_function image_tag('/images/backend/btn-ok.gif'), "jQuery('#add_form')[0].submit()"%>
+                <%= link_to_function image_tag('/images/backend/btn-reset.gif'), "jQuery('#add_form')[0].reset()"%>
+                <%= link_to image_tag('/images/backend/btn-cancle.gif'), dashboard_backend_agent_tasks_path %>
+              </td>
+            </tr>
+            </table>
+          </fieldset>
+          </div>
+        </td>
+      </tr>
+      </table>
+  </td>
+</tr>
+</table>
+<% end %>

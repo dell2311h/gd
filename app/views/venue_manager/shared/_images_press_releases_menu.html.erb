@@ -1,0 +1,29 @@
+<header>
+    <h2>images + press releases</h2>
+</header>
+<ul class="tags">
+    <li <%= 'class=\'active\'' if params[:filter].blank? -%>>
+	<%= link_to "all files(#{@image_counter[:all]})", venue_manager_images_path %>
+</li>
+<li <%= 'class=\'active\'' if params[:filter] == Image::KINDS[:attachment_art] -%>>
+	<%= link_to "art(#{@image_counter[:attachment_art]})", venue_manager_images_path(:filter => Image::KINDS[:attachment_art]) %>
+</li>
+<li <%= 'class=\'active\'' if params[:filter] == Image::KINDS[:attachment_installation] -%>>
+	<%= link_to "installation views(#{@image_counter[:attachment_installation]})", venue_manager_images_path(:filter => Image::KINDS[:attachment_installation]) %>
+</li>
+    <li <%= 'class=\'active\'' if params[:filter] == Image::KINDS[:attachment_reception] -%>>
+	<%= link_to "reception parties(#{@image_counter[:attachment_reception]})", venue_manager_images_path(:filter => Image::KINDS[:attachment_reception]) %>
+</li>
+<li <%= 'class=\'active\'' if params[:filter] == Image::KINDS[:attachment_other] -%>>
+	<%= link_to "other images(#{@image_counter[:attachment_other]})", venue_manager_images_path(:filter => Image::KINDS[:attachment_other]) %>
+</li>
+<!-- <li <%= 'class=\'active\'' if params[:filter] == 'album' -%>>
+	<%= link_to "albums", venue_manager_images_path(:filter => 'albums') %>
+</li> -->
+<li <%= 'class=\'active\'' if params[:filter] == Image::KINDS[:publication_pdf] -%>>
+	<%= link_to "press releases(#{@image_counter[:publication_pdf]})", venue_manager_images_path(:filter => Image::KINDS[:publication_pdf]) %>
+</li>
+<!--<li <%= 'class=\'active\'' if params[:filter] == 'archive' -%>>
+	<%= link_to "image archive", venue_manager_images_path(:filter => 'archive') %>
+</li>-->
+</ul>

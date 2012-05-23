@@ -1,0 +1,132 @@
+
+<script>
+  function setEnabled(value){
+    document.getElementById('exhibition_enabled').value = value;
+    return true;
+  }
+</script>
+<tr>
+	<td width="30%">&nbsp;</td>
+	<td width="15%" align="left">Exhibition title&nbsp;</td>
+	<td width="1%"> : </td>
+	<td width="40%" align="left"><%= f.text_field :title, :size => 28,:class =>'input' %></td>
+	<td width="14%">&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Artists&nbsp;<font class="errormsg">*</font></td>
+	<td> : </td>
+	<td  align="left">
+		<%= validation_error_for(@exhibition, 'artists') %>
+		<div id='artists_block' style='display:block;'>
+			<%= render :partial => 'artist_item', :collection => @exhibition.artists %>
+		</div>
+		<%= text_field_tag :artist_name, '', :onkeypress => "return submitenter(this,event)" %>
+		<div style="font-size: smaller;">
+          (1 - Begin typing name then select correct artist from list. 2 - Hit ENTER/RETURN to save and add more artists, if any. Repeat for each artist name.)
+        </div>
+        <script>
+			jQuery(document).ready(function() {
+				jQuery("input#artist_name").autocomplete("<%= get_artists_backend_venue_exhibitions_path(@venue) -%>", { max: 20 });
+			});
+			function submitenter(f,e) {
+				var keycode;
+				if (window.event) keycode = window.event.keyCode;
+				else if (e) keycode = e.which;
+				else return true;
+
+				if (keycode == 13){
+			   		<%= remote_function( :url => get_artist_backend_venue_exhibitions_path(@venue), :with => "'name=' + jQuery('input#artist_name').val()" ) -%>;
+			   		return false;
+			   	} else
+			   	return true;
+			}
+		</script>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+	<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Open date&nbsp;</td>
+	<td> : </td>
+	<td  align="left"><%= f.text_field :start, :class => 'date-pick', :value => (@exhibition.start.blank? ? '' : @exhibition.start.strftime('%B %d, %Y')) %></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Close date&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :end, :class => 'date-pick', :value => (@exhibition.end.blank? ? '' : @exhibition.end.strftime('%B %d, %Y')) -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Description (50 - 2000 characters, no html)&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_area :description, :style=>"width:300px;height:200px;" %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<script>
+	jQuery('#exhibition_description').wymeditor({containersHtml: '',classesHtml: ''});
+</script>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Image - 2 mb maximum&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.file_field :image %> <%= validation_error_for_attachment(@exhibition, 'image') %>
+		<% unless @exhibition.image.nil? %>
+			<br />
+			<%= image_tag @exhibition.image.url(:small) %>
+        <% end %>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Image caption&nbsp;</td>
+	<td> </td>
+	<td  align="left">
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Artist&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :image_artist -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Title&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :image_title -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Year&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :image_year -%>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td  align="left">Credit&nbsp;</td>
+	<td> : </td>
+	<td  align="left">
+		<%= f.text_field :image_credit %>
+	</td>
+	<td>&nbsp;</td>
+</tr>

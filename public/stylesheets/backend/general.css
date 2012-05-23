@@ -1,0 +1,176 @@
+BODY {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f6f6f6
+}
+TD {
+	FONT-SIZE: 12px; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
+}
+TH {
+	FONT-SIZE: 12px; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
+}
+
+/* INPUT {
+	FONT-SIZE: 12px; 
+	FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	bgcolor: #ffff00;
+} */
+
+.yellowmatter
+{
+FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #F7DF40; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; 
+}
+
+/* SELECT {
+	FONT-SIZE: 11px; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	background-color: #FFCC44;
+	border: double #336699 1;
+	border-bottom: double #336699 1;
+} */
+
+
+TEXTAREA {
+	FONT-SIZE: 12px; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
+}
+A:link {
+	COLOR: #555555; font:bold 12px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+A:visited {
+	COLOR: #555555; font:bold 12px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+A:active {
+	COLOR: #000000; font:bold 12px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+
+.errormsg
+{
+font-weight: bold;
+  color: #FF0066;
+}
+.prodTypeDisp
+{
+font-weight: bold;
+  color: #DC8C01;
+}
+.prodPriceDisp
+{
+font-weight: bold;
+  color: #2A63FD;
+}
+.disprecordmsg
+{
+font-weight: bold;
+  color: #D60000;
+}
+.datedisp
+{
+FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; 
+}
+.yellowmatter
+{
+FONT-WEIGHT: normal; FONT-SIZE: 11px; COLOR: #D60000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; 
+}
+
+
+
+.topLeftTitle
+{
+font-weight: bold;
+FONT-SIZE: 22px;
+  color: #FFFFFF;
+}
+
+.topHead2 {
+  font-weight: Bold;
+  font-family: Tahoma; 
+  font-size: 18px;
+  color: #ffffff;
+  padding-left:40px;
+}
+.tdcontentblack 
+{
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; }
+	
+.tdcontentblack:link { text-decoration: none; color: "#ffffff"; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; }
+
+.tdcontentblack:visited { text-decoration: none; color: "#ffffff"; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; }
+
+.tdcontentblack:hover { text-decoration: none; color: #000000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; text-decoration: none; }
+
+.topLabels {FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: underline; FONT-FAMILY: Arial, Helvetica, sans-serif;}
+.topLabels:link{FONT-WEIGHT: normal; FONT-SIZE: 12px;FONT-FAMILY:  Arial,Verdana, Helvetica, sans-serif; TEXT-DECORATION: none ; COLOR:000000;}
+.topLabels:active{TEXT-DECORATION: none ; COLOR:000000;}
+.topLabels:visited{ TEXT-DECORATION: none ; COLOR:000000;}
+.topLabels:hover{	TEXT-DECORATION: none ; COLOR:0D1F81;}
+
+
+.toplink{FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; text-transform:downcase; }
+.toplink:link { text-decoration: none; color:#ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; }
+.toplink:visited { text-decoration: none; color:#ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; margin-left:5px; margin-right:5px; }
+.toplink:hover { text-decoration: none; color: #ff0000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; }
+
+
+.hometoplink{FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY:  Verdana, Arial, Helvetica, sans-serif;}
+.hometoplink:link { text-decoration: none; color:#ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; }
+.hometoplink:visited { text-decoration: none; color:#ffffff; FONT-FAMILY:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; }
+.hometoplink:hover { text-decoration: none; color:#D60000; FONT-FAMILY:  Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; }
+
+
+
+.titleMenu
+{
+font-weight: bold;
+FONT-SIZE: 12px;
+  color: #FF0099;
+}
+
+
+.INPUT2 {
+	FONT-SIZE: 12px; 
+	FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	background-color :  #ff0000
+	border: groove;
+}
+
+.button {
+	BORDER-RIGHT: #999999 2px solid; PADDING-RIGHT: 1px; BACKGROUND-POSITION: 5px 3px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND-IMAGE: url(../../images/backend/st_ButtonDots.gif); PADDING-BOTTOM: 1px; BORDER-LEFT: #cccccc 1px solid; CURSOR: hand; COLOR: #666666; PADDING-TOP: 1px; BORDER-BOTTOM: #999999 2px solid; BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: Tahoma, Arial; BACKGROUND-COLOR: #e6e6e0; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+
+.button_edit {
+	BORDER-RIGHT: #999999 2px solid; PADDING-RIGHT: 1px; BACKGROUND-POSITION: 5px 3px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND-IMAGE: url(../../images/backend/st_ButtonDots.gif); PADDING-BOTTOM: 1px; BORDER-LEFT: #cccccc 1px solid; CURSOR: hand; COLOR: #666666; PADDING-TOP: 1px; BORDER-BOTTOM: #999999 2px solid; BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: Tahoma, Arial; BACKGROUND-COLOR: #e6e6e0; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.button_add {
+	BORDER-RIGHT: #999999 2px solid; PADDING-RIGHT: 1px; BACKGROUND-POSITION: 5px -2px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND-IMAGE: url(../../images/backend/add.gif); PADDING-BOTTOM: 1px; BORDER-LEFT: #cccccc 1px solid; CURSOR: hand; COLOR: #666666; PADDING-TOP: 1px; BORDER-BOTTOM: #999999 2px solid; BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: Tahoma, Arial; BACKGROUND-COLOR: #e6e6e0; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.button_save {
+	BORDER-RIGHT: #999999 2px solid; PADDING-RIGHT: 1px; BACKGROUND-POSITION: 5px -2px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND-IMAGE: url(../../images/backend/save.gif); PADDING-BOTTOM: 1px; BORDER-LEFT: #cccccc 1px solid; CURSOR: hand; COLOR: #666666; PADDING-TOP: 1px; BORDER-BOTTOM: #999999 2px solid; BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: Tahoma, Arial; BACKGROUND-COLOR: #e6e6e0; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+
+.button_cancel {
+	BORDER-RIGHT: #999999 2px solid; PADDING-RIGHT: 1px; BACKGROUND-POSITION: 5px -2px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND-IMAGE: url(../../images/backend/st_ButtonDots.gif); PADDING-BOTTOM: 1px; BORDER-LEFT: #cccccc 1px solid; CURSOR: hand; COLOR: #666666; PADDING-TOP: 1px; BORDER-BOTTOM: #999999 2px solid; BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: Tahoma, Arial; BACKGROUND-COLOR: #e6e6e0; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+
+
+
+.wmatter1
+{
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; }
+	
+.wmatter1:link { text-decoration: none; color: #ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; }
+
+.wmatter1:visited { text-decoration: none; color: #ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; }
+
+.wmatter1:hover { text-decoration: none; color: #ffffff; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; }
+
+
+.wmatter5
+{
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; }
+	
+.wmatter5:link { text-decoration: none; color: #000000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; }
+
+.wmatter5:visited { text-decoration: none; color: #000000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; }
+
+.wmatter5:hover { text-decoration: none; color: #000000; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; }
+

@@ -1,0 +1,33 @@
+<% unless image_index_list_item.nil? %> 
+    <ul id="image_<%= image_index_list_item.id -%>">
+        <li class="firstCol"><input type="checkbox"></li>
+        <li class="secondCol">
+            <%= link_to 'edit', edit_venue_manager_image_path(image_index_list_item), :class => 'popup icon editIcon' %>
+            <a href="" class="icon mailIcon">mail</a>
+            <%= link_to 'delete', venue_manager_image_path(image_index_list_item), :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this image?", :class => 'icon deleteIcon' %>
+        </li>
+        <li class="thirdCol">
+            <span>
+                <% unless image_index_list_item.kind == Image::KINDS[:publication_pdf] %>
+                    <%= link_to image_tag(image_index_list_item.image_url_for(:smaller)),
+                        image_index_list_item.file.url,
+                        :class => 'popup_img',
+                        :title => image_index_list_item.popup_caption
+                    %>
+                <% else %>
+                    <%= image_tag(image_index_list_item.image_url_for(:smaller)) %>
+                <% end %>
+            </span>
+            <span class="description"><%= image_index_list_item.file_file_name -%> | <%= image_index_list_item.file_updated_at.to_s(:db) -%></span>
+            <span class="addImages">
+                <!-- <a href="" class="addImageIcon notfull"></a>
+                <span>
+                    <img src="/images/testImage.png">
+                    <img src="/images/testImage.png">
+                    <img src="/images/testImage.png">
+                    <img src="/images/testImage.png">
+                </span>-->
+            </span>
+        </li>
+    </ul>
+<% end %>

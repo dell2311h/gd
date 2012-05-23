@@ -1,0 +1,5 @@
+<div id="city_<%= city_item.id -%>">
+  <%= city_item.name -%>, <%= city_item.region.code -%> &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to_function 'remove', "jQuery('#city_#{city_item.id}').remove()", :class => 'bluelink-normal' -%>
+  <input type='hidden' name='region_grouping[city_ids][]' value='<%= city_item.id -%>'>
+</div>

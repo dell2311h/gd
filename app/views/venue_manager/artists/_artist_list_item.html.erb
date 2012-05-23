@@ -1,0 +1,5 @@
+<li id="artist_<%= artist_list_item.id -%>">
+    <span class="filename"><%= artist_list_item.firstname %> <%= artist_list_item.lastname %></span>
+	<%= link_to_function '', "$('#artist_#{artist_list_item.id}').remove()", :class => 'delete' %>
+	<%= hidden_field_tag 'artist_ids[]', artist_list_item.id %>
+</li>

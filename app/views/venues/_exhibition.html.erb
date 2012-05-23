@@ -1,0 +1,33 @@
+<dl>
+  <dt>
+    <% if item.images.image %>
+      <%= image_tag(item.images.image.file.url(:small)) %>
+    <% elsif item.venue.images.image %>
+      <%= image_tag item.venue.images.image.file.url(:small) %>
+    <% else %>
+      <div style="display:block; width:125px; height:125px; border:1px solid silver;">&nbsp</div>    
+    <% end %>
+  </dt>
+  <dd>
+    <% if item.upcomin? %>
+      <div class="upcoming">
+        upcoming
+      </div>
+    <% else %>
+      <div class="days-left">
+          <%= "#{item.days_left} days left" %>
+      </div>
+    <% end %>
+    <h5>
+      <span><%= item.title %></span>
+      <span><%= item.artist_names.join(', ') %></span>
+    </h5>
+    <span class="cal">
+      <span>
+        <span><%= item.duration %></span>
+      </span>
+    </span>
+    <%= item.short_description.html_safe if item.short_description %>
+    <%= link_to 'more', venue_exhibition_path(item.venue_id,item), :class => 'more' %>
+  </dd>
+</dl>

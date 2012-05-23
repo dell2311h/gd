@@ -1,0 +1,2 @@
+module VenueManager::CuratorsHelper
+end

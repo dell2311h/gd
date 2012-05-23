@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%= meta(:description, @meta_description) %>
+    <title></title>
+    <%= stylesheet_link_tag 'style', 'new_css', 'jquery.autocomplete.css', 'tables', 'colorbox', 'chosen', 'jquery.qtip.css','sticky.full.css' -%>
+    <!--[if IE]>
+		<%= javascript_include_tag 'html5.js' %>
+		<%= stylesheet_link_tag "ie" -%>
+    <![endif]-->
+	<%= javascript_include_tag 'jquery-1.6.min.js' %>
+	<%= javascript_include_tag 'jquery.colorbox-min.js' %>
+	<%= javascript_include_tag 'jquery.autocomplete.js' %>
+	<%= javascript_include_tag 'dropdownmenu.jquery.js' %>
+	<%= javascript_include_tag 'application' %>
+	<%= javascript_include_tag 'jquery.custom_carousel.js' %>
+	<%= javascript_include_tag 'jquery.template.min.js' %>
+	<%= javascript_include_tag 'jquery_ujs' %>
+	<%= javascript_include_tag 'chosen.jquery.min.js' %>
+  <%= javascript_include_tag 'jquery.qtip.js' %>
+  <%= javascript_include_tag 'sticky.min.js' %>
+  <%= csrf_meta_tag %>
+  <script type="text/javascript">
+      $(document).ready(function(){
+          $('section.content>header>nav>ul>li').dropdownmenu();
+		      $(".popup").colorbox({scroll: false, iframe:true, overlayClose:false});
+		      $(".big-popup").colorbox({height:"98%", width: "98%", iframe:true, overlayClose:false});
+      });
+  </script>
+</head>
+<body>
+    <%= javascript_tag "$.sticky('#{escape_javascript(flash[:notice])}')" if flash[:notice] %>
+    <section class="wrapper">
+        <header>
+            <h1><%= link_to 'Gallery dog beta', root_path, :class => "logo" -%></h1>
+            <% if current_venue %>
+              <section class="logged">
+                  <span>
+                    logged in as:
+                    <%= link_to current_venue.name, venue_manager_root_path %> | <%= link_to 'logout', venue_logout_path %>
+                  <span>
+              </section>
+            <% else %>
+              <% form_for :venue_session, :url => venue_sessions_path do |f|%>
+              <section class="login">
+                  <span>
+                      <span class="login-box-item">
+                          <span class="login-in-as">log in as</span>
+                          <%= f.text_field :email %>
+                          <%= f.password_field :password %>
+                      </span>
+                      <span class="login-box-item">
+                          <span>or</span>
+                          <%=link_to('register', {:controller => :venues, :action => :new}, :class => 'popup register') %>
+                          <label>
+                              <%= f.check_box :remember_me %>
+                              remember me
+                          </label>
+                          <%# no action forgot_path %>
+                          <%= link_to 'forgot password', 'forgot_path', :class => "forgot-password" %>
+                      </span>
+                  </span>
+                  <button>log in</button>
+              </section>
+              <% end %>
+            <% end %>
+        </header>
+        <section class="content">
+            <header>
+                <%= form_for :search, :url => root_path, :html => { :method => :get } do |f|%>
+                <div class="search-box">
+                    <button class="search orange"></button>
+                    <%= text_field_tag 'search', params[:search]  %>
+                </div>
+                <% end %>
+                <%= render :partial => 'shared/menu' %>
+            </header>
+            
+                <%= yield %>
+            
+        </section>
+        <footer>
+            <nav>
+                <ul>
+                    <% @pages.each do |page| %>
+                    	<li><%= link_to page.name, page_path(page.caption) %></li>
+					<% end %>
+                </ul>
+            </nav>
+        </footer>
+    </section>
+    <div class="dropdown-menu"></div>
+</body>
+</html>

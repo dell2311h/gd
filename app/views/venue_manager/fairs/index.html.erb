@@ -1,0 +1,133 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :exhibitions} do %>
+<div>
+    <%= render :partial => 'venue_manager/shared/exhibitions_events_fairs_menu' %>
+    <section class="selected-tegs">
+        <div class="tags">
+            <ul>
+                <li>art</li>
+            </ul>
+            <a href="">add</a>
+        </div>
+        <div class="search-box">
+            <input type="text">
+            <button class="search orange"></button>
+        </div>
+    </section>
+    <section class="manager-content-table">
+        <header>
+            <ul>
+                <li class="firstCol"><input type="checkbox"></li>
+                <li class="secondCol"></li>
+                <li class="thirdCol">sort by lastname | <a href="">filename</a> | <a href="">title</a> | <a href="">date</a></li>
+            </ul>
+        </header>
+        <section class="cont">
+            <ul>
+                <li class="firstCol"><input type="checkbox"></li>
+                <li class="secondCol">
+                    <a href="" class="icon editIcon">edit</a>
+                    <a href="" class="icon mailIcon">mail</a>
+                    <a href="" class="icon deleteIcon">delete</a>
+                </li>
+                <li class="thirdCol">
+                    <span><img src="/images/testImage.png"></span>
+                    <span class="description">lastname | filename | title | date</span>
+                    <span class="addImages">
+                        <a href="" class="addImageIcon">add image</a>
+                        <span></span>
+                    </span>
+                </li>
+            </ul>
+            <ul>
+                <li class="firstCol"><input type="checkbox"></li>
+                <li class="secondCol">
+                    <a href="" class="icon editIcon">edit</a>
+                    <a href="" class="icon mailIcon">mail</a>
+                    <a href="" class="icon deleteIcon">delete</a>
+                </li>
+                <li class="thirdCol">
+                    <span><img src="/images/testImage.png"></span>
+                    <span class="description">lastname | filename | title | date</span>
+                    <span class="addImages">
+                        <a href="" class="addImageIcon notfull"></a>
+                        <span></span>
+                    </span>
+                </li>
+            </ul>
+            <ul>
+                <li class="firstCol"><input type="checkbox"></li>
+                <li class="secondCol">
+                    <a href="" class="icon editIcon">edit</a>
+                    <a href="" class="icon mailIcon">mail</a>
+                    <a href="" class="icon deleteIcon">delete</a>
+                </li>
+                <li class="thirdCol">
+                    <span><img src="/images/testImage.png"></span>
+                    <span class="description">lastname | filename | title | date</span>
+                    <span class="addImages">
+                        <a href="" class="addImageIcon notfull"></a>
+                        <span>
+                            <img src="/images/testImage.png">
+                            <img src="/images/testImage.png">
+                            <img src="/images/testImage.png">
+                            <img src="/images/testImage.png">
+                        </span>
+                    </span>
+                </li>
+            </ul>
+            <ul>
+                <li class="firstCol"><input type="checkbox"></li>
+                <li class="secondCol">
+                    <a href="" class="icon editIcon">edit</a>
+                    <a href="" class="icon mailIcon">mail</a>
+                    <a href="" class="icon deleteIcon">delete</a>
+                </li>
+                <li class="thirdCol">
+                    <span><img src="/images/testImage.png"></span>
+                    <span class="description">lastname | filename | title | date</span>
+                    <span class="addImages">
+                        <a href="" class="addImageIcon notfull"></a>
+                        <span></span>
+                    </span>
+                </li>
+            </ul>
+            <ul>
+                <li class="firstCol"><input type="checkbox"></li>
+                <li class="secondCol">
+                    <a href="" class="icon editIcon">edit</a>
+                    <a href="" class="icon mailIcon">mail</a>
+                    <a href="" class="icon deleteIcon">delete</a>
+                </li>
+                <li class="thirdCol">
+                    <span><img src="/images/testImage.png"></span>
+                    <span class="description">lastname | filename | title | date</span>
+                    <span class="addImages">
+                        <a href="" class="addImageIcon notfull"></a>
+                        <span></span>
+                    </span>
+                </li>
+            </ul>
+            <ul>
+                <li class="firstCol"><input type="checkbox"></li>
+                <li class="secondCol">
+                    <a href="" class="icon editIcon">edit</a>
+                    <a href="" class="icon mailIcon">mail</a>
+                    <a href="" class="icon deleteIcon">delete</a>
+                </li>
+                <li class="thirdCol">
+                    <span><img src="/images/testImage.png"></span>
+                    <span class="description">lastname | filename | title | date</span>
+                    <span class="addImages">
+                        <a href="" class="addImageIcon notfull"></a>
+                        <span></span>
+                    </span>
+                </li>
+            </ul>
+        </section>
+        <footer>
+            <button>save album as...</button>
+        </footer>
+    </section>
+    <div class="decoration"></div>
+</div>
+<% end %>

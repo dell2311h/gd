@@ -1,0 +1,72 @@
+<% form_for :neighborhood, @neighborhood, :url => backend_neighborhood_path(@neighborhood), :html => { :id => 'edit_form', :method => :put } do |f| %>
+<table width="97%" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+	<td valign="top">
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<div class="screenTitle">
+					<table width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td>
+							<img src="/images/backend/on.gif" width="16" height="16">&nbsp;
+							Update Neighborhood Of <span class="name">GalleryDog</span>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</td>	  
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		</table>
+
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<div class="listArea">
+				<fieldset><legend>Neighborhood</legend>
+					<table width="100%" border="0" cellspacing="2" cellpadding="2">
+					<tr>
+						<td Class="td-listing" colspan="5">
+							<%=error_messages_for(:neighborhood, :order=>[:name,:region_id,:verified])%>
+						</td>
+					</tr>
+					<tr>
+						<td  align="left" Class="td-listing" colspan="3" valign="middle"></td>
+						<td  align="right" Class="td-listing" colspan="3" valign="middle">
+						<font class="errormsg">
+							<%= link_to image_tag('/images/backend/cancel.gif') + ' Return To Neighborhoods Listing', backend_neighborhoods_path -%>
+						</font>
+						</td>
+					</tr>
+					
+					<%= render :partial => 'form', :locals => { :f => f } %>
+					
+					<tr>
+						<td>&nbsp;</td>
+						<td  align="left">or select a replacement</td>
+						<td> : </td>
+						<td  align="left">
+								<%= select :replacement, :id, [['Select replacement', nil]].concat(@neighborhoods.collect {|p| [ p.name, p.id ] }) %>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td align="center" colspan="5"><div align="left"><font class="errormsg">*</font>&nbsp;Required Fields</div>
+							<%= link_to_function image_tag('/images/backend/btn-ok.gif'), "jQuery('#edit_form')[0].submit()"%>
+							<%= link_to image_tag('/images/backend/btn-cancle.gif'), backend_neighborhoods_path %>
+						</td>
+					</tr>
+					</table>
+				</fieldset>
+				</div>
+			</td>	
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<% end %>

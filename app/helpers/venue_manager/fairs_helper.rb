@@ -1,0 +1,2 @@
+module VenueManager::FairsHelper
+end

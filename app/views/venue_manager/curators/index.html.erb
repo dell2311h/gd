@@ -1,0 +1,36 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :artists} do %>
+<div>
+    <%= render :partial => 'venue_manager/shared/artists_curators_menu' %>
+    <section class="selected-tegs">
+        <div class="tags">
+            <ul>
+                <li>curators</li>
+            </ul>
+			      <%= link_to 'new curator', new_venue_manager_curator_path, :class => 'popup' -%>
+        </div>
+        <div class="search-box">
+			<%= form_for :curators_filter, :url => venue_manager_curators_path, :html => { :method => :get } do |f| %>
+				<%= text_field_tag :filter, params[:filter] %>
+	            <button class="search orange"></button>
+			<% end %>
+        </div>
+    </section>
+    <section class="manager-content-table">
+        <header>
+            <ul>
+                <li class="curatorsControlsCol">&nbsp;</li>
+                <li class="curatorsNameCol">Name</li>
+				        <li class="curatorsTitleCol">Title</li>
+				        <li class="curatorsAffiliationCol">Affiliation</li>
+            </ul>
+        </header>
+        <section class="cont">
+			    <%= render :partial => 'curator_index_list_item', :collection => @curators %>
+        </section>
+    </section>
+    <div class="decoration"></div>
+</div>
+<script>
+  function notifyCuratorAdded(obj){ location.reload(); }
+</script>
+<% end %>

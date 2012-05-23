@@ -1,0 +1,255 @@
+<input id="save_as_draft" type="hidden" name="save_as_draft">
+<div class="right">
+<!--    <select class="location">
+        <option>location</option>
+    </select> -->
+</div>
+</header>
+<section class="popup-form">
+  <section class="popup-form-parts">
+      <fieldset>
+          <legend>event type</legend>
+          <%= f.select :event_type_id, EventType.all.collect {|t| [ t.name, t.id ] }, {}, :class => 'event-type'%>
+          <span id="event_td_notice" class="marg15px">type description</span>
+          <%= f.text_field :type_description %>
+      </fieldset>
+  </section>
+  <section class="popup-form-parts">
+  <%= hidden_field_tag :default_image_id %>
+      <fieldset>
+          <legend>event title</legend>
+          <%= f.text_field :title, :class => 'title' %>
+      </fieldset>
+  </section>
+  <section class="popup-form-parts">
+      <fieldset class="displayInline fixed marg">
+          <legend>duration</legend>
+          <label>
+            <%= f.radio_button :single_day, true, :onchange => 'toggleTimeSelectors()' %> one-day
+          </label>
+          <label>
+            <%= f.radio_button :single_day, false, :onchange => 'toggleTimeSelectors()' %> multi-day
+          </label>
+      </fieldset>
+      <fieldset class="displayInline marg">
+          <legend>cost</legend>
+          <label>
+            <%= f.radio_button :free, true, :onchange => 'toggleCostField()' %> free
+          </label>
+          <label>
+            <%= f.radio_button :free, false, :onchange => 'toggleCostField()' %> fee
+          </label>
+      </fieldset>
+      <div id="cost_block" class="displayInline">
+          <%= f.text_field :cost, :placeholder => 'How much does it cost?' %>
+      </div>
+  </section>
+  <section class="popup-form-parts">
+      <fieldset class="displayInline fixed marg">
+          <legend id="date_label">date</legend>
+          <legend id="s_date_label">start date</legend>
+          <%= f.text_field :start_date, :class => 'date' %>
+      </fieldset>
+      <fieldset id="end_date_block" class="displayInline fixed">
+          <legend>end date</legend>
+          <%= f.text_field :end_date, :class => 'date' %>
+      </fieldset>
+  </section>
+  <section class="popup-form-parts">
+      <fieldset class="displayInline fixed marg">
+          <legend>start time</legend>
+          <%= f.time_select :start_time, { :simple_time_select => true, :minute_interval => 30, :time_separator => "", :default => Time.now.change(:hour => 9, :minute => 0) }, { :class => 'time' } %>
+      </fieldset>
+      <fieldset class="displayInline fixed">
+          <legend class="gray">end time</legend>
+          <%= f.time_select :end_time, { :simple_time_select => true, :minute_interval => 30, :time_separator => "", :include_blank => true }, { :class => 'time' } %>
+      </fieldset>
+  </section>
+  <section class="popup-form-parts">
+      <fieldset>
+          <legend class="gray">related exhibition</legend>
+          <%= f.select :exhibition_id, current_venue.exhibitions.all_current_and_upcoming.collect {|e| [e.title, e.id]}, { :include_blank => true }, :class => 'exhibition' %>
+      </fieldset>
+  </section>
+  <section class="popup-form-parts">
+      <fieldset>
+          <legend>brief description <span>(250 characters max)</span></legend>
+          <a href="#" class="right marg-right full_description_link">add full description</a>
+  		    <%= f.text_area :short_description, :class => 'description', :onkeyup => "updateTFCount(this, 250)" %>
+          <span id="event_short_description_count" class="count right marg-right">250</span>
+      </fieldset>
+  </section>
+
+  <div style='display:none'>
+  	<section id="full_description_box" class="popup-form-parts">
+  	    <fieldset>
+  	        <legend>full description <span>(5000 characters max)</span></legend>
+  			<%= f.text_area :description, :class => 'description full',  :onkeyup => "updateTFCount(this, 5000)" %>
+  	        <span id="event_description_count" class="count right marg-right">5000</span>
+  			<div style='text-align: center;'>
+  				<p>&nbsp;</p>
+  				<button class="orange_button" onclick="$.fn.colorbox.close();return false;">save</button>
+  			</div>
+  	    </fieldset>
+  	</section>
+  </div>
+  
+  <section class="popup-form-parts">
+  	<fieldset>
+          <legend class="gray">primary image</legend>
+  		<%= text_field_tag :primary_image_name, {}, :class => 'search', :placeholder => 'search images' %>
+          <span>or</span>
+          <button class="file image-upload-popup" href="<%= new_venue_manager_image_path(:default => 1) -%>">upload new image</button>
+          <span class="notice">5 mb maximum (png, jpg, gif, no transparent)</span>
+      </fieldset>
+      <dl id="primary_image">
+          <dt class="displayInline">
+            <span class="orange">primary image</span>
+            <% if f.object.images.image.nil? %>
+              <%= image_tag '/files/small/missing.png', :id => 'primary_image_tag'  %>
+            <% else %>
+              <%= link_to image_tag(f.object.images.image.file.url(:small), :id => 'primary_image_tag'),
+                f.object.images.image.file.url(:large),
+                :class => 'popup_img',
+                :id => 'primary_image_tag'
+              %>
+            <% end %>
+          </dt>
+          <dd class="displayInline">
+              <ul>
+                  <li id="primary_image_artist"><%= (f.object.images.image.nil?) ? '' : f.object.images.image.artist %></li>
+                  <li id="primary_image_year"><%= (f.object.images.image.nil?) ? '' : f.object.images.image.year %></li>
+                  <li id="primary_image_title"><%= (f.object.images.image.nil?) ? '' : f.object.images.image.title %></li>
+              </ul>
+          </dd>
+      </dl>
+  </section>
+
+  <h3>add up to 20 images+press release</h3>
+
+  <section class="popup-form-parts">
+      <fieldset>
+          <legend class="gray">add image</legend>
+          <%= text_field_tag :attachment_image_name, {}, :class => 'search', :placeholder => 'search images' %>
+          <span>or</span>
+  		<button class="file image-upload-popup" href="<%= new_venue_manager_image_path() -%>">upload new image</button>
+          <span class="notice">5 mb maximum (png, jpg, gif, no transparent)</span>
+          <ul id="selected_images" class="files">
+              <%= render :partial => 'venue_manager/images/image_list_item', :collection => f.object.images.all_attachments -%>
+          </ul>
+      </fieldset>
+  </section>
+
+  <section class="popup-form-parts">
+      <fieldset>
+          <legend class="gray">add press release</legend>
+          <%= text_field_tag :press_release_name, {}, :class => 'search', :placeholder => 'search pdfs' %>
+          <span>or</span>
+  		<button class="file image-upload-popup" href="<%= new_venue_manager_image_path('image[kind]' => Image::KINDS[:publication_pdf]) -%>">upload new pdf</button>
+          <ul id="selected_pdfs" class="files">
+            <%= render :partial => 'venue_manager/images/image_list_item', :collection => f.object.images.publication_pdfs -%>
+          </ul>
+      </fieldset>
+  </section>
+
+<%= render :partial => 'venue_manager/shared/js_templates' %>
+
+<script>
+function toggleTimeSelectors(){
+	if($('#event_single_day_true').attr('checked')=='checked'){
+		$('#date_label').show();
+		$('#s_date_label, #end_date_block').hide();
+	} else {
+	  $('#date_label').hide();
+		$('#s_date_label, #end_date_block').show();
+	}
+}
+function toggleCostField(){
+	if($('#event_free_true').attr('checked')=='checked'){
+		$('#cost_block').hide();
+	} else {
+	  $('#cost_block').show();
+	}
+}
+
+function notifyImageAdded(image_obj, urls_obj){
+	var image = eval(image_obj);
+	var urls = eval(urls_obj);
+	if ((image['image']['default_image'] == true) || ($('#primary_image_tag').attr("class") === undefined)){
+    var image_for_template = { 'image_url': urls['small_url'], 'image_large_url': urls['large_url'] };
+    $("#primary_image_template").tmpl( image_for_template ).replaceAll("#primary_image_tag");
+		$('#primary_image_artist').html(image['image']['artist']);
+		$('#primary_image_year').html(image['image']['year']);
+		$('#primary_image_title').html(image['image']['title']);
+    $('#default_image_id').val(image['image']['id'])
+		// update change link
+	};
+  if(image['image']['kind'].match(/attachment_.*/gi)){
+		var image_for_template = { 'id': image['image']['id'], 'image_url': urls['micro_url'], 'image_large_url': urls['large_url'], 'file_name': image['image']['file_file_name'] };
+		$("#image_template").tmpl( image_for_template ).appendTo("#selected_images");
+	}else if(image['image']['kind'] == '<%= Image::KINDS[:publication_pdf] -%>'){
+		var image_for_template = { 'id': image['image']['id'], 'image_url': urls['micro_url'], 'file_name': image['image']['file_file_name'] };
+		$("#image_template").tmpl( image_for_template ).appendTo("#selected_pdfs");
+	}
+  init_popup_img();
+}
+
+$(document).ready(function(){
+  toggleTimeSelectors();
+  toggleCostField();
+  updateTFCount($('#event_short_description'), 250);
+	updateTFCount($('#event_description'), 5000);
+	
+	$('#primary_image_name').autocomplete({
+			url: '/venue/images/autocomplete.json',
+			minChars: 1,
+			remoteDataType: 'json',
+			extraParams: {'kind':'default'},
+			showResult: function(value, data) {
+			   return '<img src="'+data.urls['micro_url']+'" /> ' + value;
+			},
+			onItemSelect: function(item) {
+				notifyImageAdded(item.data.image, item.data.urls);
+				$('#primary_image_name').val('');
+			}
+			});
+			
+	$('#attachment_image_name').autocomplete({
+			url: '/venue/images/autocomplete.json',
+			minChars: 1,
+			remoteDataType: 'json',
+			extraParams: {'kind':'attachment_art,attachment_installation,attachment_reception,attachment_other'},
+			showResult: function(value, data) {
+			   return '<img src="'+data.urls['micro_url']+'" /> ' + value;
+			},
+			onItemSelect: function(item) {
+				notifyImageAdded(item.data.image, item.data.urls);
+				$('#attachment_image_name').val('');
+			}
+			});
+			
+	$('#press_release_name').autocomplete({
+			url: '/venue/images/autocomplete.json',
+			minChars: 1,
+			remoteDataType: 'json',
+			extraParams: {'kind':'<%= Image::KINDS[:publication_pdf] -%>'},
+			showResult: function(value, data) {
+			   return '<img src="'+data.urls['micro_url']+'" /> ' + value;
+			},
+			onItemSelect: function(item) {
+				notifyImageAdded(item.data.image, item.data.urls);
+				$('#press_release_name').val('');
+			}
+			});
+	$('#event_event_type_id').change(function(){
+	  if($('#event_event_type_id option:selected').text() == 'Other'){
+	    $('#event_type_description, #event_td_notice').show();
+	  }else{
+	    $('#event_type_description, #event_td_notice').hide();
+	  }
+	})
+	$(".full_description_link").colorbox({inline:true, href:'#full_description_box'});
+	resizePopupToContents();
+	$('#event_event_type_id').change();
+});
+</script>

@@ -1,0 +1,2 @@
+module VenueManager::ArtistsHelper
+end

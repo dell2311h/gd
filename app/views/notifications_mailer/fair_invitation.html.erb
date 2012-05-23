@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Gallery*dog Newsletter v3</title>
+
+<style type="text/css">
+
+<!--
+
+a { color:#5f9ed0; color:#5f9ed0; color:#5f9ed0; }
+
+-->
+
+</style></head>
+
+
+
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor="E6e6DC">
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#E6E6DC">
+
+  <tr>
+
+    <td align="center"> <div align="center"><br />
+
+    </div>
+
+      <table  style="border: 1px solid #f79726" width="650" border="1" cellpadding="0" cellspacing="0" bordercolor="F79726" bgcolor="#FFFFFF">
+
+      <tr>
+
+        <td width="650"><table width="650" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" >
+
+        <tr>
+
+<td width="671" align="center" style="background-color:#F79726;border-top:0px solid #000000;border-bottom:1px solid #FFFFFF;text-align:center;"><span style="font-size:10px;color:#000000;line-height:200%;font-family:verdana;text-decoration:none;">&nbsp;</span></td>
+
+
+
+</tr>
+
+          <tr>
+
+            <td><div align="right"><img src="http://gallerydog.info/images/email_images/header2a.jpg" width="650" height="130" alt="Gallery*dog - Miami Art Fairs | 2010"></div></td>
+
+              </tr>
+
+
+
+          <tr>
+
+            <td valign="top">             
+
+                    <table width="649" border="0" cellspacing="0" cellpadding="15" align="left">
+
+                    <tr>
+
+                      <td colspan="2"  valign="top" style="font-size:12px;color:#000000;line-height:110%;font-family:trebuchet ms; text-align:left; border-top: 1px dotted #F79726;"><p><span style="font-size:16px;font-weight:bold;color:#333333;font-family:arial;line-height:125%;">Hey <%= @venue.name -%>!</span>
+
+                          <br />
+
+                          <span style="font-size:14px;font-weight:bold;color:#333333;font-family:arial;line-height:155%;">We&#39;ve got your profile started in the <%= link_to "#{@fair.fair_grouping.name}!", root_url(:subdomain => @fair.fair_grouping.short_name, :host => SITE_URL) -%>!</span> <br />
+
+                        You just need to complete it!<br />
+
+                      </p>
+
+                        <table width="605" border="0" cellspacing="0" cellpadding="0">
+
+                          <tr>
+
+                            <td width="51" rowspan="2"><img src="http://gallerydog.info/images/email_images/asterisk_kiwi.jpg" alt="*" width="50" height="55" /></span></td>
+
+                            <td width="554" height="17"><span style="font-size:14px;font-weight:bold;color:#333333;font-family:arial; vertical-align:top">Click here to claim and verify your gallery profile for FREE:</span></td>
+
+                          </tr>
+
+                          <tr>
+
+                            <td style="vertical-align:baseline;">&nbsp;<br /> 
+								<% unless @venue.invitation_token.nil? %>
+									<%= link_to edit_venue_fair_url(@venue, @fair_exhibition, :host => SITE_URL, :invitation_token => @venue.invitation_token), edit_venue_fair_url(@venue, @fair_exhibition, :host => SITE_URL, :invitation_token => @venue.invitation_token) -%></b>
+								<% else %>
+									<%= link_to edit_venue_fair_url(@venue, @fair_exhibition, :host => SITE_URL), edit_venue_fair_url(@venue, @fair_exhibition, :host => SITE_URL) -%></b>
+								<% end %>
+							</td>
+
+                          </tr>
+
+                        </table>                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                      <td width="398" valign="top" style="font-size:12px;color:#000000;line-height:110%;font-family:trebuchet ms; border-top: 1px dotted #F79726; text-align:left;"><span style="font-size:15px;font-weight:bold;color:#333333;font-family:arial;line-height:125%;">What is Gallery*dog? and Why should I provide details for the Miami Fair Guide?</span><br />
+
+                        <span style="font-size:12px;font-weight:normal;color:#000000;font-style:italic;font-family:arial;">(good questions!)</span><br />
+
+                        <br />
+
+Gallery*dog is a new, free, nationwide service for galleries and museums to promote current and upcoming exhibitions and events.  We&#39;ll be going international soon. Stay tuned!
+
+</p>
+
+<p>Gallery*dog is a new, free, nationwide service for galleries and museums to promote current and upcoming exhibitions and events.  We&#39;ll be going international soon. Stay tuned!
+Our Miami Fair Guide is the only comprehensive, searchable guide to all of the Miami fairs being held during the first week in December 2010.  We are putting the final touches on the site in the coming weeks, and adding a mobile-friendly application so collectors and curators on the ground with smart phones can find your booth.  They will search our directory for your gallery name, the artists you&#39;ve listed, or browse the images you post.</p></td>
+
+                      <td width="213" valign="top" style="font-size:12px;color:#000000;line-height:110%;font-family:trebuchet ms; border-top: 1px dotted #F79726; text-align:left;"><a href="http://gallerydog.info" target="_blank"><img src="http://gallerydog.info/images/email_images/websitephoto.jpg" alt="Gallery*dog website" width="200" height="200" border="1" vspace="5" /></a><br />
+
+                      Visit the Gallery*dog website to see how awesome we really are!</td>
+
+                    </tr>
+
+                    <tr>
+
+                      <td colspan="2" valign="top" style="font-size:12px;color:#000000;line-height:110%;font-family:trebuchet ms; border-top: 1px dotted #F79726; text-align:left;"><p><span style="font-size:15px;font-weight:bold;color:#333333;font-family:arial;line-height:125%;">But how will visitors find this Miami Fair Guide?</span>
+
+                          <br />
+
+                          <span style="font-size:12px;font-weight:normal;color:#000000;font-style:italic;font-family:arial;">(another great question!)</span>
+
+                        </p>
+
+                        <p>We will be reaching out to 9,000 curators, museum directors, and curatorial staff in our data base in the weeks leading up to the fairs.  We will encourage them to alert their board members and patrons about the service.  We will also be on the ground in Miami offering our concierge service to visitors looking for particular artists, galleries, fair events, and museums.  They will be directed to our Guide.  (In Miami, look for our people in kiwi-colored t-shirts!)</p>
+
+                        <p><span style="font-size:15px;font-weight:bold;color:#333333;font-family:arial;line-height:125%;">What do I have to do?</span>                        </p>
+
+                      <p><span style="font-weight:bold;">Its easy.</span>  Claim your free account by clicking on the link below to verify your info, add the names of the artists you are bringing, and upload an image.  You may also upgrade your profile ($25) to add up to 20 images to your <%= @fair.name %> profile.</p>                     </td>
+
+                      </tr>
+
+                    <tr>
+
+                      <td colspan="2"  valign="top" style="font-size:12px;color:#000000;line-height:110%;font-family:trebuchet ms;  border-top: 1px dotted #F79726; text-align:left;"><table width="605" border="0" cellspacing="0" cellpadding="0">
+
+                          <tr>
+
+                            <td width="548" height="17"><div align="right"><span style="font-size:14px;font-weight:bold;color:#333333;font-family:arial; vertical-align:top">Click here to claim and verify your gallery profile for FREE:</span></div></td>
+
+                            <td width="57" rowspan="2"><img src="http://gallerydog.info/images/email_images/asterisk_kiwi.jpg" width="50" height="55" align="right" alt="*" /></td>
+
+                          </tr>
+
+                          <tr>
+
+                            <td height="38" valign="bottom" align="right" style="vertical-align:baseline;"><br />
+                            	<% unless @venue.invitation_token.nil? %>
+									<%= link_to edit_venue_fair_url(@venue, @fair_exhibition, :host => SITE_URL, :invitation_token => @venue.invitation_token), edit_venue_fair_url(@venue, @fair_exhibition, :host => SITE_URL, :invitation_token => @venue.invitation_token) -%></b>
+								<% else %>
+									<%= link_to edit_venue_fair_url(@venue, @fair_exhibition, :host => SITE_URL), edit_venue_fair_url(@venue, @fair_exhibition, :host => SITE_URL) -%></b>
+								<% end %>
+							</td>
+
+                          </tr>
+
+                        </table>
+
+                        <p style="font-size:15px;font-weight:bold;color:#333333;font-family:arial;line-height:125%;">With our <%= link_to "#{@fair.fair_grouping.name}", root_url(:subdomain => @fair.fair_grouping.short_name, :host => SITE_URL) -%> we aim to have every gallery represented in one concise web/mobile package:</p>
+
+                        <span style="font-size:15px;font-weight:bold;color:#333333;font-family:arial;line-height:125%; text-align:center">
+							<%= @fair.fair_grouping.fairs.map(&:name).join(', ') -%>
+						</span>
+
+                        <p><span style="font-weight:bold;"><br />
+
+                        Have a happy day and see you in Miami!</span></p>
+
+                        <span style="font-size:14px;font-weight:bold;color:#333333;font-style:italic;font-family:arial;">Jessica, Andrew &amp; the Gallery*dog Team</span><br />
+
+                          <br />
+
+                      <a href="http://gallerydog.info"><span style="color:#5f9ed0; text-decoration:none; font-weight:bold;">www.gallerydog.info</span></a> | 
+	<%= link_to "#{@fair.fair_grouping.short_name}.#{SITE_URL}", root_url(:subdomain => @fair.fair_grouping.short_name, :host => SITE_URL) -%>                      </td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td height="15" colspan="2" valign="top" style=" font-size:12px;color:#000000;line-height:110%;font-family:trebuchet ms; text-align:center; border-top: 1px dotted #F79726;"><a href="http://gallerydog.info/pages/contact"><span style="color:#000000; text-decoration:none;">                       contact us</span></a> |<a href="http://gallerydog.info/pages/terms"><span style="color:#000000; text-decoration:none;"> terms of use</span></a>|<a href="http://gallerydog.info/pages/about"><span style="color:#000000; text-decoration:none;"> about us</span></a><br /></td>
+
+                    </tr>
+
+                </table></td>
+
+                </tr>
+
+          </table></td>
+
+        </tr>
+
+      </table>
+
+      <p><br />
+
+        </p>
+
+    </td>
+
+  </tr>
+
+</table>
+
+<div align="center"></div>
+
+</body>
+
+</html>

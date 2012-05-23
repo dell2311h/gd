@@ -1,0 +1,12 @@
+ <li>
+    <span class="img">
+	    <% if item.images.image %>    		 
+			<%= link_to image_tag(item.images.image.file.url(:smaller)), venue_exhibition_path(item.venue_id,item) %>
+		<% elsif item.venue.images.image %>
+			<%= link_to image_tag(item.venue.images.image.file.url(:smaller)), venue_exhibition_path(item.venue_id,item) %>
+		<% end %>		
+    </span>
+    <span><%= item.try(:title) %></span>
+    <span><%= item.artist_names.join(', ') %></span>
+    <span><%= item.duration %></span>
+</li>

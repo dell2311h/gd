@@ -1,0 +1,96 @@
+<section class="content venue">
+  <section class="left">
+    <header>
+      <h1><%= @exhibition.title %></h1>
+    </header>
+    <article class="main-content littleMarginBottom">
+      <% if @exhibition.images.image %>
+        <figure class="left">
+          <%= image_tag @exhibition.images.image.file.url(:large) %>
+          <figcaption><%= @exhibition.images.image.try(:title) %></figcaption>
+        </figure>
+      <% end %>
+      <div class="some-info">
+          <h4><time><%= @exhibition.start.strftime("%B %-1d, %Y") %></time> - <time><%= @exhibition.end.strftime("%B %-1d, %Y") %></time></h4>
+          <% if @exhibition.upcomin? %>
+            <div class="upcoming">
+              upcoming
+            </div>
+          <% else %>
+            <div class="days-left">
+                <%= "#{@exhibition.days_left} days left" %>
+            </div>
+          <% end %>
+          <% if @exhibition.events.receptions.last %>
+            <h5>reception</h5>
+            <time><%= @exhibition.events.receptions.last.start_date.strftime("%A, %B %d") %></time>
+            <time><%= "#{@exhibition.events.receptions.last.start_time.strftime('%I:%M %p')} - #{@exhibition.events.receptions.last.end_time.strftime('%I:%M %p')}" %></time>
+          <% end %>
+      </div>
+      <% if @exhibition.artists.any? %>
+        <p><%= @exhibition.artist_names %></p>
+      <% end %>
+      <p class="clear">
+        <p class="description">
+          <%= @exhibition.short_description.html_safe if @exhibition.short_description %>
+        </p>
+      </p>
+    </article>
+    <section class="gallery">
+      <header>
+        <% if @exhibition.tags.any? %>
+          <h4>exhibition tags:</h4>
+          <ul>
+            <% @exhibition.tags.map do |e| %>
+              <li><%= link_to e.name, '#' %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </header>
+      <% if @exhibition.images.art_attachments.any? %>
+        <div id="carousel_art_attachments" class="images-gallery"> 
+          <% @exhibition.images.art_attachments.map do |e| %>
+            <figure><%= image_tag e.file.url(:carousel_small) %></figure>
+          <% end %>
+        </div>
+        <script>
+          $("#carousel_art_attachments").carousel({showAmount:4});
+        </script>
+      <% end %>
+    </section>
+    <% if @exhibition.images.reception_installation_attachments.any? %>
+      <section class="gallery">
+        <header>
+            <h4>reception + installation views</h4>
+        </header>
+        <div id="carousel_reception_installation_attachments" class="images-gallery"> 
+        <% @exhibition.images.reception_installation_attachments.map do |e| %>
+          <figure><%= image_tag e.file.url(:carousel_small) %></figure>
+        <% end %>
+        </div>
+        <script>
+          $("#carousel_reception_installation_attachments").carousel({showAmount:4});
+        </script>
+      </section>
+    <% end %>
+    <section class="artist-info">
+      <ul>
+        <li class="column third">
+            <%= render :partial => 'venues/get_there', :locals => {:venue => @exhibition.venue} %>
+        </li>
+        <% unless @exhibition.venue.transit.blank? %>
+          <li class="column third">
+              <header>public transportation</header>
+              <p><%= @exhibition.venue.transit %></p>
+          </li>
+        <% end %>
+        <% if @exhibition.venue.timetable? %>
+          <li class="column half">
+              <header>hours</header>
+              <%= venue_schedule_list_ul(@exhibition.venue) %>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  </section>
+</section>

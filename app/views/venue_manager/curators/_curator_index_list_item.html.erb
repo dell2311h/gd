@@ -1,0 +1,14 @@
+<ul id="artist_<%= curator_index_list_item.id -%>">
+    <li class="curatorsControlsCol">
+      view | <%= link_to 'edit', edit_venue_manager_curator_path(curator_index_list_item), :class => 'popup' -%>
+    </li>
+    <li class="curatorsNameCol">
+        <%= curator_index_list_item.full_name_last_first -%>
+    </li>
+    <li class="curatorsTitleCol">
+        <%= curator_index_list_item.title -%>
+    </li>
+    <li class="curatorsAffiliationCol">
+        <%= curator_index_list_item.affiliation -%>
+    </li>
+</ul>

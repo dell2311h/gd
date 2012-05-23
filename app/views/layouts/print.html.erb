@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%= meta(:description, @meta_description) %>
+    <title></title>
+    <%= stylesheet_link_tag 'style', 'new_css', 'jquery.autocomplete.css', 'tables', 'colorbox', 'chosen', 'jquery.qtip.css','sticky.full.css' -%>
+    <!--[if IE]>
+		<%= javascript_include_tag 'html5.js' %>
+		<%= stylesheet_link_tag "ie" -%>
+    <![endif]-->
+	<%= javascript_include_tag 'jquery-1.6.min.js' %>
+	<%= javascript_include_tag 'jquery.colorbox-min.js' %>
+	<%= javascript_include_tag 'jquery.autocomplete.js' %>
+	<%= javascript_include_tag 'dropdownmenu.jquery.js' %>
+	<%= javascript_include_tag 'application' %>
+	<%= javascript_include_tag 'jquery.custom_carousel.js' %>
+	<%= javascript_include_tag 'jquery.template.min.js' %>
+	<%= javascript_include_tag 'jquery_ujs' %>
+	<%= javascript_include_tag 'chosen.jquery.min.js' %>
+  <%= javascript_include_tag 'jquery.qtip.js' %>
+	<%= javascript_include_tag 'sticky.min.js' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<h1>PRINT ...</h1>
+	<h2>require CSS and HTML for print view </h2>
+<br />
+<h3><%= link_to 'Click me to Print This Page', 'javascript:window.print()' %></h3>
+<br />
+<br />
+		<link rel="stylesheet" type="text/css" href="print.css" media="print" />
+    <%= javascript_tag "$.sticky('#{escape_javascript(flash[:notice])}')" if flash[:notice] %>
+    <section class="wrapper">
+        <section class="content">                      
+           <%= yield %>            
+        </section>
+    </section>
+<br />
+<br />
+<br />
+</body>
+</html>

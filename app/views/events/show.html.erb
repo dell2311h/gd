@@ -1,0 +1,146 @@
+ <section class="content venue">
+ <section>
+    </section>
+      <section class="left">
+          <header>
+              <div class="right">
+                  <a href="">back</a>
+                  <ul class="social-links">
+                      <li><a href=""><img src="/images/cal-icon.png"></a></li>
+                      <li>
+                        <%= link_to image_tag('print_small.png', :title => 'Print'),print_venue_event_path %>
+                      </li>
+                      <li>
+                        <%= link_to image_tag('email.png', :title => 'Send email'), mail_venue_event_path, :class => 'popup' %>
+                      </li>
+                      <li><a href=""><img src="/images/like_small.png"></a></li>
+                      <li><a href=""><img src="/images/twitter_small.png"></a></li>
+                  </ul>
+              </div>
+              <h1><%= @event.title %></h1>
+          </header>
+          <article class="main-content littleMarginBottom">
+              <% if @event.images.image %>
+                <figure class="left">
+                  <%= image_tag @event.images.image.file.url(:large) %>
+                  <figcaption><%= h @event.images.image.try(:title) %></figcaption>
+                </figure>
+              <% end %>
+              <div class="some-info">
+                  <h4><time><%= @event.start_date.strftime("%B %-1d, %Y") %></time> - <time><%= @event.end_date.strftime("%B %-1d, %Y") %></time></h4>
+                  <% if @event.upcomin? %>
+                    <div class="upcoming">
+                      upcoming
+                    </div>
+                  <% else %>
+                    <div class="days-left">
+                        <%= "#{@event.days_left} days left" %>
+                    </div>
+                  <% end %>
+              </div>
+              <br />
+              <p class="clear">
+                <p class="description">
+                  <%= @event.short_description.html_safe if @event.short_description %>
+                </p>
+                <p class="description" style="display: none">
+                  <%= @event.description.html_safe if @event.description %>
+                </p>
+                <% if @event.description && @event.short_description %>
+                  <span style="float:right">
+                    <%= link_to('more', '#', :class => 'more') %>
+                  </span>
+                <% end %>
+              </p>
+              <script>
+                $('.more').click(function() {
+                  $(this).toggleText("less", "more");
+                  $('.description').toggle();
+                  return false;
+                });
+              </script>
+          </article>
+          <!-- <br style="clear:both;height:0;font:1px;overflow:hidden;" /> -->
+          <% if @event.images.art_attachments.any? %>
+            <section class="gallery">
+              <div id="carousel_art_attachments" class="images-gallery"> 
+                <% @event.images.art_attachments.map do |e| %>
+                  <figure><%= image_tag e.file.url(:small) %></figure>
+                <% end %>
+              </div>
+              <script>
+                $("#carousel_art_attachments").carousel({showAmount:4});
+              </script>
+            </section>
+          <% end %>
+          <% if @event.images.reception_installation_attachments.any? %>
+            <section class="gallery">
+              <header>
+              <h4>reception + installation views</h4>
+              </header>
+              <div id="carousel_reception_installation_attachments" class="images-gallery"> 
+                <% @event.images.reception_installation_attachments.map do |e| %>
+                  <figure><%= image_tag e.file.url(:small) %></figure>
+                <% end %>
+              </div>
+              <script>
+                $("#carousel_reception_installation_attachments").carousel({showAmount:4});
+              </script>
+            </section>
+          <% end %>
+          <section class="artist-info">
+            <ul>
+              <li class="column third">
+                  <%= render :partial => 'venues/get_there', :locals => {:venue => @event.venue} %>
+              </li>
+              <% unless @event.venue.transit.blank? %>
+                <li class="column third">
+                  <header>public transportation</header>
+                  <p><%= @event.venue.transit %></p>
+                </li>
+              <% end %>
+              <% if @event.venue.timetable? %>
+                <li class="column half">
+                  <header>hours</header>
+                  <%= venue_schedule_list_ul(@event.venue) %>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+          <% if @venue_events_exhibitions.any? %>
+            <section class="exhibitions-events">
+              <header>other exhibitions and events at <%= @event.venue.name %></header>
+              <% @venue_events_exhibitions.map do |e| %>
+                <%= render :partial => "venues/#{e.class.to_s.downcase}", :locals => {:item => e} %>
+              <% end if @venue_events_exhibitions%>
+            </section>
+          <% end %>
+      </section>
+      <div class="right title">
+          <div class="logo-info">
+            <%= link_to image_tag(@event.venue.images.logo.file.url(:small)), venue_path(@event.venue) if @event.venue.images.logo %>
+            <%= link_to h(@event.venue.name), venue_path(@event.venue) %>
+            <address>
+                <span><%= @event.venue.city_name %></span>
+                <span><%= "#{@event.venue.region_name}, #{@event.venue.region_code}" %></span>
+            </address>
+          </div>
+          <div class="map">
+            <%= image_tag @event.venue.gmap_staticmap_url({:nearby => true}), :alt => nil %>           
+          </div>
+          <div class="direction">
+            <%= link_to 'get directions', @event.venue.get_googlemap_url, :target => :new %>
+          </div>
+          <% if @nearby_events.any? %>
+            <section class="past-exhibitions">
+              <header>also nearby</header>
+              <ul>
+                <% @nearby_events.map do |e| %>
+                  <%= render :partial => "venues/#{e.class.to_s.downcase}_past", :locals => {:item => e} %>
+                <% end %>
+              </ul>
+              <div class="decoration"></div>
+            </section>
+          <% end %>
+      </div>
+  </section>

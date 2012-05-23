@@ -1,0 +1,52 @@
+ <section class="content venue">
+      <section class="left">
+          <header>
+              <h1><%= @event.title %></h1>
+          </header>
+          <article class="main-content littleMarginBottom">
+              <% if @event.images.image %>
+                <figure class="left">
+                  <%= image_tag @event.images.image.file.url(:large) %>
+                  <figcaption><%= h @event.images.image.try(:title) %></figcaption>
+                </figure>
+              <% end %>
+              <div class="some-info">
+                  <h4><time><%= @event.start_date.strftime("%B %-1d, %Y") %></time> - <time><%= @event.end_date.strftime("%B %-1d, %Y") %></time></h4>
+                  <% if @event.upcomin? %>
+                    <div class="upcoming">
+                      upcoming
+                    </div>
+                  <% else %>
+                    <div class="days-left">
+                        <%= "#{@event.days_left} days left" %>
+                    </div>
+                  <% end %>
+              </div>
+              <br />
+              <p class="clear">
+                <p class="description">
+                  <%= @event.description.html_safe if @event.description %>
+                </p>
+              </p>
+          </article>
+          <section class="artist-info">
+            <ul>
+              <li class="column third">
+                  <%= render :partial => 'venues/get_there', :locals => {:venue => @event.venue} %>
+              </li>
+              <% unless @event.venue.transit.blank? %>
+                <li class="column third">
+                  <header>public transportation</header>
+                  <p><%= @event.venue.transit %></p>
+                </li>
+              <% end %>
+              <% if @event.venue.timetable? %>
+                <li class="column half">
+                  <header>hours</header>
+                  <%= venue_schedule_list_ul(@event.venue) %>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+      </section>
+  </section>

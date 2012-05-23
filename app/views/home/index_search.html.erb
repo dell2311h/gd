@@ -1,0 +1,96 @@
+<section class="content venue">
+	<section class="left">
+		<header class="search">
+    	<h1>'gallery' <span><%= pluralize(@result.total_entries, 'result') -%></span></h1>
+      <div class="right">
+      	<ul class="social-links">
+        	<li><a href=""><%= image_tag 'print_small.png' %></a></li>
+        </ul>
+      </div>
+      <ul class="filter">
+          <li><a href="" class="active">all results</a> |</li>
+          <li><a href="">open now</a> |</li>
+          <li><a href=""><%= image_tag 'datepicker_small.png' %>(select date)</a></li>
+      </ul>
+    </header>
+    <ul class="paging">
+    	<%= paginate(@cur_page, @per_page, @result.total_entries) %>
+    </ul>
+		<section class="exhibitions-events">
+			<% @result.map do |item| %>
+	      <dl>
+	          <dt><%= exhibition_image(item, :small_149) %></dt>
+	          <dd>
+	              <% if item.upcomin? %>
+		              <div class="upcoming">
+		                upcoming
+		              </div>
+		            <% else %>
+		              <div class="days-left">
+		                <%= "#{item.days_left} days left" %>
+		              </div>
+		            <% end %>	              
+	              <h2><%= item.title %></h2>
+	              <h3><%= item.venue.name %></h3>
+	              <span class="cal">
+                  <span>
+										<span><%= item.duration %></span>
+                  </span>
+	              </span>
+	              <ul class="artist-list">
+	              	<% item.artists do |artist| %>
+                  	<li><%= link_to artist.full_name, '#' %></li>
+                  <% end if item.class == Exhibition %>
+	              </ul>
+	          </dd>
+            <dd class="clear" style="width:100%;">
+          		<%= item.short_description.html_safe if item.short_description %>
+          		<%= link_to 'more', venue_exhibition_path(item.venue_id,item), :class => 'more' if item.class == Exhibition %>
+          		<%= link_to 'more', venue_event_path(item.venue_id,item), :class => 'more' if item.class == Event %>          		
+      			</dd>
+	      </dl>
+	    <% end %>
+		</section>
+    <ul class="paging">
+      <%= paginate(@cur_page, @per_page, @result.total_entries) %>
+    </ul>
+  </section>
+  <div class="right">
+    <div class="view-selector">
+        <a href="" class="active first">list</a>
+        <a href="">grid</a>
+        <a href="" class="last">map</a>
+    </div>
+    <div class="filters">
+      <!-- Not implemented yet
+      <section class="filters">
+        <header>genre</header>
+        <ul>
+          <li><label><input type="checkbox"><span>feminist art (23)</span></label></li>
+          <li><label><input type="checkbox"><span>street art (21)</span></label></li>
+          <li><label><input type="checkbox"><span>painting (17)</span></label></li>
+          <li><label><input type="checkbox"><span>feminist art (23)</span></label></li>
+          <li><label><input type="checkbox"><span>street art (21)</span></label></li>
+          <li><label><input type="checkbox"><span>painting (17)</span></label></li>
+        </ul> 
+      </section> -->
+      <section class="filters">
+        <% if @filter_cityes.any? %>
+          <header>cities + neighbourhoods</header>
+          <ul>
+            <% @filter_cityes.each do |k,v| %>
+              <li>
+                <label><input type="checkbox"><span><b><%= k %></b> (<%= v[:count] %>)</span></label>
+                <ul>
+                  <% v[:neighbourhoods].map do |h| %>
+                    <li><label><input type="checkbox"><span><%= h[:name] %> (<%= h[:count] %>)</span></label></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </section>
+    </div>
+  </div>
+</section>

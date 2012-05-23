@@ -1,0 +1,120 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :info} do %>
+<%= render :partial => 'venue_manager/shared/js_templates' %>
+
+<div class="form">
+    <%= render :partial => 'venue_manager/shared/info_menu' %>
+    <section class="selected-tegs">
+        <div class="tags">
+            <ul>
+                <li>images</li>
+            </ul>
+        </div>
+        <div class="location">
+
+        </div>
+    </section>
+    <section class="manager-content-table">
+        <%= form_for @venue, :url => images_venue_manager_info_path, :method => :put do |f| %>
+        <fieldset class="venue-image">
+            <span>venue image<mark>(i.e. exterior/interior view)</mark></span>
+            <dl>
+                <dt>
+                    <% if @venue.images.image.nil? %>
+                        <%= image_tag '/files/small/missing.png', :id => 'venue_default_image' %>
+                    <% else %>
+                        <%= link_to image_tag(@venue.images.image.file.url(:small)),
+                          @venue.images.image.file.url,
+                          :class => 'popup_img',
+                          :id => 'venue_default_image'
+                        %>
+                    <% end %>
+                    <%= hidden_field_tag 'venue[image_ids][]', ((f.object.images.image.nil?) ? '' : f.object.images.image.id), :id => 'venue_default_image_id' %>
+                    <br/>
+                </dt>
+                <dd>
+                    <%= text_field_tag :default_image_name, {}, :class => 'search', :placeholder => "search images" %>
+                    <em>or</em>
+                    <button class="form-btn popup" href="<%= new_venue_manager_image_path('image[kind]' => Image::KINDS[:default]) -%>">upload new image</button>
+                </dd>
+            </dl>
+            <span><mark>logo</mark></span>
+            <dl>
+                <dt>
+                    <% if @venue.images.logo.nil? %>
+                        <%= image_tag '/files/small/missing.png', :id => 'venue_logo_image' %>
+                    <% else %>
+                        <%= link_to image_tag(@venue.images.logo.file.url(:small)),
+                          @venue.images.logo.file.url,
+                          :class => 'popup_img',
+                          :id => 'venue_logo_image'
+                        %>
+                    <% end %>
+                    <%= hidden_field_tag 'venue[image_ids][]', ((f.object.images.logo.nil?) ? '' : f.object.images.logo.id), :id => 'venue_logo_image_id' %>
+                    <br/>
+                </dt>
+                <dd>
+                    <%= text_field_tag :logo_image_name, {}, :class => 'search', :placeholder => "search images" %>
+                    <em>or</em>
+                    <button class="form-btn popup" href="<%= new_venue_manager_image_path('image[kind]' => Image::KINDS[:logo]) -%>">upload new image</button>
+                </dd>
+            </dl>
+        </fieldset>
+        
+        <div class="buttons">
+            <button class="orange"><%= t(:button_save_changes) %></button>
+            <button class="gray">cancel</button>
+        </div>
+    </section>
+    <% end %>
+    <div class="decoration"></div>
+</div>
+<% end %>
+
+<script id="venue_image_tmpl" type="text/x-jquery-tmpl">
+  <a href="${image_original_url}" class="popup_img" id="${image_id}"><img src="${image_url}"></a>
+</script>
+
+<script>
+  function notifyImageAdded(image_obj, urls_obj){
+  	var image = eval(image_obj);
+  	var urls = eval(urls_obj);
+  	if(image['image']['kind'] == '<%= Image::KINDS[:default] -%>'){
+      var image_for_template = { 'image_id':'venue_default_image', 'image_url': urls['small_url'], 'image_original_url': urls['original_url'] };
+      $("#venue_image_tmpl").tmpl( image_for_template ).replaceAll("#venue_default_image");
+  		$('#venue_default_image_id').val(image['image']['id']);
+  	}else if(image['image']['kind'] == '<%= Image::KINDS[:logo] -%>'){
+      var image_for_template = { 'image_id':'venue_logo_image', 'image_url': urls['small_url'], 'image_original_url': urls['original_url'] };
+      $("#venue_image_tmpl").tmpl( image_for_template ).replaceAll("#venue_logo_image");
+    	$('#venue_logo_image_id').val(image['image']['id']);
+    }
+    init_popup_img();
+  }
+  $(document).ready(function(){
+    $('#default_image_name').autocomplete({
+				url: '/venue/images/autocomplete.json',
+				minChars: 1,
+				remoteDataType: 'json',
+				extraParams: {'kind':'default'},
+				showResult: function(value, data) {
+				   return '<img src="'+data.urls['micro_url']+'" /> ' + value;
+				},
+				onItemSelect: function(item) {
+					notifyImageAdded(item.data.image, item.data.urls);
+					$('#default_image_name').val('');
+				}
+				});
+    $('#logo_image_name').autocomplete({
+				url: '/venue/images/autocomplete.json',
+				minChars: 1,
+				remoteDataType: 'json',
+				extraParams: {'kind':'logo'},
+				showResult: function(value, data) {
+				   return '<img src="'+data.urls['micro_url']+'" /> ' + value;
+				},
+				onItemSelect: function(item) {
+					notifyImageAdded(item.data.image, item.data.urls);
+					$('#venue_logo_image').val('');
+				}
+				});
+  });
+</script>

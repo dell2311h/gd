@@ -1,0 +1,11 @@
+<header>get there</header>
+<div class="get-there">
+    <h4><%= venue.name %></h4>
+    <address>
+        <span><%= venue.try(:address) %></span>
+        <span><%= "#{venue.city_name}, #{venue.region_code} #{venue.postalcode}" %></span>
+    </address>
+    <%= link_to 'get directions', venue.get_googlemap_url, :target => :new %>
+    <span class="tel"><%= venue.phone %></span>
+    <%= link_to venue.url %>
+</div>

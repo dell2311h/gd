@@ -1,0 +1,2 @@
+module Backend::NotesHelper
+end

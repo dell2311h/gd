@@ -1,0 +1,24 @@
+</header>
+<section class="popup-form">
+	<section class="popup-form-parts">
+	    <fieldset class="displayInline marg">
+	        <label>first name</label>
+			<%= f.text_field :first_name %>
+	    </fieldset>
+	    <fieldset class="displayInline marg">
+	        <label class="orange">last name</label>
+	        <%= f.text_field :last_name %>
+	    </fieldset>
+		<fieldset class="displayInline marg">
+	        <label>title</label>
+	        <%= f.text_field :title %>
+	  </fieldset>
+	  <fieldset class="displayInline marg">
+	        <label>affiliation</label>
+	        <%= f.text_field :affiliation %>
+	  </fieldset>
+	</section>
+</section>
+<script>
+	$(document).ready(function(){ resizePopupToContents(); });
+</script>

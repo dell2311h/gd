@@ -1,0 +1,16 @@
+<%= form_for @curator, :url => venue_manager_curators_path, :html => { :class => 'popup popup-small' } do |f|%>
+	<%= link_to_function '', 'parent.$.fn.colorbox.close()', :class => 'close-btn' %>
+    <header>
+	    <hgroup class="left">
+	        <h1>New curator</h1>
+	        <h2>(required fields in orange)</h2>
+	    </hgroup>
+	    
+		<%= render :partial => 'form', :locals => { :f => f } %>
+
+	</section>
+	<footer>
+	    <button class="save">save</button>
+	    <button class="cancel" onclick="parent.$.fn.colorbox.close();return false;">cancel</button>
+	</footer>
+<% end %>

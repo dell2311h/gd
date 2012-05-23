@@ -1,0 +1,919 @@
+@import "fonts.css";
+*{
+    margin:0;
+    padding:0;
+    outline:none;
+}
+
+html{
+    height:100%;
+}
+body{
+    height:100%;
+    min-height:100%;
+    background-color:#e6e6dc;
+    color:#5d5d5d;
+    font-size:12px;
+    font-family:"Helvetica Neue", Arial, sans-serif;
+}
+section.wrapper{
+    width:980px;
+    margin:0 auto;
+}
+section.wrapper>header{
+    height:105px;
+    position:relative;
+    z-index:20;
+}
+section.wrapper>header h1{
+    height:inherit;
+    position:relative;
+}
+section.wrapper>header h1 a{
+    position:relative;
+    left:-60px;
+    display:block;
+    width:311px;
+    height:114px;
+    background-color:#000;
+    text-indent:-8000px;
+    background:url(../images/logo.png) no-repeat center center;
+}
+section.content{
+    background-color:#fff;
+    border-radius:10px;
+    padding:22px 35px;
+}
+section.content>header{
+    position: relative;
+    overflow:hidden;
+    margin-bottom:28px;
+}
+section.content>header div.search-box{
+    height:30px;
+    width:276px;
+    padding:0 15px;
+    border:1px solid #dfdfdf;
+    border-radius:3px;
+    background-color:#fcfcfc;
+    float:left;
+}
+section.content>header div.search-box button{
+    width:25px;
+    height:30px;
+    vertical-align:middle;
+    border:none;
+    background:transparent url(../images/icons.png) no-repeat 0 -7px;
+}
+
+section.content>header div.search-box input[type="text"]{
+    width:245px;
+    height:30px;
+    border:none;
+    background-color:transparent;
+    vertical-align:middle;
+}
+section.content>header nav{
+    float:right;
+    height:30px;
+    line-height:30px;
+}
+section.content>header nav ul{}
+section.content>header nav>ul>li{
+    list-style:none;
+    display:inline-block;
+    line-height:30px;
+    text-transform: uppercase;
+    font-size:13px;
+    margin-left:30px;
+}
+section.content>header nav>ul>li>a{
+    display:block;
+    padding:0px 23px 0 17px;
+    background:transparent url(../images/icons.png) no-repeat right -74px;
+    height:30px;
+    line-height:30px;
+    text-transform: uppercase;
+    font-size:13px;
+    text-decoration:none;
+    color:#5d5d5d;
+}
+section.content>header nav>ul>li>div{
+    display:none;
+}
+section.manager{}
+section.manager>hgroup h1{
+    line-height:40px;
+    font-size:22px;
+    font-weight:normal;
+    vertical-align:middle;
+    margin-bottom:20px;
+}
+section.manager div.manager-content{
+    position:relative;
+    overflow:hidden;
+}
+
+section.manager div.manager-content>nav{
+    float:left;
+    width:200px;
+}
+
+section.manager div.manager-content>nav ul{
+    border:1px solid #e1e0e0;
+    border-radius:3px;
+    margin-top:75px;
+}
+
+section.manager div.manager-content>nav ul li:last-child{
+    border:none;
+}
+section.manager div.manager-content>nav ul li{
+    list-style:none;
+    height:31px;
+    line-height:31px;
+    background-color:#f9f8f6;
+    background-image:-moz-linear-gradient(-70deg, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background-image:-webkit-gradient(linear, left top, right bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
+    border-bottom:1px solid #e1e0e0;
+    padding:0 15px;
+}
+section.manager div.manager-content>nav ul li.active{
+    background:none;
+    background-color:#ffb540;
+}
+section.manager div.manager-content>nav ul li a{
+    color:#5d5d5d;
+    font-size:13px;
+    text-decoration:none;
+}
+section.manager div.manager-content>nav ul li.active a{
+    color:#fff;
+}
+section.manager div.manager-content>nav ul li.last{
+    border:none;
+}
+section.manager div.manager-content>div{
+    float:right;
+    width:695px;
+}
+
+section.manager div.manager-content>div>header{
+    min-height:37px;
+    border:1px solid #ffb03a;
+    border-radius:5px 5px 0 0;
+    background-image:-moz-linear-gradient(center top, #ffb951, #ffbb4a);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#ffb951), to(#ffbb4a));
+    padding:0 15px;
+}
+
+section.manager div.manager-content>div>header h2{
+    color:#fff;
+    font-size:18px;
+    font-weight:normal;
+    line-height:37px;
+}
+section.manager div.manager-content>div ul.tags{
+    border-left:1px solid #e1e1e1;
+    border-right:1px solid #e1e1e1;
+    background-image:-moz-linear-gradient(center top, #fdfcfc, #f4f3ef);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#fdfcfc), to(#f4f3ef));
+    height:35px;
+}
+section.manager div.manager-content>div ul.tags li{
+    display:table-cell;
+    list-style:none;
+    text-align:center;
+    vertical-align:middle;
+    padding-right:1px;
+    background-image:-moz-linear-gradient(center top, #e4e3e3, #f0efeb);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e4e3e3), to(#f0efeb));
+    background-size:1px 100%;
+    background-repeat:no-repeat;
+    background-position:right top;
+    height:35px;
+    width:400px;
+}
+section.manager div.manager-content>div ul.tags li.active{
+    background:
+        -webkit-gradient(linear, 0 0, 0 100%, from(#e4e3e3), to(#f0efeb)) right 0 no-repeat,
+        -webkit-gradient(linear, 0 0, 0 100%, from(#d9d4d2), to(#f4f2ee)) left 0 no-repeat;
+    background:
+        -moz-linear-gradient(#e4e3e3, #f0efeb) right 0 no-repeat,
+        -moz-linear-gradient(#d9d4d2, #f4f2ee) left 0 no-repeat;
+    background-size:1px 100%, 100%;
+    font-weight:bold;
+}
+
+section.manager div.manager-content>div ul.tags li:last-child{
+    background-image:none;
+}
+section.manager div.manager-content>div ul.tags li a{
+    text-align:left;
+    display:block;
+    padding:5px 12px;
+    color:#a7a7a7;
+    line-height:12px;
+    text-decoration:none;
+}
+section.manager div.manager-content>div section.selected-tegs{
+    padding:15px;
+    border-left:1px solid #e1e1e1;
+    border-right:1px solid #e1e1e1;
+    position:relative;
+    overflow:hidden;
+}
+section.manager div.manager-content>div section.selected-tegs div.tags{
+    float:left;
+    width:450px;
+}
+section.manager div.manager-content>div section.selected-tegs div.tags ul{
+
+}
+section.manager div.manager-content>div section.selected-tegs div.tags ul li{
+    list-style:none;
+    display:inline-block;
+    font-size:13px;
+}
+
+section.wrapper>footer nav a,
+section.manager-content-table a,
+section.manager div.manager-content>div section.selected-tegs div.tags a{
+    font-size:12px;
+    color:#2fb1e7;
+}
+
+section.manager div.manager-content>div section.selected-tegs div.search-box{
+    height:19px;
+    width:165px;
+    padding:0 0 0 10px;
+    border:1px solid #dfdfdf;
+    border-radius:2px;
+    background-color:#fcfcfc;
+    float:right;
+}
+
+/* New style for search box - ...issues/58 */
+section.manager div.manager-content>div div.search-box button{
+    width:18px;
+    height:19px;
+    vertical-align:middle;
+    border:none;
+    background:transparent url(../images/icons.png) no-repeat 0 -48px;
+}
+
+section.manager div.manager-content>div section.selected-tegs div.search-box button{
+    width:18px;
+    height:19px;
+    vertical-align:middle;
+    border:none;
+    background:transparent url(../images/icons.png) no-repeat 0 -48px;
+}
+
+section.manager div.manager-content>div section.selected-tegs div.search-box input[type="text"]{
+    width:140px;
+    height:19px;
+    border:none;
+    background-color:transparent;
+    vertical-align:middle;
+}
+section.manager-content-table{
+    border-left:1px solid #e1e1e1;
+    border-right:1px solid #e1e1e1;
+}
+section.manager-content-table header{
+    width:100%;
+}
+section.manager-content-table section.cont ul,
+section.manager-content-table header ul{
+    width:100%;
+    display:table;
+    height:50px;
+    background-color:#EBDDE2;
+}
+
+section.manager-content-table section.cont ul{
+    background:none;
+}
+section.manager-content-table section.cont ul li,
+section.manager-content-table header ul li{
+    list-style:none;
+    display:table-cell;
+    vertical-align:middle;
+    padding:5px 0;
+}
+section.manager-content-table section.cont ul li.firstCol,
+section.manager-content-table header ul li.firstCol{
+    width:50px;
+    text-align:center;
+}
+section.manager-content-table section.cont ul li.secondCol,
+section.manager-content-table header ul li.secondCol{
+    width:124px;
+    border-left:1px dashed #e1e1e1;
+    border-right:1px dashed #e1e1e1;
+    text-align:center;
+}
+
+section.manager-content-table header ul li.thirdCol{
+    padding-left:100px;
+}
+section.manager-content-table section.cont ul li.thirdCol{
+    padding-left:10px;
+    position:relative;
+    overflow: hidden;
+}
+section.manager-content-table section.cont ul li.thirdCol>span{
+    display:inline-block;
+    vertical-align:middle;
+}
+section.manager-content-table section.cont ul li.thirdCol>span.description{
+    margin-left:10px;
+}
+section.manager-content-table section.cont ul li.thirdCol>span.addImages{
+    width:243px;
+    padding:0 10px;
+    text-align:right;
+    vertical-align:middle;
+}
+section.manager-content-table section.cont ul li.thirdCol>span.addImages a.addImageIcon{
+    vertical-align:middle;
+    display:inline-block;
+    line-height:20px;
+    background:transparent url(../images/icons.png) no-repeat 0 -101px;
+    padding-left:25px;
+}
+section.manager-content-table section.cont ul li.thirdCol>span.addImages a.addImageIcon.notfull{
+    width:0px;
+    height:20px;
+}
+
+section.manager-content-table section.cont ul li.thirdCol>span.addImages span{
+    vertical-align:middle;
+    display:inline-block;
+    max-width:175px;
+}
+
+section.manager-content-table section.cont{
+    height:500px;
+    min-height:250px;
+    overflow:auto;
+}
+
+section.manager-content-table section.cont ul:nth-child(even){
+    background-color:#f3fbfb;
+}
+section.manager-content-table footer{
+    height:25px;
+    padding:10px 15px;
+    background-color:#f5f5f4;
+    position:relative;
+}
+
+section.manager-content-table footer button{
+    display:inline-block;
+    background-image:-moz-linear-gradient(center top, #f7f6f5, #e3e2e1);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#f7f6f5), to(#e3e2e1));
+    border: 1px solid #d9d9d9;
+    border-radius: 3px 3px 3px 3px;
+    height: 25px;
+    width: 130px;
+    color:#5d5d5d;
+}
+section.collendar-content section.events-list footer,
+div.decoration{
+    background-image:-moz-linear-gradient(center top, #f5f2ef, #e9e4dc);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#f5f2ef), to(#e9e4dc));
+    border-radius: 0px 0px 3px 3px;
+    border:1px solid #eeeae4;
+    height:5px;
+}
+
+section.manager-content-table a.icon{
+    text-indent:-8000px;
+    display:inline-block;
+    width:22px;
+    height:18px;
+    background: transparent url(../images/icons.png) no-repeat;
+}
+section.manager-content-table a.icon.showIcon{
+    background-position:4px -48px;
+}
+section.manager-content-table a.icon.editIcon{
+    background-position:4px -209px;
+}
+section.manager-content-table a.icon.mailIcon{
+    background-position:3px -176px;
+}
+section.manager-content-table a.icon.deleteIcon{
+    background-position:5px -140px;
+}
+
+
+section.wrapper>footer{
+    height:70px;
+    line-height:70px;
+}
+section.wrapper>footer nav{
+    text-align:center;
+    vertical-align:middle;
+}
+section.wrapper>footer nav ul{
+    display:inline-block;
+}
+
+section.wrapper>footer nav ul li{
+    display:inline-block;
+    margin:0 5px;
+    list-style:none;
+}
+
+section.wrapper nav.subMenu{
+    overflow:hidden;
+    position:relative;
+    border-bottom:1px solid #e7e7e7;
+}
+
+section.wrapper nav.subMenu ul{
+    padding-bottom:5px;
+}
+
+section.wrapper nav.subMenu ul.left{
+    float:left;
+}
+
+section.wrapper nav.subMenu div.right{
+    float:right;
+}
+
+section.wrapper nav.subMenu ul li{
+    display:inline-block;
+    list-style:none;
+    line-height:14px;
+    border-right:1px solid #5d5d5d;
+    padding:0 5px;
+}
+
+section.wrapper nav.subMenu ul li a{
+    font-size:13px;
+    line-height:14px;
+    text-decoration:none;
+    color:#5d5d5d;
+}
+
+section.wrapper nav.subMenu ul li.active{
+    border-right:1px solid #00b4ff;
+}
+section.wrapper nav.subMenu div.right a,
+section.wrapper nav.subMenu ul li.active a{
+    color:#00b4ff;
+}
+
+section.wrapper nav.subMenu ul li:first-child{
+    padding-left:0px;
+}
+
+section.wrapper nav.subMenu ul li:last-child{
+    border:none;
+}
+
+section.wrapper section.collendar-content{
+    padding-top:33px;
+    overflow:hidden;
+    position:relative;
+}
+
+section.collendar-content section.events-list{
+    width:455px;
+    float:left;
+}
+
+section.collendar-content section.events-list>header{
+    position:relative;
+    overflow:hidden;
+    min-height:34px;
+    border:1px solid #ffb03a;
+    border-radius:5px 5px 0 0;
+    background-image:-moz-linear-gradient(center top, #ffb951, #ffbb4a);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#ffb951), to(#ffbb4a));
+    padding:0 15px;
+}
+
+section.collendar-content section.events-list>header h2{
+    float:left;
+    color:#fff;
+    font-size:15px;
+    font-weight:normal;
+    line-height:34px;
+}
+
+section.collendar-content section.events-list>header div.event-type{
+    float:right;
+    margin-top:5px;
+}
+
+section.collendar-content section.events-list>header div.event-type div.combobox{
+    width:125px;
+    height:20px;
+    line-height:19px;
+    background: #FCFCFC url(../images/icons.png) no-repeat right -78px;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px;
+    text-align:center;
+}
+
+section.collendar-content section.events-list dl{
+    height:510px;
+    border-left:1px solid #e1e1e1;
+    border-right:1px solid #e1e1e1;
+    overflow:auto;
+}
+
+section.collendar-content section.events-list dl dt{
+    height:33px;
+    background-color:#eeeae4;
+    font-size:13px;
+    line-height:33px;
+    font-weight:bolder;
+    color:#9b9790;
+    padding:0 5px 0 15px;
+}
+
+section.collendar-content section.events-list dl dd{
+    overflow:hidden;
+    position:relative;
+    padding:10px 5px 10px 15px;
+}
+
+section.collendar-content section.events-list dl dd div.left{
+    float:left;
+}
+
+section.collendar-content section.events-list dl dd div.right{
+    float:right;
+    text-align:right;
+}
+
+section.collendar-content section.events-list dl dd div a,
+section.collendar-content section.events-list dl dd div>span{
+    display:block;
+}
+
+section.collendar-content section.events-list dl dd div.right>span{
+    float:left;
+}
+
+section.collendar-content section.events-list dl dd div.right>.image{
+    float:right;
+    display:block;
+    margin-left:5px;
+    width:42px;
+}
+
+section.collendar-content section.events-list dl dd div a{
+    color:#00B4FF;
+}
+
+section.collendar-content section.events-list dl dd.separatar{
+    border-bottom:1px dashed #e1e1e1;
+}
+
+section.collendar-content section.events-description{
+    float:right;
+    width:385px;
+}
+
+section.collendar-content section.events-description div.map{
+    width:385px;
+    height:245px;
+}
+
+section.collendar-content section.events-description div.get-directions{
+    text-align:right;
+    line-height:30px;
+    height:30px;
+}
+
+section.collendar-content section.events-description a{
+    color:#009ee0;
+}
+
+section.collendar-content section.events-description dl{
+    margin-top:20px;
+    position:relative;
+    overflow:hidden;
+}
+
+section.collendar-content section.events-description dl dt{
+    float:left;
+    width:125px;
+    height:125px;
+}
+
+section.collendar-content section.events-description dl dd{
+    float:right;
+    width:225px;
+}
+
+section.collendar-content section.events-description dl dd h3{
+    font-size:14px;
+    font-weight:normal
+}
+
+section.collendar-content section.events-description dl dd span{
+    display:block;
+}
+section.collendar-content section.events-description dl dd>span{
+    padding:10px 0;
+}
+section.collendar-content section.events-description dl dd span.cal{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:0;
+}
+
+section.collendar-content section.events-description dl dd span.cal>span{
+    float:left;
+}
+
+section.collendar-content section.events-description dl dd span.cal a{
+    float:left;
+    width:19px;
+    height:22px;
+    background:url("../images/cal.png") no-repeat center center;
+    margin-left:10px;
+}
+
+section.collendar-content section.events-description div.decoration-text{
+    padding:10px 0 0;
+}
+section.collendar-content section.events-description ul.social-links{
+
+}
+section.collendar-content section.events-description ul.social-links li{
+    list-style:none;
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:10px;
+}
+
+.dropdown-menu{
+    position:absolute;
+    z-index:200;
+    display:none;
+}
+.dropdown-menu>a{
+    display:block;
+    background:#f9f9f9 url("../images/icons.png") no-repeat scroll right -70px;
+    border: 1px solid #e1e1e1;
+    border-bottom:none;
+    border-radius: 5px 5px 0 0;
+    min-height: 41px;
+    line-height:37px;
+    padding: 0 23px 0 17px;
+    color: #5D5D5D;
+    font-size: 13px;
+    text-decoration: none;
+    text-transform: uppercase;
+    position:relative;
+    z-index:2;
+}
+.dropdown-menu>div ul{
+    list-style:none;
+    text-align:right;
+    position:absolute;
+    right:0;
+}
+.dropdown-menu>div ul li{
+    line-height:24px;
+    white-space: nowrap;
+}
+.dropdown-menu>div ul li.active,
+.dropdown-menu>div ul li:hover{
+    background:transparent url('../images/dropdown_item_hover.png') no-repeat left center;
+}
+.dropdown-menu>div ul li a{
+    display:block;
+    font-size:13px;
+    color:#5d5d5d;
+    text-decoration:none;
+    min-width:100px;
+    line-height:24px;
+    padding:0 24px;
+    white-space: nowrap;
+}
+.dropdown-menu>div>ul ul{
+    display:none;
+    border-right:1px solid #e1e1e1;
+}
+.dropdown-menu>div{
+    position:absolute;
+    z-index:1;
+    background-color:#f9f9f9;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px 0 5px 5px;
+    top:41px;
+    right:0px;
+    padding:15px 0;
+}
+
+/*login box*/
+section.login{
+    position:absolute;
+    top:0;
+    right:0;
+    width:590px;
+    height:46px;
+    background-color:#f9f9f9;
+    border: 1px solid #e1e1e1;
+    border-top:none;
+    border-radius: 0 0 10px 10px;
+    padding:20px;
+    text-align:center;
+}
+section.login>span{
+    display:inline-block;
+    vertical-align:top;
+}
+section.login button{
+    width:67px;
+    height:30px;
+    color:#fff;
+    background-image:-moz-linear-gradient(center top, #f7c465, #f3ad42);
+    background-image:-webkit-gradient(linear, left top, left bottom, from(#f7c465), to(#f3ad42));
+    border: 1px solid #f4b146;
+    border-radius: 3px;
+}
+section.login span.login-in-as{
+    font-size:12px;
+    line-height:19px;
+    margin-right:7px;
+}
+section.login>span span.login-box-item{
+    display:block;
+    text-align:left;
+    margin-bottom:5px;
+}
+section.login>span span.login-box-item a{
+    color:#00B4FF;
+    font-size:12px;
+    line-height:20px;
+}
+
+section.login>span span.login-box-item a.register{
+    margin-right:33px;
+    margin-left:5px;
+}
+
+section.login>span span.login-box-item label{
+    vertical-align:middle;
+    margin-right:68px;
+}
+section.login>span span.login-box-item label input{
+    vertical-align:middle;
+    margin-right:5px;
+}
+section.login>span span.login-box-item select.combobox{
+    width:85px;
+    margin-right:7px;
+    vertical-align:middle;
+}
+section.login>span span.login-box-item input[type="text"],
+section.login>span span.login-box-item input[type="password"]{
+    background-color: #FCFCFC;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px;
+    height: 19px;
+    padding:0 10px;
+    line-height:19px;
+    font-size:12px;
+    color:#5d5d5d;
+    width:135px;
+    vertical-align:middle;
+    margin-right:7px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+section.logged{
+    position:absolute;
+    top:0;
+    right:0;
+    width:590px;
+    height:46px;
+    border-top:none;
+    border-radius: 0 0 10px 10px;
+    padding:20px;
+    text-align:right;
+}
+
+section.logged > span {
+    padding-top: 15px;
+    padding-right: 20px;
+    display:inline-block;
+    vertical-align:top;
+}
+
+section.logged > span > a {
+    font-size:12px;
+    color:#2fb1e7;
+}
+span.field_with_errors input, span.field_with_errors textarea, span.field_with_errors select {
+    border-color: #ff0000 !important;
+}
+span.field_with_errors input[type=file] {
+    border: 1px solid #ff0000 !important;
+    border-radius: 3px;
+}
+
+
+section.manager-content-table section.cont ul li.artistsControlsCol,
+section.manager-content-table header ul li.artistsControlsCol{
+    width:80px;
+    text-align:center;
+}
+section.manager-content-table section.cont ul li.artistsNameCol,
+section.manager-content-table header ul li.artistsNameCol{
+    width:184px;
+    border-left:1px dashed #e1e1e1;
+    text-align:center;
+}
+section.manager-content-table section.cont ul li.artistsDateCol,
+section.manager-content-table header ul li.artistsDateCol{
+    width:120px;
+    border-left:1px dashed #e1e1e1;
+    text-align:center;
+}
+section.manager-content-table section.cont ul li.artistsLocCol,
+section.manager-content-table header ul li.artistsLocCol{
+    width:120px;
+    border-left:1px dashed #e1e1e1;
+    border-right:1px dashed #e1e1e1;
+    text-align:center;
+}
+
+section.manager-content-table header ul li.artistsLoc2Col{
+    text-align:center;
+}
+section.manager-content-table section.cont ul li.artistsLoc2Col{
+    position:relative;
+    overflow: hidden;
+    text-align:center;
+}
+
+
+
+
+
+
+
+section.manager-content-table section.cont ul li.curatorsControlsCol,
+section.manager-content-table header ul li.curatorsControlsCol{
+    width:80px;
+    text-align:center;
+}
+section.manager-content-table section.cont ul li.curatorsNameCol,
+section.manager-content-table header ul li.curatorsNameCol{
+    width:304px;
+    border-left:1px dashed #e1e1e1;
+    text-align:center;
+}
+section.manager-content-table section.cont ul li.curatorsTitleCol,
+section.manager-content-table header ul li.curatorsTitleCol{
+    width:120px;
+    border-left:1px dashed #e1e1e1;
+    border-right:1px dashed #e1e1e1;
+    text-align:center;
+}
+
+section.manager-content-table header ul li.curatorsAffiliationCol{
+    text-align:center;
+}
+section.manager-content-table section.cont ul li.curatorsAffiliationCol{
+    position:relative;
+    overflow: hidden;
+    text-align:center;
+}
+
+.double-word-spacing {
+    word-spacing: 8px;
+}

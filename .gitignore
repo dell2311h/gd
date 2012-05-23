@@ -1,0 +1,11 @@
+.bundle
+.DS_Store
+db/*.sqlite3
+db/sphinx
+log/*
+tmp/
+public/system
+config/database*
+config/*sphinx*
+db/schema*
+

@@ -1,0 +1,18 @@
+<nav class="subMenu">
+  <ul class="left">
+    <li class="active"><%= link_to "all 'hoods", region_path(groupitem.fourth) -%></a></li>
+    <% groupitem.first.map { |s| [s.venue.neighbourhood.try(:name), s.venue.neighbourhood.id] }.uniq.map do |item| %>
+			<li>
+				<% if item.second.to_s == params[:neighbourhood] %>    
+      		<h4><%= h(item.first) %></h4>
+      	<% else %>
+      		<%= link_to h(item.first), neighbourhood_path(item.second) %>
+      	<% end %>
+      </li>
+    <% end %>
+  </ul>
+  <div class="right">
+    <%# no events_calendar_url  %>
+    <%= link_to "events calendar", :url => 'events_calendar_url' %>
+  </div>
+</nav>

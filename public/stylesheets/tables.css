@@ -1,0 +1,74 @@
+/* exhibitions */
+section.manager-content-table section.cont ul li {padding:0 4px;}
+section.manager-content-table header ul li {padding:0 4px;}
+
+section.manager-content-table section.cont ul li.exhibitionsFirstCol,
+section.manager-content-table header ul li.exhibitionsFirstCol{
+    width:80px;
+    text-align:left;
+}
+
+section.manager-content-table section.cont ul li.exhibitionsTACol,
+section.manager-content-table header ul li.exhibitionsTACol{
+    width:142px;
+    border-left:1px dashed #FDEEF4;
+    text-align:left;
+}
+
+section.manager-content-table section.cont ul li.exhibitionsDatesCol,
+section.manager-content-table header ul li.exhibitionsDatesCol{
+    width:80px;
+    border-left:1px dashed #FDEEF4;
+    text-align:left;
+}
+
+section.manager-content-table section.cont ul li.exhibitionsLAgentCol,
+section.manager-content-table header ul li.exhibitionsLAgentCol{
+    width:125px;
+    border-left:1px dashed #FDEEF4;
+    text-align:left;
+}
+
+section.manager-content-table header ul li.exhibitionsModifiedCol,
+section.manager-content-table section.cont ul li.exhibitionsModifiedCol{
+	  max-width:100px;
+		border-left:1px dashed #FDEEF4;
+		text-align:left;
+}
+/* exhibitions */
+
+/* events */
+section.manager-content-table section.cont ul li.eventsFirstCol,
+section.manager-content-table header ul li.eventsFirstCol{
+    width:80px;
+    text-align:left;
+}
+
+section.manager-content-table section.cont ul li.eventsTACol,
+section.manager-content-table header ul li.eventsTACol{
+    width:142px;
+    border-left:1px dashed #FDEEF4;
+    text-align:left;
+}
+
+section.manager-content-table section.cont ul li.eventsDatesCol,
+section.manager-content-table header ul li.eventsDatesCol{
+    width:80px;
+    border-left:1px dashed #FDEEF4;
+    text-align:left;
+}
+
+section.manager-content-table section.cont ul li.eventsLAgentCol,
+section.manager-content-table header ul li.eventsLAgentCol{
+    width:125px;
+    border-left:1px dashed #FDEEF4;
+    text-align:left;
+}
+
+section.manager-content-table header ul li.eventsModifiedCol,
+section.manager-content-table section.cont ul li.eventsModifiedCol{
+	  max-width:100px;
+		border-left:1px dashed #FDEEF4;
+		text-align:left;
+}
+/* events */

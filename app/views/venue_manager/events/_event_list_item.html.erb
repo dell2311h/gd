@@ -1,0 +1,31 @@
+<ul>
+  <li class="eventsFirstCol">
+    <%= link_to '', venue_event_path(event_list_item.venue_id,event_list_item), :class => 'big-popup icon showIcon' %>
+    <%= link_to '', edit_venue_manager_event_path(event_list_item), :class => 'popup icon editIcon' %>
+  </li>
+  <li class="eventsTACol">
+    <%= event_list_item.title %>
+  </li>
+  <li class="eventsTACol">
+    <%= event_list_item.exhibition.title rescue '' %>
+  </li>
+  <li class="eventsDatesCol">
+    O: <%= event_list_item.start_date.strftime('%m/%d/%y') -%><br />
+    C: <%= event_list_item.end_date.strftime('%m/%d/%y') -%>
+  </li>
+  <li class="eventsLAgentCol">
+    <% if event_list_item.listing_agent_enabled %>
+      <% if event_list_item.listing_agent_completed %>
+        completed at <%= event_list_item.listing_agent_completed_at.strftime('%m/%d/%y') %>
+      <% else %>
+        in progress
+      <% end %>
+    <% else %>
+      Enable listing agent
+    <% end %>
+  </li>
+  <li class="eventsModifiedCol">
+    <%= event_list_item.updated_at.strftime('%m/%d/%y') -%><br/>
+    <%= event_list_item.updated_at.strftime('%-I:%M %p') -%>
+  </li>
+</ul>

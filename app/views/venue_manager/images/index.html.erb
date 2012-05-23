@@ -1,0 +1,97 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :images} do %>
+<div>
+    <%= render :partial => 'venue_manager/shared/images_press_releases_menu'%>
+    <section class="selected-tegs">
+        <div class="tags">
+            <ul>
+                <li>
+                  <%=
+                    case params[:filter]
+                      when Image::KINDS[:attachment_art] : 'art'
+                      when Image::KINDS[:attachment_installation] : 'installation views'
+                      when Image::KINDS[:attachment_reception] : 'reception parties'
+                      when Image::KINDS[:attachment_other] : 'other images'
+                      when Image::KINDS[:publication_pdf] : 'press releases'
+                      else 'all files'
+                    end
+                  %>
+                </li>
+            </ul>
+            <% unless params[:filter].blank? %>
+            <%= link_to "add#{(params[:filter] == 'publication_pdf') ? ' pdf' : ''}", new_venue_manager_image_path('image[kind]'=> params[:filter]), :class => 'popup' %>
+            <% end %>
+        </div>
+        <div class="search-box">
+            <form>
+              <input type="hidden" name="filter" value="<%= params[:filter] -%>">
+              <%= text_field_tag "search", params[:search], :placeholder => search_text_by_kind(params[:filter]) %>
+              <button class="search orange"></button>
+            </form>
+        </div>
+    </section>
+    <section class="manager-content-table">
+        <header>
+            <ul>
+                <li class="firstCol"><input type="checkbox"></li>
+                <li class="secondCol"></li>
+                <li class="thirdCol">sort by lastname | <a href="">filename</a> | <a href="">title</a> | <a href="">date</a></li>
+            </ul>
+        </header>
+        <section id="image_container" class="cont">
+            <%= render :partial => 'image_index_list_item', :collection => @images %>
+        </section>
+        <!-- <footer>
+            <button>save album as...</button>
+        </footer> -->
+    </section>
+    <div class="decoration"></div>
+</div>
+
+<script id="image_template" type="text/x-jquery-tmpl">
+  <ul id="image_${id}">
+      <li class="firstCol"><input type="checkbox"></li>
+      <li class="secondCol">
+          <a href="/venue/images/${id}/edit" class="popup icon editIcon cboxElement">edit</a>
+          <a href="" class="icon mailIcon">mail</a>
+          <a href="/venue/images/${id}" class="icon deleteIcon" data-confirm="Are you sure you want to delete this image?" data-method="delete" data-remote="true" rel="nofollow">delete</a>
+      </li>
+      <li class="thirdCol">
+          <span>
+            <a href="${image_original_url}" class="popup_img" title="${title}">
+              <img alt="${file_name}" src="${image_url}">
+            </a>
+          </span>
+          <span class="description">${file_name} | ${updated_at}</span>
+          <span class="addImages">
+              <!-- <a href="" class="addImageIcon notfull"></a>
+              <span>
+                  <img src="/images/testImage.png">
+                  <img src="/images/testImage.png">
+                  <img src="/images/testImage.png">
+                  <img src="/images/testImage.png">
+              </span>-->
+          </span>
+      </li>
+  </ul>
+</script>
+
+<script>
+  function notifyImageAdded(image_obj, urls_obj){
+		var image = eval(image_obj);
+		var urls = eval(urls_obj);
+		var image_for_template = { 'id': image['image']['id'], 'image_url': urls['smaller_url'], 'file_name': image['image']['file_file_name'] };
+		$("#image_template").tmpl( image_for_template ).appendTo("#image_container");
+		// fix for the case when user uploaded an image and cannot edit it
+		notifyImageChanged(image_obj, urls_obj);
+		$('#image_'+image['image']['id']+' a.popup').colorbox({scroll: false, iframe:true, overlayClose:false});
+    init_popup_img();
+	}
+	function notifyImageChanged(image_obj, urls_obj){
+    var image = eval(image_obj);
+		var urls = eval(urls_obj);
+		var image_for_template = { 'id': image['image']['id'], 'image_url': urls['smaller_url'], 'image_original_url': urls['original_url'], 'file_name': image['image']['file_file_name'], 'updated_at': image['image']['file_updated_at'], 'title': image['image']['popup_caption'] };
+		$('#image_'+image['image']['id']).html($("#image_template").tmpl( image_for_template ).html());
+		init_popup_img();
+	}
+</script>
+<% end %>

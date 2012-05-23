@@ -1,0 +1,35 @@
+<div class="listArea">
+  <fieldset>
+    <legend>Unassigned Tasks</legend>
+
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th width="10%"><div align="left">&nbsp;Exhibition or event</div></th>
+        <th width="10%"><div align="left">&nbsp;Media services count</div></th>
+        <th width="10%"><div align="left">&nbsp;Actions</div></th>
+      </tr>
+      <% if @tasks.size > 0 %>
+        <% @tasks.each do |task| %>
+          <tr onmouseover="this.style.backgroundColor='#D9D9D9'"  onmouseout="this.style.backgroundColor='<%= cycle('#EFEFEF', '#f8f8f8') %>'" bgcolor="<%= cycle('#EFEFEF', '#f8f8f8') %>">
+            <td class="td-listing">&nbsp;
+              <%=link_to task.target.title, task_target_path(task.target), :target => '_blank' -%>
+            </td>
+            <td class="td-listing">&nbsp;
+              <%= task.media_service_count -%>
+            </td>
+            <td class="td-listing">&nbsp;
+               <%=link_to 'Assign to me', take_backend_agent_tasks_path({( task.target_type=='Exhibition' ? :exhibition_id : :event_id ) => task.target_id}), :confirm => 'This distribution task will be assigned to you. Click OK to proceed.' -%>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan = "7" height="170" align="center"  ><div class="listingmessage">No Records Found</div></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <p align="right"><font size="2" FACE="Verdana, Arial, Helvetica, sans-serif" color="black"><%= will_paginate @tasks, :inner_window =>2, :outer_window => 2 -%></font></p>
+
+  </fieldset>
+</div>

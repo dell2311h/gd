@@ -1,0 +1,141 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :info} do %>
+<div class="form">
+    <%= render :partial => 'venue_manager/shared/info_menu' %>
+    <section class="selected-tegs">
+        <div class="tags">
+            <ul>
+                <li>venue details</li>
+            </ul>
+        </div>
+        <div class="location">
+           <!-- <select>
+               <option>location</option>
+           </select>
+           <a href="">add location</a> -->
+        </div>
+    </section>
+    <section class="manager-content-table">
+        <%= form_for :venue, :url => venue_manager_info_path do |f| %>
+        <fieldset class="venue-details">
+            <div class="column">
+                <label class="strict">
+                    <span>name</span>
+                    <%= f.text_field :name, :placeholder => 'name' %>
+                </label>
+                <label class="strict">
+                    <span>country</span>
+                    <%= f.select :country_id, [['Select country', nil]].concat(@countries.collect {|p| [ p.name, p.id ] }), {}, :class => 'long' %>
+                </label>
+                <label class="strict">
+                    <span>state</span>
+                    <%= f.select :region_id, [['Select state', nil]].concat(@regions.collect {|p| [ p.name, p.id ] }), {}, :class => 'long' %>
+                    <%= image_tag 'ajax-loader-small.gif', :id => 'region_loader', :style => 'display:none;' %>
+                </label>
+                <label class="strict">
+                    <span>city</span>
+                    <%= f.select :city_id, [['Select city', nil]].concat(@cities.collect {|p| [ p.name, p.id ] }), {}, :class => 'long' %>
+                    <%= image_tag 'ajax-loader-small.gif', :id => 'city_loader', :style => 'display:none;' %>
+                </label>
+                <label class="strict">
+                    <span>neighborhood</span>
+                    <%= text_field_tag :neighbourhood_name, @venue.neighbourhood.try(:name), :class => 'search', :style => 'width:203px'  %>
+                    <%= f.hidden_field :neighbourhood_id, :id => 'neighbourhood_id' %>
+                </label>
+                <label class="strict">
+                    <span>postal code/zip</span>
+                    <%= f.text_field :postalcode, :placeholder => 'postal code/zip' %>
+                </label>
+                <label class="strict">
+                    <span>street address</span>
+                    <%= f.text_field :address, :placeholder => 'street address' %>
+                </label>
+                <label>
+                    <span>street address (line 2)</span>
+                    <%= f.text_field :address2, :placeholder => 'street address (line 2)' %>
+                </label>
+            </div>
+            <div class="column">
+                <label class="strict">
+                    <span>phone</span>
+                    <%= f.text_field :phone, :placeholder => 'phone' %>
+                </label>
+                <label>
+                    <span>url</span>
+                    <%= f.text_field :url, :placeholder => 'url' %>
+                </label>
+                <label class="strict">
+                    <span>contact email</span>
+                    <%= f.text_field :contact_email, :placeholder => 'contact email' %>
+                </label>
+                <label>
+                    <span>public transportation</span>
+                    <mark>(200 characters max)</mark>
+                    <%= f.text_field :transit, :class => 'transportation', :placeholder => "public transportation",  :onkeyup => "updateTFCount(this, 200)" %>
+                    <div class="annotation">characters remaining: <span id="venue_transit_count">200</span></div>
+                </label>
+            </div>
+        </fieldset>
+        
+        <div class="buttons">
+            <button class="orange"><%= t(:button_save_changes) %></button>
+            <button class="gray">cancel</button>
+        </div>
+        <% end %>
+    </section>
+    <div class="decoration"></div>
+</div>
+<% end %>
+<script>
+  $(document).ready(function(){
+    $('select#venue_country_id').change(function(){
+      $('select#venue_country_id, select#venue_region_id, select#venue_city_id').attr('disabled', 'disabled');
+      var country_id = $(this).find('option:selected').val();
+      $('#region_loader').show();
+      $.getJSON(
+        '/venue_manager/get_states?country_id='+country_id,
+        function(response) {
+          $('select#venue_region_id option').remove();
+          $.each(response, function(idx, obj){ $('select#venue_region_id').append('<option value="'+obj.value+'">'+obj.name+'</option>'); });
+          $('select#venue_country_id, select#venue_region_id, select#venue_city_id').removeAttr('disabled');
+          $('#region_loader').hide();
+        }
+      );
+    });
+    $('select#venue_region_id').change(function(){
+      var region_id = $(this).find('option:selected').val();
+      $('select#venue_region_id, select#venue_city_id').attr('disabled', 'disabled');
+      $('#city_loader').show();
+      $.getJSON(
+        '/venue_manager/get_cities?region_id='+region_id,
+        function(response) {
+          $('select#venue_city_id option').remove();
+          $.each(response, function(idx, obj){ $('select#venue_city_id').append('<option value="'+obj.value+'">'+obj.name+'</option>'); });
+          $('select#venue_region_id, select#venue_city_id').removeAttr('disabled');
+          $('#city_loader').hide();
+          $('select#venue_city_id').trigger('change');
+        }
+      );
+    });
+    updateTFCount($('#venue_transit'), 200);
+    $('#neighbourhood_name').autocomplete({
+        url: '/venue/info/neighbourhood_autocomplete.json',
+        minChars: 1,
+        remoteDataType: 'json',
+        onItemSelect: function(item) {
+          $('#neighbourhood_name').value = item.name;
+          $('#neighbourhood_id').val(item.data.id);
+        }
+        });
+  });
+</script>
+
+<script src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
+<script type="text/javascript">
+  function initialize() {
+    var input = document.getElementById('venue_address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    $('.pac-container').attr("style") = "";
+  };
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

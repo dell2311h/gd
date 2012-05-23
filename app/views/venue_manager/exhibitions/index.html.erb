@@ -1,0 +1,21 @@
+<%= render :layout => 'venue_manager/shared_container', :locals => {:selected => :exhibitions} do %>
+<div>
+    <%= render :partial => 'venue_manager/shared/exhibitions_events_fairs_menu' %>
+    <section class="manager-content-table">
+        <header>
+            <ul>
+                <li class="exhibitionsFirstCol"><%= link_to 'NEW', new_venue_manager_exhibition_path, :class => 'popup' unless params[:archive] %></li>
+                <li class="exhibitionsTACol"><%= "Title".upcase %></li>
+				<li class="exhibitionsTACol"><%= "Artist(s)".upcase %></li>
+				<li class="exhibitionsDatesCol"><%= "Dates".upcase %></li>
+				<li class="exhibitionsLAgentCol"><%= "Listing Agent".upcase %></li>
+				<li class="exhibitionsModifiedCol"><%= "Modified".upcase %></li>
+            </ul>
+        </header>
+        <section class="cont">
+			<%= render :partial => 'exhibition_list_item', :collection => @exhibitions %>
+        </section>
+    </section>
+    <div class="decoration"></div>
+</div>
+<% end %>

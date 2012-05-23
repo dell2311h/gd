@@ -1,0 +1,203 @@
+<%= javascript_include_tag '/plupload/plupload.full.js' %>
+<section class="popup-form">
+    <%= f.hidden_field :kind %>
+    <%= hidden_field_tag :default_image, @default_image %>
+    <%= f.hidden_field :id %>
+    <section class="popup-form-parts">
+        <fieldset>
+            <% if f.object.errors[:file_file_name].any? || f.object.errors[:file_content_type].any? %>
+              <span class="field_with_errors" title="Image <%= [f.object.errors.on(:file_file_name), f.object.errors.on(:file_content_type)].compact.join(',')  %>">
+            <% end %>
+            <div id="container">
+                <%= f.file_field :file, :class => 'file without-margin', :id => 'uploadimage' %>
+                <div id="filelist"></div>
+            </div>
+            <% if f.object.errors[:file_file_name].any? || f.object.errors[:file_content_type].any? %>
+            </span>
+            <% end %>
+            <span class="notice withoutpading marg15px">
+                5 mb maximum (<%= f.object.allow_kinds %>)
+            </span>
+        </fieldset>
+    </section>
+    <section class="popup-form-parts without-margin">
+        <dl>
+            <% if f.object.kind_pdf? && !f.object.new_record? %>
+                <dt class="left">
+                    <%= image_tag f.object.image_url_for(:small), :width => '105', :id => 'mainimage' -%>
+                </dt>
+            <% elsif !f.object.kind_pdf? %>
+                <dt class="left">
+                    <a id='zoom' href='<%= f.object.file.url(:large) -%>' class = 'cloud-zoom' rel="adjustX: 10, adjustY:-4, zoomWidth: 150, zoomHeight: 100">
+                        <%= image_tag f.object.file.url(:small), :width => '105', :id => 'mainimage' -%>
+                    </a>
+                </dt>                            
+            <% end %>
+            <dd class="left withoutpading marg15px">
+                <ul class="image-property">
+                    <li id="exhibition_section">
+                        <label class="required">exhibition</label>
+                        <%= f.select :exhibition_id, current_venue.exhibitions.order('start desc').all.map {|a| [a.title,a.id] }, { :include_blank => true }, :class => 'artist' %>
+                    </li>
+                    <li id="event_section">
+                        <label class="required">event</label>
+                        <%= f.select :event_id, current_venue.events.order('start_date desc').all.map {|a| [a.title,a.id] }, { :include_blank => true }, :class => 'artist' %>
+                    </li>
+                    <li id="artist_section">
+                        <label>artist</label>
+                        <%= f.select :artist, current_venue.artists.all.map {|a| [a.full_name,a.full_name] }, { :include_blank => true }, :class => 'artist' %>
+                    </li>
+                    <li id="year_section">
+                        <label>year</label>
+                        <%= f.text_field :year, :class => 'year' %>
+                    </li>
+                    <li id="title_section">
+                        <label>title</label>
+                        <%= f.text_field :title %>
+                    </li>
+                    <li id="caption_section">
+                        <label>caption</label>
+                        <%= f.text_field :caption %>
+                    </li>
+                    <li id="credit_section">
+                        <label>credit</label>
+                        <%= f.text_field :credit %>
+                    </li>
+                    <li id="release_date_section">
+                        <label class="required">release date</label>
+                        <%= f.text_field :release_date, :class => 'date' %>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+    </section>
+    <section id="description_section" class="popup-form-parts without-margin">
+        <fieldset>
+            <span class="descrlabel marg15px">description of work:</span><span class="descrlabel marg15px">(500 characters maximum)</span>
+            <!-- <a href="" class="right marg-right">add full description</a> -->
+            <%= f.text_area :description, :class => 'description medium',  :onkeyup => "updateTFCount(this, 500)" %>
+            <span id="image_description_count" class="count right marg-right">500</span>
+        </fieldset>
+    </section>
+</section>
+<section id="size_section" class="popup-form-parts">
+        <fieldset>
+            <ul class="image-property-box marg15px">
+                <li>
+                    <label>dimensions in</label>
+                    <%= f.select :unit, ['in', 'ft', 'cm', 'm'], {}, :class => 'short' %>
+                    <label class='marg15px' style="width: 55px;">medium</label>
+                    <%= f.select :medium, Medium.all.map(&:name), { :include_blank => true }, :class => ''%>
+                </li>
+                <li>
+                    <label>height</label>
+                    <%= f.text_field :height, :class => 'short' %>
+                    <!-- <%= f.select :style, ['style'], {}, :class => 'middle marg15px'%> -->
+                    <%= f.check_box :available_for_press, :class => 'marg15px' %>
+                    <%= f.label :available_for_press, 'registered members of the press may download full-res image', :class => 'notice'%>
+                </li>
+                <li>
+                    <label>width</label>
+                    <%= f.text_field :width, :class => 'short' %>
+                </li>
+                <li>
+                    <label>depth</label>
+                    <%= f.text_field :depth, :class => 'short' %>
+                </li>
+            </ul>
+        </fieldset>
+</section>
+<section class="popup-form-parts" id="inventory_number_section" style="display: none">
+  <fieldset class="marg15px">
+    <label>inventory number</label>
+    <%= f.text_field :inventory_number %>
+  </fieldset>
+</section>
+<script>
+function showControlsForAnImage(){
+  if($('#image_kind').val() == '<%= Image::KINDS[:default] -%>' || $('#image_kind').val() == '<%= Image::KINDS[:logo] -%>'){
+    $('#size_section, #description_section, #exhibition_section, #event_section, #caption_section, #credit_section, #release_date_section').hide();
+  }else if($('#image_kind').val() == '<%= Image::KINDS[:publication_pdf] -%>'){
+    $('#size_section, #description_section, #exhibition_section, #year_section, #caption_section, #artist_section, #event_section, #credit_section').hide();
+    $('#title_section label').addClass('required');
+  }else if($('#image_kind').val() == '<%= Image::KINDS[:attachment_art] -%>'){
+    $('#exhibition_section, #event_section, #caption_section, #release_date_section').hide();
+    $('#inventory_number_section').show();
+    $('#artist_section label').addClass('required');
+  }else if($('#image_kind').val() == '<%= Image::KINDS[:attachment_installation] -%>'){
+    $('#size_section, #description_section, #event_section, #title_section, #release_date_section, #year_section').hide();
+  }else if($('#image_kind').val() == '<%= Image::KINDS[:attachment_reception] -%>'){
+    $('#size_section, #description_section, #exhibition_section, #year_section, #title_section, #artist_section, #release_date_section').hide();
+  }else if($('#image_kind').val() == '<%= Image::KINDS[:attachment_other] -%>'){
+    $('#size_section, #description_section, #exhibition_section, #event_section, #year_section, #title_section, #artist_section, #release_date_section').hide();
+  }
+  resizePopupToContents();
+};
+
+$(document).ready(function(){
+  showControlsForAnImage();
+
+  $(function() {
+      authtoken = $("input[name=authenticity_token]").val();
+
+      var uploader = new plupload.Uploader({
+          runtimes : 'html5,flash,silverlight',
+          browse_button : 'uploadimage',
+          container : 'container',
+          max_file_size : '10mb',
+          url : '<%= upload_venue_manager_images_path %>',
+          flash_swf_url : '/plupload/plupload.flash.swf',
+          silverlight_xap_url : '/plupload/plupload.silverlight.xap',
+          filters : {
+            title : "Image files",
+            extensions : "jpg,gif,png"
+          },
+          multipart_params : {
+              'format': 'json',
+              authenticity_token: authtoken
+          },
+          file_data_name: 'image[file]'
+      });
+      
+      uploader.init();
+
+      uploader.bind('BeforeUpload', function(u,f){
+        $('#cover').show();
+      })      
+   
+      uploader.bind('FilesAdded', function(up, files) {
+          $.each(files, function(i, file) {
+              $('#filelist').append(
+                  '<div id="' + file.id + '">' +
+                  file.name + ' (' + plupload.formatSize(file.size) + ') <b></b>' +
+              '</div>');
+          });
+   
+          up.refresh(); // Reposition Flash/Silverlight
+          up.start();
+      });
+   
+      uploader.bind('UploadProgress', function(up, file) {
+          $('#' + file.id + " b").html(file.percent + "%");
+      });
+   
+      uploader.bind('Error', function(up, err) {
+          $('#filelist').append("<div>Error: " + err.code + ", Message: " + err.message + (err.file ? ", File: " + err.file.name : "") + "</div>");
+           up.refresh(); // Reposition Flash/Silverlight
+           $('#cover').hide();
+      });
+   
+      uploader.bind('FileUploaded', function(up, file, info) {
+          $('#' + file.id + " b").html("100%");
+          var response = JSON.parse(info['response']);
+          var urls = JSON.parse(response['urls']);
+          $('#mainimage').attr("src", urls['small_url']);
+          $('#zoom').attr("href", urls['large_url']);  
+          $('.cloud-zoom').CloudZoom();
+          $('#image_id').val(response['id']);          
+          $('#filelist').empty();
+          $('#cover').hide();
+      });
+  });
+});
+</script>

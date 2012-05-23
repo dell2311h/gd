@@ -1,0 +1,20 @@
+<% @result.sort_by { |r| -r.third.to_i }.map do |groupitem| %>
+  <section class="manager mainpage">
+    <hgroup>
+      <h1><%= link_to groupitem.second, region_path(groupitem.fourth) %></h1>
+      <h3><%= pluralize(groupitem.third, 'result') %></h3>
+    </hgroup>
+    <%= render :partial => 'hoods_navigation', :locals => { :groupitem => groupitem } %>
+    <% carousel_id = "carousel#{groupitem.first.id}" %>
+    <div id="<%= carousel_id -%>" class="gallery separator">
+        <% groupitem.first.map do |item| %>
+            <figure <%= "class='last'" if groupitem.first.last == item %>>
+              <%= render :partial => item.class.to_s.downcase, :locals => { :item => item } %>
+            </figure>
+        <% end %>
+      <script>
+        $("#<%= carousel_id -%>").carousel({showAmount:5});
+      </script>
+    </div>
+  </section>
+<% end %>

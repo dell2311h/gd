@@ -1,0 +1,45 @@
+<article class="exhibition">
+    <p class="image">
+		<%= link_to_function(exhibition_image(item, :small), "jQuery('#exhibition_info_popup_#{item.id}').modal();") %>
+	</p>
+    <p><%= exhibition_artists(item) %></p>
+    <h3>
+		<%= link_to_function(truncate(item.title, :length=>30), "jQuery('#exhibition_info_popup_#{item.id}').modal();") %>
+	</h3>
+    <p>
+		<% if item.start > Date.today %>
+		<strong>opens <%= item.start.strftime("%B %-d, %Y") %></strong>
+		<% else %>
+			<% if item.days_left <= 10 %>
+			<strong class="ending"><%= pluralize(item.days_left, 'day') -%> left</strong>
+			<% else %>
+			<strong>thru <%= item.end.strftime("%B %-d, %Y") %></strong>
+			<% end %>
+		<% end %>
+	</p>
+    <p>
+		<%= link_to(item.venue.name, venue_path(item.venue), :class=>"venue") %>
+	</p>
+</article>
+
+
+
+<div style="display: none;" id="exhibition_info_popup_<%= item.id -%>" class="popup-event">
+    <div class="popup-left">
+        <p><%= exhibition_image(item, :medium) %></p>
+        <p class="popup-date"><%= "#{item.start.strftime("%B %d").upcase} - #{item.end.strftime("%B %d").upcase}" %></p>
+        <p class="popup-closed"><%= venue_is_open(item.venue) -%></p>
+    </div>
+    <div class="popup-right">
+        <p class="popup-close"><a class="simplemodal-close" href="#">[x]</a></p>
+        <h3>
+			<%= link_to item.title, venue_exhibition_path(item.venue, item) -%>
+		</h3>
+        <p class="popup-fav-venue">
+			<a href="#" class="fav"><span>Favorite</span></a> <%= link_to(item.venue.name, venue_path(item.venue), :class=>"venue") %>
+		</p>
+        <p class="popup-location"><%= item.venue.neighbourhood.name rescue '' -%><br><%= item.venue.short_location rescue '' -%> <%= link_to '(map)', "http://maps.google.com/?saddr=&daddr=#{URI.escape(item.venue.full_address)}", :target => '_blank' %></p>
+        <h4><%= exhibition_artists(item) %></h4>
+        <p><%= truncate(item.description.gsub(/<\/?[^>]*>/, ""), :length=>300, :omission => "... #{link_to('(read more)', venue_exhibition_path(item.venue, item), :class=>"bluelink-bold")}") %></p>
+    </div>
+</div>

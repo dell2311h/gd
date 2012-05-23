@@ -1,0 +1,101 @@
+/* CSS Document */
+
+body {margin:0 0 15px 0; padding:0; background:#E6E6DC; font:normal 12px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none;}
+h1, h2, h3, h4, h5, h6, ul, ol, form, p {margin:0; padding:0;}
+input, select, textarea {background:#fff; border-top:1px solid #A8A8A8; border-right:1px solid #A8A8A8; border-left:1px solid #D0D0D0; border-right:1px solid #D0D0D0; font:normal 12px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none; padding:0 0 0 3px;}
+.noclass {background:none; border:none; margin:0; padding:0; vertical-align:middle;}
+p {margin:0 0 10px 0; line-height:18px;}
+.left {float:left;}
+.right {float:right;}
+.relative {position:relative;}
+.lineheight-none {line-height:normal;}
+.select-MB {margin-bottom:3px;}
+.GML {margin:0 0 0 16px;}
+.MT {padding:25px 0 0 0}
+a {font:normal 12px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none;}
+a:hover {font:normal 12px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:underline;}
+
+
+
+/* Without Link Class */
+.myfav {font:bold 20px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none;}
+h1 {font:bold 24px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none; border-bottom:1px dotted #C0C0C0; margin:0 0 22px 0; padding:0 0 7px 0;}
+h2{font:bold 20px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none; border-bottom:1px dotted #C0C0C0; margin:0 0 22px 0; padding:0 0 7px 0;}
+h2.border-none {border-bottom:none;}
+h2 span {font:bold 12px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none;}
+h3{font:bold 20px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none;}
+h4{font:bold 20px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none;}
+h4 a {font:bold 20px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none;}
+h4 a:hover {text-decoration:underline; font-size:20px; font-weight:bold}
+h3.sub-heading {font:bold 18px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none; margin:0 0 15px 0;}
+h5{font:bold 15px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none; border-bottom:1px solid #e4e4e4; line-height:22px;}
+.caption {font:bold 12px Arial, Helvetica, sans-serif; color:#4c4c4c; text-decoration:none; font-style:italic; margin:5px 0 5px 0;}
+.redmatter-bold {font:bold 12px Arial, Helvetica, sans-serif; color:#ff0000; text-decoration:none;}
+
+
+/* With Link Class */
+a.bluelink-normal {font:normal 12px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none;}
+a:hover.bluelink-normal {text-decoration:underline;}
+
+a.bluelink-bold {font:bold 12px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none;}
+a:hover.bluelink-bold {text-decoration:underline;}
+
+.bottom-link {font:bold 12px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none;}
+.bottom-link a {font:bold 12px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none;}
+.bottom-link a:hover {text-decoration:underline;}
+ 
+a.greylink-normal {font:normal 12px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none;}
+a:hover.greylink-normal {text-decoration:underline;}
+
+a.greylink-bold {font:bold 12px Arial, Helvetica, sans-serif; color:#4C4C4C; text-decoration:none;}
+a:hover.greylink-bold {text-decoration:none; color:#5F9ED0;}
+
+
+.paging-link {font:bold 12px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none;}
+.paging-link a {font:bold 12px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none; margin:0 1px 0 1px;}
+.paging-link a:hover {color:#4C4C4C; text-decoration:none;}
+.paging-link a.active { font-weight:bold; color:#4C4C4C; text-decoration:none;}
+
+.left-point li {list-style-type:none;}
+.left-point li a {font:normal 12px Arial, Helvetica, sans-serif; color:#5F9ED0; text-decoration:none; line-height:22px; background:url(../images/round-bullet.gif) no-repeat 0 6px; padding:0 0 0 12px;}
+.left-point li a:hover {text-decoration:underline;}
+
+/* TD Background Class */
+.login-middbg {background:#F7F7F7; padding:7px 0px 11px 0px;}
+.white-bg {background:#fff;}
+.midd-whitebg {background:#fff; padding:0 12px 0 12px;}
+.vr-dottedline {background:url(../images/vr-dottedline.gif) repeat-y top right; padding:0 11px 0 0;}
+.paging-border-top {background:url(../images/hr-dottedline.gif) repeat-x top;}
+.paging-border-bottom {background:url(../images/hr-dottedline.gif) repeat-x bottom;}
+.grey-bg {background:#EDEDE7;}
+.grey-middbg {background:#EDEDE7; padding:0 10px 0 10px; font-weight:bold;}
+.top-arrow {position:absolute; left:-62px; top:10px;}
+.hr-dottedline {background:url(../images/hr-dottedline.gif) repeat-x center;}
+.table-border-red {border:1px solid #ff0000;}
+.table-border-grey {border:1px solid #E5E5E5;}
+.table-greybg {background:#E5E5E5;}
+th {background:#5F9ED0; font:bold 13px Arial, Helvetica, sans-serif; color:#fff; text-decoration:none;}
+.evenrow-bg {background:#f8f8f8;}
+.errormsg {color:#ff0000;}
+
+/*.errorExplanation { width: 500px; border:2px solid #FF0000; border-bottom: 2px solid #FF0000; background: #F0F0F0; margin-bottom: 10px;}
+.mainheading {margin:0; padding:0; background: #CC0000; font-size: 13px; font-family: tahoma, Arial, Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; padding-left: 10px; }
+.middcontent { padding: 5px; }
+ul.list { margin: 0; padding:0; margin-top: 7px; margin-bottom: 7px; margin-left: 30px; }
+ul.list li { list-style-type: square; font-size: 13px; font-family: tahoma, Arial, Helvetica, sans-serif; }*/
+
+#errorExplanation { width: 500px; border:2px solid #FF0000; border-bottom: 2px solid #FF0000; background: #F0F0F0; margin-bottom: 10px;}
+#errorExplanation h2 {margin:0; padding:0; background: #CC0000; font-size: 13px; font-family: Arial,  Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; padding-left: 10px; }
+#errorExplanation p { padding: 5px; color:#000000;}
+#errorExplanation ul { margin: 0; padding:0; margin-top: 7px; margin-bottom: 7px; margin-left: 30px; }
+#errorExplanation ul li { list-style-type: square; font-size: 13px; font-family:  Arial, Helvetica, sans-serif; color:#000000;}
+
+.flashmessage {margin:0; padding:0; background: #CC0000; font-size: 13px; font-family:  Arial, tahoma,Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; padding-left: 10px; }
+	
+	.listingmessage 
+{
+	width: 300px;	
+	margin:0; padding:0;
+	background: #CC0000; font-size: 13px; 
+	font-family: tahoma, Arial, Helvetica, sans-serif; font-weight: bold; color:#FFFFFF; height: 20px; padding-top: 3px; text-align:center;
+}

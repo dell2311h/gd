@@ -1,0 +1,2 @@
+module VenueManager::PressReleasesHelper
+end

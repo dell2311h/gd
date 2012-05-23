@@ -1,0 +1,7 @@
+<html><head></head><body>
+<% if @exhibition_or_event.kind_of?(Exhibition) %>
+  <%= render :partial => 'exhibition_publication', :locals => {:exhibition => @exhibition_or_event} %>
+<% else %>
+  <%= render :partial => 'event_publication', :locals => {:event => @exhibition_or_event} %>
+<% end %>
+</body></html>

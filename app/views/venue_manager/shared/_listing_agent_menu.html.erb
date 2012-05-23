@@ -1,0 +1,12 @@
+<header>
+    <!-- <div class="combobox">location</div> -->
+    <h2>listing agent settings</h2>
+    <span>subscription active thru <%= current_venue.listing_agent.try(:valid_through).to_s -%> <a href="">renew</a></span>
+</header>
+<ul class="tags">
+    <% @media_service_groups.each do |region| %>
+      <li <%= "class='active'" if region == params[:region] -%>>
+        <%= link_to region, venue_manager_listing_agent_path(:region => region) %>
+      </li>
+    <% end %>
+</ul>
